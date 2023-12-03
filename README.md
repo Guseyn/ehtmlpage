@@ -1,5 +1,5 @@
 # ehtmlpage
-[Web Page](https://guseyn.github.io/ehtmlpage/) For [EHTML](https://guseyn.github.io/ehtmlpage/)
+Web Page For [EHTML](https://guseyn.github.io/ehtmlpage/).
 
 # Run locally
 
