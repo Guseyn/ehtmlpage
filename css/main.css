@@ -30,20 +30,15 @@ body {
 
 h3 {
   font-size: 1em;
-  margin-top: 1.6em;
-  margin-bottom: -1em;
   display: block;
 }
 
 h4 {
   font-size: 1em;
-  margin-top: 1.6em;
-  margin-bottom: 0em;
   display: block;
 }
 
 p {
-  padding-top: 1em;
   clear: both;
 }
 
@@ -55,7 +50,6 @@ h1 {
   clear: both;
   font-size: 1.8em;
   line-height: 1.1em;
-  margin-bottom: 0px;
 }
 
 h1 a {
