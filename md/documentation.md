@@ -38,7 +38,7 @@ Sometimes html files can be very big, so why not just split them into different 
   <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
 
     <head>
-      <link rel="shortcut icon" href="/../images/favicon.ico"/>
+      <link rel="shortcut icon" href="/image/favicon.ico"/>
       <meta charset="UTF-8">
       <meta name="viewport" content="width=device-width, initial-scale=1">
       <title>e-html</title>
@@ -76,7 +76,7 @@ And when you open `articles.html` in a browser, it will be rendered as if you in
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
 
   <head>
-    <link rel="shortcut icon" href="/../images/favicon.ico"/>
+    <link rel="shortcut icon" href="/image/favicon.ico"/>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>e-html</title>
@@ -687,7 +687,7 @@ With element `e-svg` you can load svg code right into your html page:
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
 
   <head>
-    <link rel="shortcut icon" href="/../images/favicon.ico"/>
+    <link rel="shortcut icon" href="/image/favicon.ico"/>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>e-html</title>
@@ -721,7 +721,7 @@ Then once you load your page it would look like:
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
 
   <head>
-    <link rel="shortcut icon" href="/../images/favicon.ico"/>
+    <link rel="shortcut icon" href="/image/favicon.ico"/>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>e-html</title>
@@ -751,7 +751,7 @@ With element `e-markdown` you can load markdown right into your html page:
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
 
   <head>
-    <link rel="shortcut icon" href="/../images/favicon.ico"/>
+    <link rel="shortcut icon" href="/image/favicon.ico"/>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>e-html</title>
@@ -781,7 +781,7 @@ Then once you load your page it would look like:
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
 
   <head>
-    <link rel="shortcut icon" href="/../images/favicon.ico"/>
+    <link rel="shortcut icon" href="/image/favicon.ico"/>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>e-html</title>
