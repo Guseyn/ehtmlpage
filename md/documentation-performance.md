@@ -1,6 +1,6 @@
 # Some Tips To Improve Performance
 
-1. As it's been told, you can turn on/off the `MutationObserver` in **EHTML** whenever needed:
+1. As it's been mentioned, you can turn on/off the `MutationObserver` in **EHTML** whenever needed:
 
 
 ```js
@@ -35,7 +35,7 @@ It's quite useful for the resources in elements like: **&lt;e-html&gt;**, **&lt;
 , **&lt;e-markdown&gt;**, **&lt;template is="e-wrapper"&gt;** and **&lt;e-json-view&gt;**.
 <br>
 
-4. Don't forget about general practices like response caching, response compression.
+4. Don't forget about general practices like response caching and compression.
 <br>
 
 5. If the sources for **&lt;e-html&gt;** or **&lt;e-markdown&gt;** are too large, you can split them into smaller chunks. As they are loaded asynchronously, rendering will be faster.

@@ -223,4 +223,4 @@ data-actions-on-response="
 "
 ```
 
-Such feature makes it much easier to access information about the applicaton which you can persist in, let say, attributes of the element where you use  `data-actions-on-response`.
+Such feature makes it much easier to access information about the applicaton state which you can persist, let say, in attributes of the element with `data-actions-on-response`.
