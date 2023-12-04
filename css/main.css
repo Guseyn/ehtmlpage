@@ -28,6 +28,11 @@ body {
   background: #555; 
 }
 
+.turbo-progress-bar {
+  height: 4px;
+  background-color: #ffa801;
+}
+
 h3 {
   font-size: 1em;
   display: block;
