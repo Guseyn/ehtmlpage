@@ -1,0 +1,1 @@
+TODO: create simple blog app in EHTML, React, Vue, Angular, maybe Ember, and compare different metrics like load time, performance, bundle size, network requests, DOM speed, lines of code, number of files, build time

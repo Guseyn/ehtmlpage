@@ -1,5 +1,5 @@
 # ehtmlpage
-Web Page For [EHTML](https://guseyn.github.io/ehtmlpage/).
+Web Page For [EHTML](https://e-html.org).
 
 # Run locally
 
