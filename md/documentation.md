@@ -1079,7 +1079,7 @@ data-actions-on-response="
 
 On elements with attribute `data-actions-on-response`, you can use variable `thisElement` inside of the script in the attribute:
 
-```html
+```js
 data-actions-on-response="
   console.log(thisElement.attributes['some-attr-name'].value)
   someAction(response)
