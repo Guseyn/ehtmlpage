@@ -4,7 +4,7 @@
 
 ```html
 <head>
-  <script src="/../js/ehtml.bundle.min.js" type="text/javascript"></script>
+  <script src="/js/ehtml.bundle.min.js" type="text/javascript"></script>
 </head>
 ```
 
@@ -42,16 +42,16 @@ Sometimes html files can be very big, so why not just split them into different 
       <meta charset="UTF-8">
       <meta name="viewport" content="width=device-width, initial-scale=1">
       <title>e-html</title>
-      <link rel="stylesheet" href="/../css/main.css">
-      <script src="/../js/ehtml.bundle.min.js" type="text/javascript"></script>
+      <link rel="stylesheet" href="/css/main.css">
+      <script src="/js/ehtml.bundle.min.js" type="text/javascript"></script>
     </head>
 
     <body class="main">
       <div class="articles">
 
-        <e-html data-src="/../html/first.html"></e-html>
-        <e-html data-src="/../html/second.html"></e-html>
-        <e-html data-src="/../html/third.html"></e-html>
+        <e-html data-src="/html/first.html"></e-html>
+        <e-html data-src="/html/second.html"></e-html>
+        <e-html data-src="/html/third.html"></e-html>
 
       </div>
     </body>
@@ -80,8 +80,8 @@ And when you open `articles.html` in a browser, it will be rendered as if you in
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>e-html</title>
-    <link rel="stylesheet" href="/../css/main.css">
-    <script src="/../js/ehtml.bundle.min.js" type="text/javascript"></script>
+    <link rel="stylesheet" href="/css/main.css">
+    <script src="/js/ehtml.bundle.min.js" type="text/javascript"></script>
   </head>
 
   <body class="main">
@@ -128,7 +128,7 @@ Then you can fetch it via `e-json` like in following html code:
 
 ```html
 <e-json
-data-src="/../album/Humbug"
+data-src="/album/Humbug"
 data-response-name="albumResponse"
 data-actions-on-response="
   mapToTemplate('#album-info', albumResponse.body)
@@ -155,7 +155,7 @@ As you see, we are using predefined `mapToTemplate` function in `data-actions-on
 
 If you need some request headers, you can specify them in the attribute `data-request-headers` with format `{ "headerName": "headerValue", ... }`.
 
-You can also add attributes `data-ajax-icon` and `data-progress-bar` as element selectors for presenting progress of fetching data from the server. You can see how to use them in the [examples](/../html/examples.html).
+You can also add attributes `data-ajax-icon` and `data-progress-bar` as element selectors for presenting progress of fetching data from the server. You can see how to use them in the [examples](/html/examples.html).
 
 Also, it is worth mentioning that in `data-actions-on-response`, you can run any JavaScript code without using curly brackets ${someVariable}. On the other hand, in other attributes like `data-text`, you must use curly brackets for parameters, as everything must be evaluated back to the string.  You can see how to use them in this [example](/html/examples/simple-e-json.html).
 
@@ -178,7 +178,7 @@ title = 'Humbug'
 ```
 
 ```html
-<template is="e-json" data-src="/../album/Humbug" data-object-name="albumResponse">
+<template is="e-json" data-src="/album/Humbug" data-object-name="albumResponse">
   <div data-text="Title: ${albumResponse.body.title}"></div>
   <div data-text="Artist: ${albumResponse.body.artist}"></div>
   <div data-text="Type: ${albumResponse.body.type}"></div>
@@ -221,7 +221,7 @@ Then your html code would be something like this:
 
 ```html
 <e-json
-  data-src="/../album/Humbug/songs"
+  data-src="/album/Humbug/songs"
   data-response-name="albumResponse"
   data-actions-on-response="
     mapToTemplate('#album-info', albumResponse.body)
@@ -333,7 +333,7 @@ And you would like to display only songs that shorter than '3:30' in length. The
 
 ```html
 <e-json
-  data-src="/../album/Humbug/songs"
+  data-src="/album/Humbug/songs"
   data-response-name="albumResponse"
   data-actions-on-response="
     mapToTemplate(#album-info, albumResponse.body)
@@ -448,7 +448,7 @@ Then you can make this request with following html code:
     "
   />
 
-  <img id="ajax-icon" src="/../images/ajax-loader.gif"/>
+  <img id="ajax-icon" src="/images/ajax-loader.gif"/>
   
 </e-form>
 ```
@@ -520,7 +520,7 @@ For retrieving values from local storage you can use `e-local-storage-value` and
       console.log('response: ', response);
     "
   />
-  <img id="ajaxIcon" src="/../images/ajax-loader.gif"/>
+  <img id="ajaxIcon" src="/images/ajax-loader.gif"/>
 </e-form>
 ```
 
@@ -551,7 +551,7 @@ Element `e-session-storage-value` works in the same way as `e-local-storage-valu
       console.log('response: ', response)
     "
   />
-  <img id="ajaxIcon" src="/../images/ajax-loader.gif"/>
+  <img id="ajaxIcon" src="/images/ajax-loader.gif"/>
 </e-form>
 ```
 
@@ -588,24 +588,24 @@ And your page which is in `redirect-uri` can look like:
   <template is="e-page-with-url" data-url-pattern="/html/github.html?{code}">
     <div class="base">
       <e-form
-        data-request-url="/../github"
+        data-request-url="/github"
         data-request-method="POST"
         data-request-headers="{}"
         data-ajax-icon="#ajax-icon"
         data-response-name="responseWithToken"
         data-actions-on-response="
           localStorage.setItem('jwt', responseWithToken.body.jwt);
-          redirect('/../e-github-oauth-button.html');
+          redirect('/e-github-oauth-button.html');
       ">
         <input type="hidden" name="code" value="${urlParams.code}">
-        <img id="ajax-icon" class="ajax-icon" src="/../images/ajax-icon.svg"/>
+        <img id="ajax-icon" class="ajax-icon" src="/images/ajax-icon.svg"/>
       </e-form>
     </div> 
   </template>
 </body>
 ```
 
-In the redirect uri we expect `code` param, which we want to retrieve via `e-page-with-url` template. And then using simple `e-form` with `<input type="hidden">` we send the code in the request to our endpoint `/../github`, which is supposed to return response with some jwt token.
+In the redirect uri we expect `code` param, which we want to retrieve via `e-page-with-url` template. And then using simple `e-form` with `<input type="hidden">` we send the code in the request to our endpoint `/github`, which is supposed to return response with some jwt token.
 
 After we get the **JWT** token, we save it into local storage and make turbo redirect to the original page where we have been redirected from. And you can notice that we use all `data-request-*` attributes right in the `e-form`. That allows us to send the form on rendering page, so we don't have to click on some button, for example.
 
@@ -691,20 +691,20 @@ With element `e-svg` you can load svg code right into your html page:
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>e-html</title>
-    <link rel="stylesheet" href="/../css/main.css">
-    <script src="/../js/ehtml.bundle.min.js" type="text/javascript"></script>
+    <link rel="stylesheet" href="/css/main.css">
+    <script src="/js/ehtml.bundle.min.js" type="text/javascript"></script>
   </head>
 
   <body class="main">
 
-      <e-svg data-src="/../images/svg-from-server.svg"></e-svg>
+      <e-svg data-src="/images/svg-from-server.svg"></e-svg>
 
   </body>
 
 </html>
 ```
 
-And let's say your svg image on `/../images/svg-from-server.svg` is something like
+And let's say your svg image on `/images/svg-from-server.svg` is something like
 
 ```html
 <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="512px" height="512px" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
@@ -725,8 +725,8 @@ Then once you load your page it would look like:
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>e-html</title>
-    <link rel="stylesheet" href="/../css/main.css">
-    <script src="/../js/ehtml.bundle.min.js" type="text/javascript"></script>
+    <link rel="stylesheet" href="/css/main.css">
+    <script src="/js/ehtml.bundle.min.js" type="text/javascript"></script>
   </head>
 
   <body class="main">
@@ -755,20 +755,20 @@ With element `e-markdown` you can load markdown right into your html page:
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>e-html</title>
-    <link rel="stylesheet" href="/../css/main.css">
-    <script src="/../js/ehtml.bundle.min.js" type="text/javascript"></script>
+    <link rel="stylesheet" href="/css/main.css">
+    <script src="/js/ehtml.bundle.min.js" type="text/javascript"></script>
   </head>
 
   <body class="main">
 
-      <e-markdown data-src="/../md/md-from-server.md"></e-markdown>
+      <e-markdown data-src="/md/md-from-server.md"></e-markdown>
 
   </body>
 
 </html>
   ```
 
-And let's say your markdown on `/../md/md-from-server.md` is something like
+And let's say your markdown on `/md/md-from-server.md` is something like
 
 ```md
 # Title
@@ -785,8 +785,8 @@ Then once you load your page it would look like:
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>e-html</title>
-    <link rel="stylesheet" href="/../css/main.css">
-    <script src="/../js/ehtml.bundle.min.js" type="text/javascript"></script>
+    <link rel="stylesheet" href="/css/main.css">
+    <script src="/js/ehtml.bundle.min.js" type="text/javascript"></script>
   </head>
 
   <body class="main">
@@ -824,7 +824,7 @@ Then you can use this static template as a warapper in other pages
 <body class="main">
   <template 
     is="e-wrapper" 
-    data-src="/../html/wrapper.html" 
+    data-src="/html/wrapper.html" 
     data-where-to-place="#dynamic-content" 
     data-how-to-place="instead">
     <p>
@@ -1059,7 +1059,7 @@ This action redirects to specified page:
 
 ```js
 data-actions-on-response="
-	redirect('/../some/path')
+	redirect('/some/path')
 "
 ```
 
@@ -1114,7 +1114,7 @@ window.turnEhtmlMutationObserverOff(
 </head>
 
 <body>
-  <e-markdown data-src="/../md/md-from-server.md"></e-markdown>
+  <e-markdown data-src="/md/md-from-server.md"></e-markdown>
 </body>
 
 ```
