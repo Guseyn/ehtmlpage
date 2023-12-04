@@ -285,6 +285,13 @@ img:not(.logo):not(.photo):not(.project-logo):not(.article-logo):not(.youtube-vi
     height: auto;
 }
 
+.youtube-iframe {
+  width: 100%;
+  aspect-ratio: auto 1.78;
+  border-radius: 20px;
+  margin-top: 30px;
+}
+
 @media only screen and (min-width: 700px) {
   .base {
     width: 780px;
