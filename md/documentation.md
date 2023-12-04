@@ -1110,7 +1110,7 @@ window.turnEhtmlMutationObserverOff(
 
 ```html
 <head>
-  <link rel="preload" href="/md/md-from-server.md" as="fetch" />
+  <link rel="preload" href="/md/md-from-server.md" as="fetch" crossorigin/>
 </head>
 
 <body>
