@@ -68,10 +68,6 @@ ol, ul {
   padding: 0 1.14em;
 }
 
-ol {
-  margin-top: -0.5em;
-}
-
 li {
   padding: 0 0.5em;
 }
@@ -219,10 +215,6 @@ iframe {
 
 .middle {
   padding: 10px;
-}
-
-.middle div {
-  margin-top: 10px;
 }
 
 .footer {

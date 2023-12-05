@@ -1,5 +1,6 @@
 # Blog App in EHTML
 <div class="date">7 March 2023</div>
+<br>
 
 In this article, I am going to explain how you can write basic blog application using [EHTML](https://github.com/Guseyn/EHTML/tree/master/src).
 
