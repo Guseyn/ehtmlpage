@@ -86,14 +86,14 @@ Of course, this element makes an additional http(s) request for fetching a speci
 ```json
 title = 'Humbug'
 {
-"title": "Humbug",
-"artist": "Arctic Monkeys",
-"type": "studio album",
-"releaseDate": "19 August 2009",
-"genre": "psychedelic rock, hard rock, stoner rock, desert rock",
-"length": "39:20",
-"label": "Domino",
-"producer": "James Ford, Joshua Homme"
+  "title": "Humbug",
+  "artist": "Arctic Monkeys",
+  "type": "studio album",
+  "releaseDate": "19 August 2009",
+  "genre": "psychedelic rock, hard rock, stoner rock, desert rock",
+  "length": "39:20",
+  "label": "Domino",
+  "producer": "James Ford, Joshua Homme"
 }
 ```
 
@@ -101,11 +101,11 @@ Then you can fetch it via `e-json` like in following html code:
 
 ```html
 <e-json
-data-src="/album/Humbug"
-data-response-name="albumResponse"
-data-actions-on-response="
-  mapToTemplate('#album-info', albumResponse.body)
-">
+  data-src="/album/Humbug"
+  data-response-name="albumResponse"
+  data-actions-on-response="
+    mapToTemplate('#album-info', albumResponse.body)
+  ">
 
 	<template id="album-info" data-object-name="album">
 	  <div data-text="Title: ${album.title}"></div>
