@@ -200,11 +200,11 @@ iframe {
 .big-links {
   text-align: center;
   margin-top: 20px;
-  font-size: 0.95em;
 }
 
 .big-links a {
   margin-right: 14px;
+  font-size: 1.1em;
   color: #fff;
   text-decoration: none;
 }
