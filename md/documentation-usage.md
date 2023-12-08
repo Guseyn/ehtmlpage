@@ -1,4 +1,5 @@
 # Usage
+<p></p>
 
 **EHTML** is very easy to include in your project. Save [this file](https://github.com/Guseyn/EHTML/blob/master/ehtml.bundle.min.js) locally and use it:
 

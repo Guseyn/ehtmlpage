@@ -13,10 +13,8 @@ window.turnEhtmlMutationObserverOff(
   window.ehtmlMutationObserver
 )
 ```
-<br>
 
 2. You can disable some elements for **EHTML** by adding attribute `data-no-ehtml="true"`. It would improve performance, by reducing the number of elements that **EHTML** needs to observe.
-<br>
 
 3. You can preload resources in the **&lt;head&gt;**, which you can fetch by attribute `data-src`:
 
@@ -33,9 +31,7 @@ window.turnEhtmlMutationObserverOff(
 
 It's quite useful for the resources in elements like: **&lt;e-html&gt;**, **&lt;e-json&gt;**, **&lt;e-svg&gt;**
 , **&lt;e-markdown&gt;**, **&lt;template is="e-wrapper"&gt;** and **&lt;e-json-view&gt;**.
-<br>
 
 4. Don't forget about general practices like response caching and compression.
-<br>
 
 5. If the sources for **&lt;e-html&gt;** or **&lt;e-markdown&gt;** are too large, you can split them into smaller chunks. As they are loaded asynchronously, rendering will be faster.
