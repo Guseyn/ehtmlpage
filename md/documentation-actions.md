@@ -212,7 +212,7 @@ data-actions-on-response="
 
 </details>
 
-# thisElement
+# thisElement in data-actions-on-response
 
 On elements with attribute `data-actions-on-response`, you can use variable `thisElement` inside of the script in the attribute:
 

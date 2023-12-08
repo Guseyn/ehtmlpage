@@ -833,3 +833,17 @@ You can also use `data-headers` attribute, if needed.
   
 If you just want to display **JSON** in pretty html format, then use `e-json-view` tag. You can find example [here](https://github.com/Guseyn/EHTML/tree/master/examples/src/e-json-view.html).
 </details>
+
+# thisElement in elements
+
+You can use `thisElement` in attributes of any element to easily access information about other attributes:
+
+```html
+<div data-count="2" data-text="Count: ${thisElement.getAttribute('data-count')}"></div>
+```
+
+It will be rendered like:
+
+```html
+<div data-count="2">Count: 2</div>
+```
