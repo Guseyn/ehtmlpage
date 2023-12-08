@@ -1,5 +1,8 @@
 # Blog
 
+[Templates Instead of Reactivity](/html/blog/templates-instead-of-reactivity.html)
+<br>
+
 [Blog App in EHTML](/html/blog/blog-app-in-ehtml.html)
 <br>
 

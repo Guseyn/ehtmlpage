@@ -44,7 +44,7 @@ h4 {
 }
 
 p {
-  clear: both;
+  margin-bottom: 0.5em;
 }
 
 a {
@@ -52,6 +52,7 @@ a {
 }
 
 h1 {
+  margin: 0 0;
   clear: both;
   font-size: 1.8em;
   line-height: 1.1em;
@@ -120,7 +121,7 @@ summary::-webkit-scrollbar {
 pre {
   overflow: auto;
   margin-top: 0.8em;
-  margin-bottom: 1em;
+  margin-bottom: 2em;
   padding-left: 4px;
   font-size: 0.7em;
   background: white;
@@ -246,9 +247,10 @@ iframe {
 }
 
 .date {
-    font-size: 0.8721em;
-    color: #656565;
-    margin-top: -1em;
+  font-size: 0.8721em;
+  color: #656565;
+  margin-top: 0.5em;
+  margin-bottom: 1em;
 }
 
 .refs {
