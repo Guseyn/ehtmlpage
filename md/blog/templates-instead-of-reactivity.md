@@ -195,8 +195,7 @@ To be more specific about how we are going to render our template, let's improve
     id="template"
     is="reusable"
     data-object-name="state"
-    data-where-to-place="#box"
-    data-how-to-place="instead">
+    data-insert-into="#box">
     <button
       data-text="Clicked ${state.count} times"
       onclick="handleClick(this)">
@@ -205,7 +204,7 @@ To be more specific about how we are going to render our template, let's improve
 </body>
 ```
 
-By using `data-where-to-place`, we can specify element selector where our template will be rendered. Also there is `data-how-to-place`, which indicates how our template will be inserted inside of that element. In this case, we insert it inside of element `#box`. So, imagine that we clicked the button 3 times, this is how our **HTML** would look like:
+By using `data-insert-into`, we can specify element selector where our template will be rendered. In this case, we insert it inside of element `#box`. So, imagine that we clicked the button 3 times, this is how our **HTML** would look like:
 
 ```html
 <head>
@@ -243,7 +242,7 @@ By using `data-where-to-place`, we can specify element selector where our templa
 </body>
 ```
 
-We can use `data-how-to-place="append"`, our **HTML** code will look like:
+We can use `data-append-to="#box"`, our **HTML** code will look like:
 
 ```html
   <div id="box">
@@ -264,7 +263,7 @@ We can use `data-how-to-place="append"`, our **HTML** code will look like:
   </template>
 ```
 
-Or we can use `data-how-to-place="prepend"`, then our code would look like:
+Or we can use `data-prepend-to="#box"`, then our code would look like:
 
 ```html
   <div id="box">
@@ -312,8 +311,7 @@ It's silly, sure. But it shows the power of such mechanism. You can already imag
     id="template"
     is="reusable"
     data-object-name="state"
-    data-where-to-place="#box"
-    data-how-to-place="instead">
+    data-insert-into="#box">
     <button
       data-text="Clicked ${state.count} times"
       onclick="handleClick(this)">
@@ -345,8 +343,7 @@ As you can see, we can even potentially use such things like "for-each" template
     id="template"
     is="reusable"
     data-object-name="state"
-    data-where-to-place="#box"
-    data-how-to-place="instead">
+    data-insert-into="#box">
     <button
       data-text="Clicked ${state.count} times"
       onclick="handleClick(this)">
