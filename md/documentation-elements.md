@@ -834,7 +834,7 @@ You can also use `data-headers` attribute, if needed.
 If you just want to display **JSON** in pretty html format, then use `e-json-view` tag. You can find example [here](https://github.com/Guseyn/EHTML/tree/master/examples/src/e-json-view.html).
 </details><details><summary><b>&lt;template is="e-ws"&gt;</b></summary>
   
-**EHTML** provides a very convenient way to manage Web Sockets in your HTML code. **&lt;template is="e-ws"&gt;** allows you to define a client for a socket connection and save it with a certain name. Then you can use **&lt;ejson&gt;**(or **&lt;template is="e-json"&gt;**) to fetch messages in **JSON** format as if you were working with simple **GET** requests. And finally, by using **&lt;e-form&gt;** you can send message to your web socket.
+**EHTML** provides a very convenient way to manage Web Sockets in your HTML code. **&lt;template is="e-ws"&gt;** allows you to define a client for a socket connection and save it with a certain name. Then you can use **&lt;e-json&gt;**(or **&lt;template is="e-json"&gt;**) to fetch messages in **JSON** format as if you were working with simple **GET** requests. And finally, by using **&lt;e-form&gt;** you can send message to your web socket.
 
 Let's take a look at very simple example:
 
@@ -883,7 +883,7 @@ Let's take a look at very simple example:
 
 We start by declaring **&lt;template is="e-ws"&gt;**. The reason for using a template instead of just **&lt;e-ws&gt;** is crucial for determining other elements like**&lt;e-json&gt;** and **&lt;e-form&gt;** that must be rendered. Therefore, we enforce this by using **&lt;template&gt;**. You can use the attribute `data-connection-icon` to specify the progress icon while connections are being established. You can also run additional actions in `data-actions-on-open-connection`. The most important attribute in this element is `data-socket-name`. You will be able to refer to this socket name as the source of your incoming messages and also as the destination where you can send messages to.
 
-Inside of **&lt;template is="e-ws"&gt;** we declare **&lt;e-json&gt;**(also possible with **&lt;template is="e-json"&gt;**), where we are using attribute `data-socket`. IThis informs **&lt;ejson&gt;** that, instead of the usual `data-src` attribute used for regular HTTP requests, we expect incoming messages in **JSON** format from the specified socket. Other things remain the same, such as `data-response-name` where you declare a variable for your response that you can use in `data-actions-on-response`.
+Inside of **&lt;template is="e-ws"&gt;** we declare **&lt;e-json&gt;**(also possible with **&lt;template is="e-json"&gt;**), where we are using attribute `data-socket`. This informs **&lt;e-json&gt;** that, instead of the usual `data-src` attribute used for regular HTTP requests, we expect incoming messages in **JSON** format from the specified socket. Other things remain the same, such as `data-response-name` where you declare a variable for your response that you can use in `data-actions-on-response`.
 
 Additionally, as shown, we can declare **&lt;e-form&gt;** for sending messages to the socket in **JSON**. All that's needed is to declare the attribute `data-socket` where we refer to our socket. Also, there is a property `isValid` in the form that you can use in event listeners:
 
