@@ -885,7 +885,20 @@ We start by declaring **&lt;template is="e-ws"&gt;**. The reason for using a tem
 
 Inside of **&lt;template is="e-ws"&gt;** we declare **&lt;e-json&gt;**(also possible with **&lt;template is="e-json"&gt;**), where we are using attribute `data-socket`. IThis informs **&lt;ejson&gt;** that, instead of the usual `data-src` attribute used for regular HTTP requests, we expect incoming messages in **JSON** format from the specified socket. Other things remain the same, such as `data-response-name` where you declare a variable for your response that you can use in `data-actions-on-response`.
 
-Additionally, as shown, we can declare **&lt;e-form&gt;** for sending messages to the socket in **JSON**. All that's needed is to declare the attribute `data-socket` where we refer to our socket.
+Additionally, as shown, we can declare **&lt;e-form&gt;** for sending messages to the socket in **JSON**. All that's needed is to declare the attribute `data-socket` where we refer to our socket. Also, there is a property `isValid` in the form that you can use in event listeners:
+
+```html
+<button
+  data-socket="mySocket"
+  onclick="
+    // no need to check on isValid, since form can be submitted only if it's valid
+    this.form.submit(this)
+    if (this.form.isValid) {
+      // do some other actions
+    }
+  ">
+</button>
+```
 
 You can declare as many clients for the socket as you wish on one page. [In this example](/html/examples/simple-ws.html), you can see a very simple chat app.</details>
 

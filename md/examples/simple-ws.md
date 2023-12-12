@@ -67,19 +67,26 @@
     <e-form>
       <input type="hidden" name="userName" value="Alice"></input>
       <input type="hidden" name="userColor" value="#ff9ff3"></input>
-      <textarea id="message-text-1" placeholder="Type your message..." name="messageText"></textarea>
+      <textarea
+        required
+        data-validation-error-class-for-element="elm-error"
+        id="message-text-1"
+        placeholder="Type your message..."
+        name="messageText"></textarea>
       <button
         data-socket="firstSocket"
         onclick="
           this.form.submit(this)
-          mapToTemplate('#message-1', {
-            userName: 'Alice',
-            userColor: '#ff9ff3',
-            messageText: document.querySelector('#message-text-1').value
-          })
-          changeValueOf('#message-text-1', '')
-          const messageBox = document.getElementById('message-box-1')
-          messageBox.scrollTop = messageBox.scrollHeight
+          if (this.form.isValid) {
+            mapToTemplate('#message-1', {
+              userName: 'Alice',
+              userColor: '#ff9ff3',
+              messageText: document.querySelector('#message-text-1').value
+            })
+            changeValueOf('#message-text-1', '')
+            const messageBox = document.getElementById('message-box-1')
+            messageBox.scrollTop = messageBox.scrollHeight
+          }
         ">
         SEND
       </button>
@@ -125,19 +132,26 @@
     <e-form>
       <input type="hidden" name="userName" value="Bob"></input>
       <input type="hidden" name="userColor" value="#54a0ff"></input>
-      <textarea id="message-text-2" placeholder="Type your message..." name="messageText"></textarea>
+      <textarea
+        required
+        data-validation-error-class-for-element="elm-error"
+        id="message-text-2"
+        placeholder="Type your message..."
+        name="messageText"></textarea>
       <button
         data-socket="secondSocket"
         onclick="
           this.form.submit(this)
-          mapToTemplate('#message-2', {
-            userName: 'Bob',
-            userColor: '#54a0ff',
-            messageText: document.querySelector('#message-text-2').value
-          })
-          changeValueOf('#message-text-2', '')
-          const messageBox = document.getElementById('message-box-2')
-          messageBox.scrollTop = messageBox.scrollHeight
+          if (this.form.isValid) {
+            mapToTemplate('#message-2', {
+              userName: 'Bob',
+              userColor: '#54a0ff',
+              messageText: document.querySelector('#message-text-2').value
+            })
+            changeValueOf('#message-text-2', '')
+            const messageBox = document.getElementById('message-box-2')
+            messageBox.scrollTop = messageBox.scrollHeight
+          }
         ">
         SEND
       </button>
