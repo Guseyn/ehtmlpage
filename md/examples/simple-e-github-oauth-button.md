@@ -128,4 +128,4 @@ span.buttonText {
 
 [link to the source code](https://github.com/Guseyn/EHTML/blob/master/examples/src/e-github-oauth-button.html)
 
-[Start over: Simple &lt;e-html&gt;](/html/examples/simple-e-html.html)
+[Next Example: Simple &lt;template is="e-ws"&gt;](/html/examples/simple-ws.html)

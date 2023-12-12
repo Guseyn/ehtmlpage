@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+  <head>
+    <title>EHTML</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="/image/favicon.ico"/>
+    <link rel="preload" href="/html/main-page-template.html" as="fetch" crossorigin="anonymous" />
+    <link rel="preload" href="/md/examples/simple-ws.md.md" as="fetch" crossorigin="anonymous" />
+    <link rel="stylesheet" href="/css/normalize.css">
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/highlights.css">
+    <script type="text/javascript" src="/js/ehtml.bundle.min.js"></script>
+    <script type="text/javascript" src="/js/utils.js"></script>
+  </head>
+  <body class="main">
+    <template
+      is="e-wrapper"
+      data-src="/html/main-page-template.html"
+      data-where-to-place="#author"
+      data-how-to-place="before">
+      <e-markdown
+        data-src="/md/examples/simple-ws.md"
+        data-apply-code-highlighting="true">
+      </e-markdown>
+    </template>
+  </body>
+</html>

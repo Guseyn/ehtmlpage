@@ -40,3 +40,5 @@ npm run examples
 - [&lt;e-page-with-url&gt; and &lt;e-select&gt;](/html/examples/e-page-with-url-and-e-select.html)
 
 - [Simple &lt;e-github-oauth-button&gt;](/html/examples/simple-e-github-oauth-button.html)
+
+- [Simple &lt;template is="e-ws"&gt;](/html/examples/simple-ws.html)
