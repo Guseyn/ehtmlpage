@@ -1,5 +1,7 @@
 # Blog
 
+[Chat App in EHTML](/html/blog/chat-app-in-ehtml.html)
+
 [HTML Templates Instead of Reactivity](/html/blog/templates-instead-of-reactivity.html)
 
 [Blog App in EHTML](/html/blog/blog-app-in-ehtml.html)
