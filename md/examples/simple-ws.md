@@ -145,6 +145,6 @@
   </div>
 </template>
 ```
-[link to the source code](https://github.com/Guseyn/EHTML/blob/master/examples/src/simple-ws.html)
+[link to the source code](https://github.com/Guseyn/EHTML/blob/master/examples/static/html/simple-ws.html)
 
 [Start over: Simple &lt;e-html&gt;](/html/examples/simple-e-html.html)
