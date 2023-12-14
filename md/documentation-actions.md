@@ -90,6 +90,31 @@ data-actions-on-response="
 "
 ```
 
+</details><details><summary><b>releaseTemplate</b></summary>
+
+This action allows you to release template.
+
+```js
+data-actions-on-response="
+  releaseTemplate('#some-template-id')
+"
+```
+
+All templates, except those without `is` attribute or those with `is="e-resuable"` are being rendered on page load. If you want to, let's say, render the **&lt;template is="e-json"&gt;** on some event like a button click, you can simply wrap `e-json` template with another template, like **&lt;template id="template-on-click"&gt;** and do the following:
+
+```html
+<template id="template-on-click">
+  <template is="e-json" data-src="/json">
+    <!-- some content -->
+  </template>
+</template>
+
+<button
+  onclick="releaseTemplate('#template-on-click')">
+  LOAD JSON
+</button>
+```
+
 </details><details><summary><b>showElms</b></summary>
 
 This action allows you to show elements by some query selectors:

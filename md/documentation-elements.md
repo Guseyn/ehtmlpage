@@ -32,7 +32,7 @@ Sometimes html files can be very big, so why not just split them into different 
   </html>
   ```
 
-and as you can see, we have three `e-html` tags here. And each of them refers to some html file which contains some part of the `article.hmtl`. This tag has only one custom attribute `data-src`, which tells us where exactly the file that we want to include is served.
+and as you can see, we have three `e-html` tags here. And each of them refers to some html file which contains some part of the `article.html`. This tag has only one custom attribute `data-src`, which tells us where exactly the file that we want to include is served.
 
 And for example, `first.html` would look something like this
 
@@ -42,7 +42,7 @@ And for example, `first.html` would look something like this
 </div>
 ```
 
-And when you open `articles.html` in a browser, it will be rendered as if you included all the parts in one file:
+And when you open `articles.html` in a browser, it will be rendered as if you included all the parts in a single file:
 
 ```html
 <!DOCTYPE html>
