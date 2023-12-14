@@ -235,6 +235,8 @@ data-actions-on-response="
 "
 ```
 
+Instead of element selectors, you can directly specify the elements themselves.
+
 </details>
 
 # thisElement in data-actions-on-response
