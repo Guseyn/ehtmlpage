@@ -10,7 +10,7 @@ No build process required. Just include **EHTML** in `<script>`.
 **3. State Management**
 **EHTML** encourages you to use predictalbe storages of state such as **HTML** code (element attributes), memory (`window` or other namespaces), `localStorage`, `sessionStorage` or **URL** parameters. It allows you to easily store and access any data you need.
 **&lt;e-form-dynamic-value&gt;** allowes you easily attach values via attribute `data-bound-to` in your form.
-**&lt;template is="e-reusable"&gt;** and **mapToTemplate** allow you to map any state to templates with attribute `is="e-reusable"`, so your view can represent the latest updates. It's more predictable than being "reactive" in the traditional sence.
+**&lt;template is="e-reusable"&gt;** and **mapToTemplate** allow you to map any state to templates with attribute `is="e-reusable"`, so your view can represent the latest updates. It's more predictable than being "reactive" in the traditional sence. Templates in **EHTML** are asynchronous, which means that they persist their associations with memory, allowing you to work with complex data structures.
 
 **4. Routing**
 **&lt;template is="e-page-with-url"&gt;**, **&lt;template is="e-wrapper"&gt;** and **window.urlParams** allow you to emulate Multi-Page Application as Single Page Application. Also the ability to preload and cache different parts of your page make it much easier to achieve that.
