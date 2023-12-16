@@ -14,7 +14,7 @@ It's important to promote diverse ideas about how frontend development can be ap
 **4. If you are a content creator:** I would be pleased to consider collaborations with you through interviews, webinars, or meetups.
 <br>
 
-**5. If you are a representative of sowtware conference:** I would be honored to attend your conference as a speaker.
+**5. If you are a representative of software conference:** I would be honored to attend your conference as a speaker.
 
 # How to Contact Me
 
