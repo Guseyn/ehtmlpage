@@ -79,6 +79,13 @@ And when you open `articles.html` in a browser, it will be rendered as if you in
 The main benefit of using this element is that you can much more easily modify your big html files. So, instead of having one big html file where you have to find a specific part of it to modify, you can just find a file, which contains this specific part and make changes there.
 
 Of course, this element makes an additional http(s) request for fetching a specific part, but you can always cache the files, so it would not cause any performance issues.
+
+You can also add attribute `data-actions-on-progress`, where you can do some actions while waiting for response:
+```html
+data-actions-on-progress="
+  console.log('waiting for progress')
+"
+```
 </details><details><summary><b>&lt;e-json&gt;</b></summary>
 
 `e-json` allows you to fetch **JSON** resource by **GET** request from the server and apply some actions on the response. So, for example, let's say you have an endpoint `/album/{title}`, which returns following response:
@@ -132,6 +139,12 @@ You can also add attributes `data-ajax-icon` and `data-progress-bar` as element 
 
 Also, it is worth mentioning that in `data-actions-on-response`, you can run any JavaScript code without using curly brackets ${someVariable}. On the other hand, in other attributes like `data-text`, you must use curly brackets for parameters, as everything must be evaluated back to the string.  You can see how to use them in this [example](/html/examples/simple-e-json.html).
 
+You can also add attribute `data-actions-on-progress`, where you can do some actions while waiting for response:
+```html
+data-actions-on-progress="
+  console.log('waiting for progress')
+"
+```
 </details><details><summary><b>&lt;template is="e-json"&gt;</b></summary>
 
 You can use `e-json` as a `<template>` element, if you just need to map response. 
@@ -166,6 +179,13 @@ title = 'Humbug'
 Here you don't use `data-response-name` attribute as you don't need to apply actions on response via `data-actions-on-response` attribute. But you still have to specify `data-object-name` to define a variable for the response, so you can use it as a mapping object inside of `e-json` template.
 
 And as for simple `e-json` you can also add attributes `data-ajax-icon` and `data-progress-bar` as element selectors for presenting progress of fetching data from the server. You can see how to use them in this [example](/html/examples/e-json-as-template.html).
+
+You can also add attribute `data-actions-on-progress`, where you can do some actions while waiting for response:
+```html
+data-actions-on-progress="
+  console.log('waiting for progress')
+"
+```
 </details><details><summary><b>&lt;template is="e-for-each"&gt;</b></summary>
 
 You can use standard `template` html element with attribute `is="e-for-each"` for iterating some object for mapping to an element. So, let's say you have an endpoint `/album/{title}/songs`, which returns following response:
@@ -450,6 +470,12 @@ You can use `data-is-query-param` attribute in an input element in `e-form`, and
 
 You can set values for unchecked `checkboxes` via `unchecked-value` attribute.
 
+You can also add attribute `data-actions-on-progress`, where you can do some actions while waiting for response:
+```html
+data-actions-on-progress="
+  console.log('waiting for progress')
+"
+```
 </details><details><summary><b>&lt;e-form-dynamic-value&gt;</b></summary>
 
 Generally **EHTML** has static binding for elements (unless it's input fields that can change value by the user interaction). In order to bind value in memory (and also local/session storages and other global variables) and send this value in the `e-form`, you can use `e-form-dynamic-value`. By using `e-form-dynamic-value` attribute, you can be sure that its value is calculated only when you submit a form.
@@ -715,6 +741,12 @@ Then once you load your page it would look like:
 </html>
 ```
 
+You can also add attribute `data-actions-on-progress`, where you can do some actions while waiting for response:
+```html
+data-actions-on-progress="
+  console.log('waiting for progress')
+"
+```
 </details><details><summary><b>&lt;e-markdown&gt;</b></summary>
   
 With element `e-markdown` you can load markdown right into your html page:
@@ -771,6 +803,12 @@ Then once you load your page it would look like:
 </html>
 ```
 
+You can also add attribute `data-actions-on-progress`, where you can do some actions while waiting for response:
+```html
+data-actions-on-progress="
+  console.log('waiting for progress')
+"
+```
 </details><details><summary><b>&lt;template is="e-wrapper"&gt;</b></summary>
   
 Template with `is="e-wrapper"` attribute is very powerful element which you can use for wrapping your dynamic content with some base static template.
@@ -829,9 +867,22 @@ So, your page with `e-wrapper` in this case will be rendered like
 
 You can also use `data-headers` attribute, if needed.
 
+You can also add attribute `data-actions-on-progress`, where you can do some actions while waiting for response:
+```html
+data-actions-on-progress="
+  console.log('waiting for progress')
+"
+```
 </details><details><summary><b>&lt;e-json-view&gt;</b></summary>
   
 If you just want to display **JSON** in pretty html format, then use `e-json-view` tag. You can find example [here](https://github.com/Guseyn/EHTML/tree/master/examples/src/e-json-view.html).
+
+You can also add attribute `data-actions-on-progress`, where you can do some actions while waiting for response:
+```html
+data-actions-on-progress="
+  console.log('waiting for progress')
+"
+```
 </details><details><summary><b>&lt;template is="e-ws"&gt;</b></summary>
   
 **EHTML** provides a very convenient way to manage Web Sockets in your HTML code. **&lt;template is="e-ws"&gt;** allows you to define a client for a socket connection and save it with a certain name. Then you can use **&lt;e-json&gt;**(or **&lt;template is="e-json"&gt;**) to fetch messages in **JSON** format as if you were working with simple **GET** requests. And finally, by using **&lt;e-form&gt;** you can send message to your web socket.
@@ -900,7 +951,15 @@ Additionally, as shown, we can declare **&lt;e-form&gt;** for sending messages t
 </button>
 ```
 
-You can declare as many clients for the socket as you wish on one page. [In this example](/html/examples/simple-ws.html), you can see a very simple chat app.</details>
+You can declare as many clients for the socket as you wish on one page. [In this example](/html/examples/simple-ws.html), you can see a very simple chat app.
+
+You can also add attribute `data-actions-on-progress`, where you can do some actions while waiting for response:
+```html
+data-actions-on-progress="
+  console.log('waiting for progress')
+"
+```
+</details>
 
 # thisElement in elements
 
