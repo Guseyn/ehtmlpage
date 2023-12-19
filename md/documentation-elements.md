@@ -145,6 +145,37 @@ data-actions-on-progress="
   console.log('waiting for progress')
 "
 ```
+
+There is an option to use cache in `e-json`(it's supported only for this particular element). By using `data-cache-from="${someGlobalObjectFromMemoryOrStorage}"`, you can just get the response from the cache. For single-page applications, you can use some memory storage, for multiple-page it can be **localStorage** or **sessionStorage**. It's important that in `data-cache-from` you must specify an object that represents real response, otherwise your actions on response would behave unpredictably. You must initialize cache in `data-actions-on-response`, for example:
+
+
+```html
+data-actions-on-response="
+  sessionStorage.setItem('cacheKey', JSON.stringify(response))
+"
+```
+
+And then you can use it:
+
+```html
+data-cache-from="${window.getObjectFromSessionStorage('cacheKey')}"
+```
+
+where `getObjectFromSessionStorage` is something like:
+
+```js
+window.getObjectFromSessionStorage = (key) => {
+  const item = sessionStorage.getItem(key)
+  if (item) {
+    return JSON.parse(item)
+  }
+  return null
+}
+```
+
+If `window.getObjectFromSessionStorage` returns **null**, `e-json` will make a request, otherwise it will use cached response.
+
+To invalidate cache, all you need to is just to assign cache object to **null** or **undefined**.
 </details><details><summary><b>&lt;template is="e-json"&gt;</b></summary>
 
 You can use `e-json` as a `<template>` element, if you just need to map response. 
