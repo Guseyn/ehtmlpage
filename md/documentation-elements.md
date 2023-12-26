@@ -211,10 +211,13 @@ Here you don't use `data-response-name` attribute as you don't need to apply act
 
 And as for simple `e-json` you can also add attributes `data-ajax-icon` and `data-progress-bar` as element selectors for presenting progress of fetching data from the server. You can see how to use them in this [example](/html/examples/e-json-as-template.html).
 
-You can also add attribute `data-actions-on-progress`, where you can do some actions while waiting for response:
+You can also add attributes `data-actions-on-progress-start` and `data-actions-on-progress-end`, where you can do some actions while waiting for response:
 ```html
-data-actions-on-progress="
+data-actions-on-progress-start="
   console.log('waiting for progress')
+"
+data-actions-on-progress-end="
+  console.log('progress finished')
 "
 ```
 </details><details><summary><b>&lt;template is="e-for-each"&gt;</b></summary>
