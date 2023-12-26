@@ -3,6 +3,10 @@ body {
   color: #111111;
 }
 
+.progress-opacity {
+  opacity: 0.65;
+}
+
 * {
   padding: 0;
   margin: 0;

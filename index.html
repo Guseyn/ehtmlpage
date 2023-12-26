@@ -21,7 +21,14 @@
       data-how-to-place="before">
       <e-markdown
         data-src="/md/index.md"
-        data-apply-code-highlighting="true">
+        data-apply-code-highlighting="true"
+        data-actions-on-progress-start="
+          document.body.classList.toggle('progress-opacity')
+        "
+        data-actions-on-progress-end="
+          document.body.classList.toggle('progress-opacity')
+        "
+      >
       </e-markdown>
       <iframe class="youtube-iframe" src="https://www.youtube.com/embed/dzrW3D_yIrc?si=gegtkaYWJuHLlxoX" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
       <iframe class="youtube-iframe" src="https://www.youtube.com/embed/iaP3Y4SW0MY?si=cU5BLQkLa9c3pDz3" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
