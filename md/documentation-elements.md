@@ -80,10 +80,13 @@ The main benefit of using this element is that you can much more easily modify y
 
 Of course, this element makes an additional http(s) request for fetching a specific part, but you can always cache the files, so it would not cause any performance issues.
 
-You can also add attribute `data-actions-on-progress`, where you can do some actions while waiting for response:
+You can also add attributes `data-actions-on-progress-start` and `data-actions-on-progress-end`, where you can do some actions while waiting for response:
 ```html
-data-actions-on-progress="
+data-actions-on-progress-start="
   console.log('waiting for progress')
+"
+data-actions-on-progress-end="
+  console.log('progress finished')
 "
 ```
 </details><details><summary><b>&lt;e-json&gt;</b></summary>
@@ -139,10 +142,13 @@ You can also add attributes `data-ajax-icon` and `data-progress-bar` as element 
 
 Also, it is worth mentioning that in `data-actions-on-response`, you can run any JavaScript code without using curly brackets ${someVariable}. On the other hand, in other attributes like `data-text`, you must use curly brackets for parameters, as everything must be evaluated back to the string.  You can see how to use them in this [example](/html/examples/simple-e-json.html).
 
-You can also add attribute `data-actions-on-progress`, where you can do some actions while waiting for response:
+You can also add attributes `data-actions-on-progress-start` and `data-actions-on-progress-end`, where you can do some actions while waiting for response:
 ```html
-data-actions-on-progress="
+data-actions-on-progress-start="
   console.log('waiting for progress')
+"
+data-actions-on-progress-end="
+  console.log('progress finished')
 "
 ```
 
@@ -504,10 +510,13 @@ You can use `data-is-query-param` attribute in an input element in `e-form`, and
 
 You can set values for unchecked `checkboxes` via `unchecked-value` attribute.
 
-You can also add attribute `data-actions-on-progress`, where you can do some actions while waiting for response:
+You can also add attributes `data-actions-on-progress-start` and `data-actions-on-progress-end`, where you can do some actions while waiting for response:
 ```html
-data-actions-on-progress="
+data-actions-on-progress-start="
   console.log('waiting for progress')
+"
+data-actions-on-progress-end="
+  console.log('progress finished')
 "
 ```
 </details><details><summary><b>&lt;e-form-dynamic-value&gt;</b></summary>
@@ -775,10 +784,13 @@ Then once you load your page it would look like:
 </html>
 ```
 
-You can also add attribute `data-actions-on-progress`, where you can do some actions while waiting for response:
+You can also add attributes `data-actions-on-progress-start` and `data-actions-on-progress-end`, where you can do some actions while waiting for response:
 ```html
-data-actions-on-progress="
+data-actions-on-progress-start="
   console.log('waiting for progress')
+"
+data-actions-on-progress-end="
+  console.log('progress finished')
 "
 ```
 </details><details><summary><b>&lt;e-markdown&gt;</b></summary>
@@ -837,10 +849,13 @@ Then once you load your page it would look like:
 </html>
 ```
 
-You can also add attribute `data-actions-on-progress`, where you can do some actions while waiting for response:
+You can also add attributes `data-actions-on-progress-start` and `data-actions-on-progress-end`, where you can do some actions while waiting for response:
 ```html
-data-actions-on-progress="
+data-actions-on-progress-start="
   console.log('waiting for progress')
+"
+data-actions-on-progress-end="
+  console.log('progress finished')
 "
 ```
 </details><details><summary><b>&lt;template is="e-wrapper"&gt;</b></summary>
@@ -901,20 +916,26 @@ So, your page with `e-wrapper` in this case will be rendered like
 
 You can also use `data-headers` attribute, if needed.
 
-You can also add attribute `data-actions-on-progress`, where you can do some actions while waiting for response:
+You can also add attributes `data-actions-on-progress-start` and `data-actions-on-progress-end`, where you can do some actions while waiting for response:
 ```html
-data-actions-on-progress="
+data-actions-on-progress-start="
   console.log('waiting for progress')
+"
+data-actions-on-progress-end="
+  console.log('progress finished')
 "
 ```
 </details><details><summary><b>&lt;e-json-view&gt;</b></summary>
   
 If you just want to display **JSON** in pretty html format, then use `e-json-view` tag. You can find example [here](https://github.com/Guseyn/EHTML/tree/master/examples/src/e-json-view.html).
 
-You can also add attribute `data-actions-on-progress`, where you can do some actions while waiting for response:
+You can also add attributes `data-actions-on-progress-start` and `data-actions-on-progress-end`, where you can do some actions while waiting for response:
 ```html
-data-actions-on-progress="
+data-actions-on-progress-start="
   console.log('waiting for progress')
+"
+data-actions-on-progress-end="
+  console.log('progress finished')
 "
 ```
 </details><details><summary><b>&lt;template is="e-ws"&gt;</b></summary>
@@ -987,10 +1008,13 @@ Additionally, as shown, we can declare **&lt;e-form&gt;** for sending messages t
 
 You can declare as many clients for the socket as you wish on one page. [In this example](/html/examples/simple-ws.html), you can see a very simple chat app.
 
-You can also add attribute `data-actions-on-progress`, where you can do some actions while waiting for response:
+You can also add attributes `data-actions-on-progress-start` and `data-actions-on-progress-end`, where you can do some actions while waiting for response:
 ```html
-data-actions-on-progress="
+data-actions-on-progress-start="
   console.log('waiting for progress')
+"
+data-actions-on-progress-end="
+  console.log('progress finished')
 "
 ```
 </details>
