@@ -849,7 +849,7 @@ Then once you load your page it would look like:
 </html>
 ```
 
-Use attrbiute `data-apply-code-highlighting="true"`, if you want to use code highligher in your markdowns. Use attribute `data-apply-latex` to use LaTeX in your markdowns.
+Use attrbiute `data-apply-code-highlighting="true"`, if you want to use code highligher in your markdowns. Use attribute `data-apply-latex="true"` to use LaTeX in your markdowns.
 
 
 You can also add attributes `data-actions-on-progress-start` and `data-actions-on-progress-end`, where you can do some actions while waiting for response:
