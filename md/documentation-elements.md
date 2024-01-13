@@ -849,7 +849,29 @@ Then once you load your page it would look like:
 </html>
 ```
 
-Use attrbiute `data-apply-code-highlighting="true"`, if you want to use code highligher in your markdowns. Use attribute `data-apply-latex="true"` to use LaTeX in your markdowns.
+Use attrbiute `data-apply-code-highlighting="true"`, if you want to use code highligher in your markdowns.
+
+Use attribute `data-apply-latex="true"` to use LaTeX in your markdowns. In order to display LaTeX correctly in all browsers, please add following into `<head>`:
+
+```
+<head>
+  <script>
+    window.WebFontConfig = {
+      custom: {
+        families: [
+          'KaTeX_AMS', 'KaTeX_Caligraphic:n4,n7', 'KaTeX_Fraktur:n4,n7',
+          'KaTeX_Main:n4,n7,i4,i7', 'KaTeX_Math:i4,i7', 'KaTeX_Script',
+          'KaTeX_SansSerif:n4,n7,i4', 'KaTeX_Size1', 'KaTeX_Size2', 'KaTeX_Size3',
+          'KaTeX_Size4', 'KaTeX_Typewriter'
+        ],
+      },
+    };
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.js" integrity="sha256-4O4pS1SH31ZqrSO2A/2QJTVjTPqVe+jnYgOWUVr7EEc=" crossorigin="anonymous"></script>
+</head>
+```
+
+Another important detail about LaTex, make sure that you don't have conflicting css classes like `.base`.
 
 You can also add attributes `data-actions-on-progress-start` and `data-actions-on-progress-end`, where you can do some actions while waiting for response:
 ```html
