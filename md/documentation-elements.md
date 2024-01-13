@@ -851,10 +851,11 @@ Then once you load your page it would look like:
 
 Use attrbiute `data-apply-code-highlighting="true"`, if you want to use code highligher in your markdowns.
 
-Use attribute `data-apply-latex="true"` to use LaTeX in your markdowns. In order to display LaTeX correctly in all browsers, please add following into `<head>`:
+Use attribute `data-apply-latex="true"` to use LaTeX in your markdowns. In order to display LaTeX correctly in all browsers, please add following styles and scripts into `<head>`:
 
-```
+```html
 <head>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css" crossorigin="anonymous">
   <script>
     window.WebFontConfig = {
       custom: {
