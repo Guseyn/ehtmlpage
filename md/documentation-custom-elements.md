@@ -25,8 +25,7 @@ Let's start with custom `<template is="custom">`. When you register a template e
 <body>
 	<template
 		is="custom"
-		data-content="This content will be displayed inside of <div>"
-	>
+		data-content="This content will be displayed inside of <div>">
   </template>
 </body>
 ```
