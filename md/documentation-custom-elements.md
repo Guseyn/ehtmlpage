@@ -31,7 +31,7 @@ Let's start with custom `<template is="custom">`. When you register a template e
 </body>
 ```
 
-In the example above, we adding `ehtml` script, and then we're using `<script>` to register our custom template. Our register function is just a function that accepts only one argument `node`, this argument is the template itself. In that function, we're checking that our element is template. You can skip this validation step, but it's recommended to have it just to avoid confusion in case you made an error while declaring the element in HTML code. This custom template just renders a `<div>` element with content from `data-content` attribute.
+In the example above, we're adding `ehtml` script, and then we're using `<script>` to register our custom template. Our register function is just a function that accepts only one argument `node`, this argument is the template itself. In that function, we're checking that our element is template. You can skip this validation step, but it's recommended to have it just to avoid confusion in case you made an error while declaring the element in HTML code. This custom template just renders a `<div>` element with content from `data-content` attribute.
 
 So, in the end it will be rendered like:
 
@@ -59,8 +59,8 @@ In case of regular custom elements, you simply need to register them with the ex
 </head>
 <body>
 	<custom-element>
-    This element will be with opacity 0.5
-  </custom-element>
+		This element will be with opacity 0.5
+	</custom-element>
 </body>
 ```
 
