@@ -53,8 +53,8 @@ In case of regular custom elements, you simply need to register them with the ex
 	<script src="/../js/ehtml.bundle.min.js" type="text/javascript"></script>
 	<script type="text/javascript">
 		window.__ehtmlCustomElements__['custom-element'] = (node) => {
-      node.style.opacity = '0.5'
-    }
+			node.style.opacity = '0.5'
+		}
 	</script>
 </head>
 <body>
