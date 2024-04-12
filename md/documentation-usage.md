@@ -9,6 +9,14 @@
 </head>
 ```
 
+There is also [light version of EHTML](https://github.com/Guseyn/EHTML/blob/master/ehtml.light.bundle.min.js) (if you don't need highlighting for markdown and LaTeX support):
+
+```html
+<head>
+  <script src="/js/ehtml.light.bundle.min.js" type="text/javascript"></script>
+</head>
+```
+
 Once a page is loaded, the script creates a `MutationObserver` to observe any changes in the Document Object Model (DOM) on the page. This allows **EHTML** to process elements and apply the necessary manipulations.
 
 You can dynamically turn it on/off:
