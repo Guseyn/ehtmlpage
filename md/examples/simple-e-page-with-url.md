@@ -19,6 +19,6 @@
 </body>
 ```
 
-[link to the source code](https://github.com/Guseyn/EHTML/blob/master/examples/src/e-page-with-url.html)
+[link to the source code](https://github.com/Guseyn/EHTML/blob/master/examples/static/html/e-page-with-url.html)
 
 [Next Example: &lt;e-page-with-url&gt; and &lt;e-json&gt;](/html/examples/e-page-with-url-and-e-json.html)

@@ -54,6 +54,6 @@ Content-Type: application/json
   </div> 
 </body>
 ```
-[link to the source code](https://github.com/Guseyn/EHTML/blob/master/examples/src/e-json-template.html)
+[link to the source code](https://github.com/Guseyn/EHTML/blob/master/examples/static/html/e-json-template.html)
 
 [Next Example: Simple &lt;e-for-each&gt;](/html/examples/simple-e-for-each.html)

@@ -60,6 +60,6 @@ Content-Type: application/json
   </div> 
 </body>
 ```
-[link to the source code](https://github.com/Guseyn/EHTML/blob/master/examples/src/e-json-with-mapped-error-message.html)
+[link to the source code](https://github.com/Guseyn/EHTML/blob/master/examples/static/html/e-json-with-mapped-error-message.html)
 
 [Next Example: &lt;e-json&gt; as template](/html/examples/e-json-with-mapped-error.html)

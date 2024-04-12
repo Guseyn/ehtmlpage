@@ -36,6 +36,6 @@
 </body>
 ```
 
-[link to the source code](https://github.com/Guseyn/EHTML/blob/master/examples/src/e-page-with-url-and-e-select-with-redirect.html)
+[link to the source code](https://github.com/Guseyn/EHTML/blob/master/examples/static/html/e-page-with-url-and-e-select-with-redirect.html)
 
 [Next Example: &lt;e-github-oauth-button&gt;](/html/examples/simple-e-google-oauth-button.html)

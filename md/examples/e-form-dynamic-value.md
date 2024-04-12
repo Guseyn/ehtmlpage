@@ -57,6 +57,6 @@ Content-Type: application/json
 </div> 
 </body>
 ```
-[link to the source code](https://github.com/Guseyn/EHTML/blob/master/examples/src/e-form-dynamic-value.html)
+[link to the source code](https://github.com/Guseyn/EHTML/blob/master/examples/static/html/e-form-dynamic-value.html)
 
 [Next example: &lt;e-reusable&gt; with &lt;e-form&gt;](/html/examples/e-reusable-with-e-form.html)

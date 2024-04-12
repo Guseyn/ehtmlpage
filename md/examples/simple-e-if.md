@@ -69,6 +69,6 @@
 </body>
 ```
 
-[link to the source code](https://github.com/Guseyn/EHTML/blob/master/examples/src/simple-e-if.html)
+[link to the source code](https://github.com/Guseyn/EHTML/blob/master/examples/static/html/simple-e-if.html)
 
 [Next Example: Simple &lt;e-form&gt;](/html/examples/simple-e-form.html)

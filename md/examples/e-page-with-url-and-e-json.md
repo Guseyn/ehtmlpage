@@ -47,6 +47,6 @@
   </template>
 </body>
 ```
-[link to the source code](https://github.com/Guseyn/EHTML/blob/master/examples/src/e-page-with-url-and-e-json.html)
+[link to the source code](https://github.com/Guseyn/EHTML/blob/master/examples/static/html/e-page-with-url-and-e-json.html)
 
 [Next example: &lt;e-page-with-url&gt; and &lt;e-select&gt;](/html/examples/e-page-with-url-and-e-select.html)

@@ -79,6 +79,6 @@ Content-Type: application/json
 	</div> 
 </body>
 ```
-[link to the source code](https://github.com/Guseyn/EHTML/blob/master/examples/src/e-reusable-with-e-form.html)
+[link to the source code](https://github.com/Guseyn/EHTML/blob/master/examples/static/html/e-reusable-with-e-form.html)
 
 [Next Example: Simple &lt;e-page-with-url&gt;](/html/examples/simple-e-page-with-url.html)

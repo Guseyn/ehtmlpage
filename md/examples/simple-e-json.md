@@ -58,6 +58,6 @@ Content-Type: application/json
   </div> 
 </body>
 ```
-[link to the source code](https://github.com/Guseyn/EHTML/blob/master/examples/src/simple-json-page.html)
+[link to the source code](https://github.com/Guseyn/EHTML/blob/master/examples/static/html/simple-json-page.html)
 
 [Next Example: &lt;e-json&gt; with progress bar](/html/examples/e-json-with-progress-bar.html)

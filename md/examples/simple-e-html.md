@@ -15,6 +15,6 @@
   </div> 
 </body>
 ```
-[link to the source code](https://github.com/Guseyn/EHTML/blob/master/examples/src/simple-ehtml.html)
+[link to the source code](https://github.com/Guseyn/EHTML/blob/master/examples/static/html/simple-ehtml.html)
 
 [Next Example: Simple &lt;e-json&gt;](/html/examples/simple-e-json.html)

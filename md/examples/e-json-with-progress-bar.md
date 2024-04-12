@@ -52,6 +52,6 @@ Content-Type: application/json
 </body>
 ```
 
-[link to the source code](https://github.com/Guseyn/EHTML/blob/master/examples/src/e-json-with-progress.html)
+[link to the source code](https://github.com/Guseyn/EHTML/blob/master/examples/static/html/e-json-with-progress.html)
 
 [Next Example: &lt;e-json&gt; with mapped error](/html/examples/e-json-as-template.html)

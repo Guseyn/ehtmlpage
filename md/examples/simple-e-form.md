@@ -172,6 +172,6 @@ Content-Type: application/json
 }
 ```
 
-[link to the source code](https://github.com/Guseyn/EHTML/blob/master/examples/src/simple-e-form.html)
+[link to the source code](https://github.com/Guseyn/EHTML/blob/master/examples/static/html/simple-e-form.html)
 
 [Next Example: &lt;e-form-dynamic-value&gt;](/html/examples/e-form-dynamic-value.html)

@@ -64,6 +64,6 @@ Content-Type: application/json
   </div> 
 </body>
 ```
-[link to the source code](https://github.com/Guseyn/EHTML/blob/master/examples/src/simple-e-for-each.html)
+[link to the source code](https://github.com/Guseyn/EHTML/blob/master/examples/static/html/simple-e-for-each.html)
 
 [Next Example: Simple &lt;e-if&gt;](/html/examples/simple-e-if.html)

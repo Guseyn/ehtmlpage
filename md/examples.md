@@ -41,4 +41,6 @@ npm run examples
 
 - [Simple &lt;e-github-oauth-button&gt;](/html/examples/simple-e-github-oauth-button.html)
 
+- [Simple &lt;e-markdown&gt;](/html/examples/simple-e-markdown.html)
+
 - [Simple &lt;template is="e-ws"&gt;](/html/examples/simple-ws.html)

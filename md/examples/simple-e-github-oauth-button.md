@@ -126,6 +126,6 @@ span.buttonText {
 </body>
 ```
 
-[link to the source code](https://github.com/Guseyn/EHTML/blob/master/examples/src/e-github-oauth-button.html)
+[link to the source code](https://github.com/Guseyn/EHTML/blob/master/examples/static/html/e-github-oauth-button.html)
 
-[Next Example: Simple &lt;template is="e-ws"&gt;](/html/examples/simple-ws.html)
+[Next Example: Simple &lt;e-markdown&gt;](/html/examples/simple-e-markdown.html)
