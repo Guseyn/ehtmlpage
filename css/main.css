@@ -289,16 +289,32 @@ iframe {
   clear: both;
 }
 
-img:not(.logo):not(.photo):not(.project-logo):not(.article-logo):not(.youtube-video):not(.link-icon):not(.left-to-link) {
+img:not(.logo):not(.photo):not(.project-logo):not(.article-logo):not(.youtube-video):not(.link-icon):not(.left-to-link):not(.youtube-video-play) {
     width: 100%;
     height: auto;
 }
 
-.youtube-iframe {
+.youtube-iframe, iframe {
+  position: relative;
   width: 100%;
-  aspect-ratio: auto 1.78;
+  margin-top: 20px;
+  cursor: pointer;
+  opacity: 0.8;
   border-radius: 20px;
-  margin-top: 30px;
+}
+
+.youtube-iframe:hover {
+  opacity: 1.0;
+}
+
+.youtube-video-play {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 86px;
+  height: 86px;
+  margin-top: -43px;
+  margin-left: -43px;
 }
 
 @media only screen and (min-width: 700px) {
@@ -325,7 +341,7 @@ img:not(.logo):not(.photo):not(.project-logo):not(.article-logo):not(.youtube-vi
     margin-right: 1em;
     margin-bottom: 0;
   }
-  img:not(.logo):not(.photo):not(.project-logo):not(.article-logo):not(.youtube-video):not(.link-icon):not(.left-to-link) {
+  img:not(.logo):not(.photo):not(.project-logo):not(.article-logo):not(.youtube-video):not(.link-icon):not(.left-to-link):not(.youtube-video-play) {
     width: 100%;
   }
 }
