@@ -8,13 +8,10 @@ It's important to promote diverse ideas about how frontend development can be ap
 **2. If you are a representative of a software company:** You can hire me as a consultant or a software engineer to assist you in implementing **EHTML** in your projects. Additionally, your company's name will be listed as a sponsor for this project, contributing to the advancement of ideas to simplify frontend development, which is an honorable endeavor.
 <br>
 
-**3. If you are a representative of a venture capital firm:** You can assist me in promoting this project and the general idea of building web applications in the simplest way possible. This effort will contribute to establishing and developing a new trend, allowing many developers to recognize that there are alternatives for constructing web applications. Consequently, we can encourage numerous companies to broaden their horizons, leading to a more diverse job market for web developers.
+**3. If you are a content creator:** I would be pleased to consider collaborations with you through interviews, webinars, or meetups.
 <br>
 
-**4. If you are a content creator:** I would be pleased to consider collaborations with you through interviews, webinars, or meetups.
-<br>
-
-**5. If you are a representative of software conference:** I would be honored to attend your conference as a speaker.
+**4. If you are a representative of software conference:** I would be honored to attend your conference as a speaker.
 
 # How to Contact Me
 
