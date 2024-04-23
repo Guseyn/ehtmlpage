@@ -1,0 +1,29 @@
+<svg width="150" height="140" xmlns="http://www.w3.org/2000/svg">
+
+	<circle cx="72" cy="70" r="68" stroke="#000" stroke-width="2" fill="transparent" />
+
+  <line x1="30" y1="50" x2="70" y2="20" stroke="#000" stroke-width="2" />
+  <line x1="30" y1="50" x2="70" y2="70" stroke="#000" stroke-width="2" />
+  <line x1="30" y1="50" x2="70" y2="120" stroke="#000" stroke-width="2" />
+
+  <line x1="30" y1="90" x2="70" y2="20" stroke="#000" stroke-width="2" />
+  <line x1="30" y1="90" x2="70" y2="70" stroke="#000" stroke-width="2" />
+  <line x1="30" y1="90" x2="70" y2="120" stroke="#000" stroke-width="2" />
+
+  <line x1="70" y1="20" x2="120" y2="70" stroke="#000" stroke-width="2" />
+  <line x1="70" y1="70" x2="120" y2="70" stroke="#000" stroke-width="2" />
+  <line x1="70" y1="120" x2="120" y2="70" stroke="#000" stroke-width="2" />
+
+  <!-- Input layer nodes -->
+  <circle cx="30" cy="50" r="10" fill="#3498db" />
+  <circle cx="30" cy="90" r="10" fill="#3498db" />
+
+  <!-- Hidden layer nodes -->
+  <circle cx="70" cy="20" r="10" fill="#2ecc71" />
+  <circle cx="70" cy="70" r="10" fill="#2ecc71" />
+  <circle cx="70" cy="120" r="10" fill="#2ecc71" />
+
+  <!-- Output layer nodes -->
+  <circle cx="120" cy="70" r="10" fill="#e74c3c" />
+
+</svg>

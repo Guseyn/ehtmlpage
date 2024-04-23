@@ -7,8 +7,7 @@
 </a></a><a class="floating-link-panel" href="https://github.com/Guseyn/ehtml-simple-chat-app">
   <img src="/image/github.svg" class="link-icon" style="border-radius: 10px;">
   Simple Chat App
-</a>
-</a></a><a class="floating-link-panel" href="https://guseyn.github.io/nn-math-web/">
-  <img src="https://guseyn.github.io/nn-math-web/image/nn-math-logo.svg" class="link-icon" style="border-radius: 10px;">
+</a><a class="floating-link-panel" href="https://guseyn.github.io/nn-math-web/">
+  <img src="/image/nn-math-logo.svg" class="link-icon" style="border-radius: 10px;">
   Mathematics of Neural Network
 </a>
