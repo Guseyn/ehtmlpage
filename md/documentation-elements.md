@@ -605,41 +605,6 @@ Element `e-session-storage-value` works in the same way as `e-local-storage-valu
 
 You can also get items from local and session storages in the attributes of any elements: `some-attr="${localStorage.getItem('itemName')}"` or `some-attr="${sessionStorage.getItem('itemName')}"`.
 
-</details><details><summary><b>&lt;e-a&gt;</b></summary>
-
-You can turn your links into turbo-links:
-
-```html
-<e-a
-  data-href="/some/url"
-  data-actions-on-progress-start="
-    document.body.classList.toggle('progress-opacity')
-  "
-  data-actions-on-progress-end="
-    document.body.classList.toggle('progress-opacity')
-  ">
-  Text Link
-</e-a>
-```
-
-The element above will be rendered as link `a` with `is="e-a"`:
-
-```html
-<a
-  is="e-a"
-  href="/some/url"
-  data-actions-on-progress-start="
-    document.body.classList.toggle('progress-opacity')
-  "
-  data-actions-on-progress-end="
-    document.body.classList.toggle('progress-opacity')
-  ">
-  Text Link
-</a>
-```
-
-Each time you click on `e-a`, it will create an AJAX request to load your page instead of redirecting to it. It will merge current `head` with the `head` from the linked page, and it will replace the `body` with a new one. You can also add some loading effects in `data-actions-on-progress-start` and `data-actions-on-progress-end`. The History API (with scroll positions) is also handled automatically by `e-a`, as if were regular links.
-
 </details><details><summary><b>&lt;e-github-oauth-button&gt;</b></summary>
 
 You can integrate GitHub Sign-In into your web app just by adding one button:
@@ -1092,3 +1057,40 @@ It will be rendered like:
 ```html
 <div data-count="2">Count: 2</div>
 ```
+
+<!-- <details><summary><b>&lt;e-a&gt;</b></summary>
+
+You can turn your links into turbo-links:
+
+```html
+<e-a
+  data-href="/some/url"
+  data-actions-on-progress-start="
+    document.body.classList.toggle('progress-opacity')
+  "
+  data-actions-on-progress-end="
+    document.body.classList.toggle('progress-opacity')
+  ">
+  Text Link
+</e-a>
+```
+
+The element above will be rendered as link `a` with `is="e-a"`:
+
+```html
+<a
+  is="e-a"
+  href="/some/url"
+  data-actions-on-progress-start="
+    document.body.classList.toggle('progress-opacity')
+  "
+  data-actions-on-progress-end="
+    document.body.classList.toggle('progress-opacity')
+  ">
+  Text Link
+</a>
+```
+
+Each time you click on `e-a`, it will create an AJAX request to load your page instead of redirecting to it. It will merge current `head` with the `head` from the linked page, and it will replace the `body` with a new one. You can also add some loading effects in `data-actions-on-progress-start` and `data-actions-on-progress-end`. The History API (with scroll positions) is also handled automatically by `e-a`, as if were regular links.
+
+</details> -->
