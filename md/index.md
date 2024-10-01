@@ -2,7 +2,7 @@
 
 <template is="youtube" id="dzrW3D_yIrc" class="youtube-iframe"></template><template is="youtube" id="iaP3Y4SW0MY" class="youtube-iframe"></template>
 
-## Sponsors
+# Sponsors
 
-![JetBrains logo](https://resources.jetbrains.com/storage/products/company/brand/logos/jetbrains.png)
+<img class="sponsor-icon" src="/image/JetBrains_beam_logo.png" alt="JetBrains logo.">
 

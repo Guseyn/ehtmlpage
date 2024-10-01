@@ -279,6 +279,11 @@ iframe {
   vertical-align: middle;
 }
 
+.sponsor-icon {
+  width: 160px;
+  vertical-align: middle;
+}
+
 .project-logo, .article-logo {
   width: 120px;
   height: 120px;
@@ -289,7 +294,7 @@ iframe {
   clear: both;
 }
 
-img:not(.logo):not(.photo):not(.project-logo):not(.article-logo):not(.youtube-video):not(.link-icon):not(.left-to-link):not(.youtube-video-play) {
+img:not(.logo):not(.photo):not(.project-logo):not(.article-logo):not(.youtube-video):not(.link-icon):not(.left-to-link):not(.sponsor-icon):not(.youtube-video-play) {
     width: 100%;
     height: auto;
 }
@@ -341,7 +346,7 @@ img:not(.logo):not(.photo):not(.project-logo):not(.article-logo):not(.youtube-vi
     margin-right: 1em;
     margin-bottom: 0;
   }
-  img:not(.logo):not(.photo):not(.project-logo):not(.article-logo):not(.youtube-video):not(.link-icon):not(.left-to-link):not(.youtube-video-play) {
+  img:not(.logo):not(.photo):not(.project-logo):not(.article-logo):not(.youtube-video):not(.link-icon):not(.left-to-link):not(.sponsor-icon):not(.youtube-video-play) {
     width: 100%;
   }
 }
