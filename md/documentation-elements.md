@@ -952,7 +952,7 @@ data-actions-on-progress-end="
 ```
 </details><details><summary><b>&lt;e-json-view&gt;</b></summary>
   
-If you just want to display **JSON** in pretty html format, then use `e-json-view` tag. You can find example [here](https://github.com/Guseyn/EHTML/tree/master/examples/src/e-json-view.html).
+If you just want to display **JSON** in pretty html format, then use `e-json-view` tag. You can find example [here](https://github.com/Guseyn/EHTML/tree/master/examples/static/html/e-json-view.html).
 
 You can also add attributes `data-actions-on-progress-start` and `data-actions-on-progress-end`, where you can do some actions while waiting for response:
 ```html
