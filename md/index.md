@@ -4,5 +4,5 @@
 
 # Sponsors
 
-<img class="sponsor-icon" src="/image/JetBrains_beam_logo.png" alt="JetBrains logo.">
+<a href="https://www.jetbrains.com/"><img class="sponsor-icon" src="/image/JetBrains_beam_logo.png" alt="JetBrains logo."></a>
 
