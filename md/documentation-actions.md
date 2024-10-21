@@ -171,7 +171,7 @@ This action allows you to toggle elements by some query selectors:
 
 ```js
 data-actions-on-response="
-  disableElms('.some-class-name', '#some-element-id', '#some-other-element-id')
+  toggleElms('.some-class-name', '#some-element-id', '#some-other-element-id')
 "
 ```
 
@@ -228,6 +228,15 @@ data-actions-on-response="
 </details><details><summary><b>custom actions</b></summary>
 
 You can define and call your own custom actions:
+
+```html
+<script>
+  customAction = () => {
+    //...
+  }
+</script>
+
+```
 
 ```js
 data-actions-on-response="
