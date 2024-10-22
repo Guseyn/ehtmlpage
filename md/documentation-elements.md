@@ -815,17 +815,19 @@ You can aso specify the way how it can be wrapped via `data-how-to-place` attrib
 So, your page with `e-wrapper` in this case will be rendered like
 
 ```html
-<div>
-  <p>
-    Header content
-  </p>
-  <p>
-    Variation of content
-  </p>
-  <p>
-    Footer content
-  </p>
-</div> 
+<body>
+  <div>
+    <p>
+      Header content
+    </p>
+    <p>
+      Variation of content
+    </p>
+    <p>
+      Footer content
+    </p>
+  </div>
+</body>
 ```
 
 You can also use `data-headers` attribute, if needed.
