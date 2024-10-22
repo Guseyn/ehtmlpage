@@ -27,19 +27,15 @@ And for example, `first.html` would look something like this
 And when you open `articles.html` in a browser, it will be rendered as if you included all the parts in a single file:
 
 ```html
-<body class="main">
-  <div class="articles">
-
-    <div class="article">
-      <!-- content of the first article -->
-    </div>
-    <div class="article">
-      <!-- content of the second article -->
-    </div>
-    <div class="article">
-      <!-- content of the third article -->
-    </div>
-
+<body>
+  <div class="article">
+    <!-- content of the first article -->
+  </div>
+  <div class="article">
+    <!-- content of the second article -->
+  </div>
+  <div class="article">
+    <!-- content of the third article -->
   </div>
 </body>
 ```
