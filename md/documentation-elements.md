@@ -6,31 +6,13 @@ Sometimes html files can be very big, so why not just split them into different 
 
   So, let's say we have main `articles.html` file
 
-  ```html
-  <!DOCTYPE html>
-  <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
-
-    <head>
-      <link rel="shortcut icon" href="/image/favicon.ico"/>
-      <meta charset="UTF-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1">
-      <title>e-html</title>
-      <link rel="stylesheet" href="/css/main.css">
-      <script src="/js/ehtml.bundle.min.js" type="text/javascript"></script>
-    </head>
-
-    <body class="main">
-      <div class="articles">
-
-        <e-html data-src="/html/first.html"></e-html>
-        <e-html data-src="/html/second.html"></e-html>
-        <e-html data-src="/html/third.html"></e-html>
-
-      </div>
-    </body>
-
-  </html>
-  ```
+```html
+<body>
+  <e-html data-src="/html/first.html"></e-html>
+  <e-html data-src="/html/second.html"></e-html>
+  <e-html data-src="/html/third.html"></e-html>
+</body>
+```
 
 and as you can see, we have three `e-html` tags here. And each of them refers to some html file which contains some part of the `article.html`. This tag has only one custom attribute `data-src`, which tells us where exactly the file that we want to include is served.
 
@@ -45,35 +27,21 @@ And for example, `first.html` would look something like this
 And when you open `articles.html` in a browser, it will be rendered as if you included all the parts in a single file:
 
 ```html
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<body class="main">
+  <div class="articles">
 
-  <head>
-    <link rel="shortcut icon" href="/image/favicon.ico"/>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>e-html</title>
-    <link rel="stylesheet" href="/css/main.css">
-    <script src="/js/ehtml.bundle.min.js" type="text/javascript"></script>
-  </head>
-
-  <body class="main">
-    <div class="articles">
-
-      <div class="article">
-        <!-- content of the first article -->
-      </div>
-      <div class="article">
-        <!-- content of the second article -->
-      </div>
-      <div class="article">
-        <!-- content of the third article -->
-      </div>
-
+    <div class="article">
+      <!-- content of the first article -->
     </div>
-  </body>
+    <div class="article">
+      <!-- content of the second article -->
+    </div>
+    <div class="article">
+      <!-- content of the third article -->
+    </div>
 
-</html>
+  </div>
+</body>
 ```
 
 The main benefit of using this element is that you can much more easily modify your big html files. So, instead of having one big html file where you have to find a specific part of it to modify, you can just find a file, which contains this specific part and make changes there.
@@ -267,11 +235,9 @@ Then your html code would be something like this:
 
     <div><b data-text="${album.songs.length} songs:"></b></div>
     <template is="e-for-each" data-list-to-iterate="${album.songs}" data-item-name="song">
-      <div class="song-box">
-        <div data-text="No. ${song.index}/${album.songs.length}"></div>
-        <div data-text="Title: ${song.title}"></div>
-        <div data-text="Length: ${song.length}"></div>
-      </div>
+      <div data-text="No. ${song.index}/${album.songs.length}"></div>
+      <div data-text="Title: ${song.title}"></div>
+      <div data-text="Length: ${song.length}"></div>
     </template>
 
   </template>
@@ -373,25 +339,18 @@ And you would like to display only songs that shorter than '3:30' in length. The
   ">
 
   <template id="album-info" data-object-name="album">
-
     <div data-text="Title: ${album.title}"></div>
     <div data-text="Artist: ${album.artist}"></div>
-
     <div><b>Songs that shorter than 3:30:</b></div>
     <template is="e-for-each" data-list-to-iterate="${album.songs}" data-item-name="song">
-
       <template is="e-if"
         data-condition-to-display="${(song.length.split(':')[0] * 60 + song.length.split(':')[1] * 1) <= 210}"
       >
-        <div class="song-box">
-          <div data-text="No. ${song.index}/${album.songs.length}"></div>
-          <div data-text="Title: ${song.title}"></div>
-          <div data-text="Length: ${song.length}"></div>
-        </div>
+        <div data-text="No. ${song.index}/${album.songs.length}"></div>
+        <div data-text="Title: ${song.title}"></div>
+        <div data-text="Length: ${song.length}"></div>
       </template>
-    
     </template>
-
   </template>
 </e-json>
 ```
@@ -628,21 +587,19 @@ And your page which is in `redirect-uri` can look like:
 <!-- html/github.html -->
 <body class="main">
   <template is="e-page-with-url" data-url-pattern="/html/github.html?{code}">
-    <div class="base">
-      <e-form
-        data-request-url="/github"
-        data-request-method="POST"
-        data-request-headers="{}"
-        data-ajax-icon="#ajax-icon"
-        data-response-name="responseWithToken"
-        data-actions-on-response="
-          localStorage.setItem('jwt', responseWithToken.body.jwt);
-          redirect('/e-github-oauth-button.html');
-      ">
-        <input type="hidden" name="code" value="${urlParams.code}">
-        <img id="ajax-icon" class="ajax-icon" src="/images/ajax-icon.svg"/>
-      </e-form>
-    </div> 
+    <e-form
+      data-request-url="/github"
+      data-request-method="POST"
+      data-request-headers="{}"
+      data-ajax-icon="#ajax-icon"
+      data-response-name="responseWithToken"
+      data-actions-on-response="
+        localStorage.setItem('jwt', responseWithToken.body.jwt);
+        redirect('/e-github-oauth-button.html');
+    ">
+      <input type="hidden" name="code" value="${urlParams.code}">
+      <img id="ajax-icon" class="ajax-icon" src="/images/ajax-icon.svg"/>
+    </e-form>
   </template>
 </body>
 ```
@@ -725,25 +682,9 @@ More details you can find in this [example](/html/examples/e-page-with-url-and-e
 With element `e-svg` you can load svg code right into your html page:
 
 ```html
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
-
-  <head>
-    <link rel="shortcut icon" href="/image/favicon.ico"/>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>e-html</title>
-    <link rel="stylesheet" href="/css/main.css">
-    <script src="/js/ehtml.bundle.min.js" type="text/javascript"></script>
-  </head>
-
-  <body class="main">
-
-      <e-svg data-src="/images/svg-from-server.svg"></e-svg>
-
-  </body>
-
-</html>
+<body>
+  <e-svg data-src="/images/svg-from-server.svg"></e-svg>
+</body>
 ```
 
 And let's say your svg image on `/images/svg-from-server.svg` is something like
@@ -759,29 +700,13 @@ And let's say your svg image on `/images/svg-from-server.svg` is something like
 Then once you load your page it would look like:
 
 ```html
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
-
-  <head>
-    <link rel="shortcut icon" href="/image/favicon.ico"/>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>e-html</title>
-    <link rel="stylesheet" href="/css/main.css">
-    <script src="/js/ehtml.bundle.min.js" type="text/javascript"></script>
-  </head>
-
-  <body class="main">
-
-    <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="512px" height="512px" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
-      <circle id="background_45_" style="fill:#ECF0F0;" cx="256" cy="256" r="256"></circle>
-      <path style="fill:#E27C3E;" d="...."></path>
-      <polygon style="fill:#4C738A;" points="..."></polygon>
-    </svg>
-
-  </body>
-
-</html>
+<body class="main">
+  <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="512px" height="512px" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
+    <circle id="background_45_" style="fill:#ECF0F0;" cx="256" cy="256" r="256"></circle>
+    <path style="fill:#E27C3E;" d="...."></path>
+    <polygon style="fill:#4C738A;" points="..."></polygon>
+  </svg>
+</body>
 ```
 
 You can also add attributes `data-actions-on-progress-start` and `data-actions-on-progress-end`, where you can do some actions while waiting for response:
@@ -798,26 +723,10 @@ data-actions-on-progress-end="
 With element `e-markdown` you can load markdown right into your html page:
 
 ```html
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
-
-  <head>
-    <link rel="shortcut icon" href="/image/favicon.ico"/>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>e-html</title>
-    <link rel="stylesheet" href="/css/main.css">
-    <script src="/js/ehtml.bundle.min.js" type="text/javascript"></script>
-  </head>
-
-  <body class="main">
-
-      <e-markdown data-src="/md/md-from-server.md"></e-markdown>
-
-  </body>
-
-</html>
-  ```
+<body>
+  <e-markdown data-src="/md/md-from-server.md"></e-markdown>
+</body>
+```
 
 And let's say your markdown on `/md/md-from-server.md` is something like
 
@@ -828,25 +737,9 @@ And let's say your markdown on `/md/md-from-server.md` is something like
 Then once you load your page it would look like:
 
 ```html
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
-
-  <head>
-    <link rel="shortcut icon" href="/image/favicon.ico"/>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>e-html</title>
-    <link rel="stylesheet" href="/css/main.css">
-    <script src="/js/ehtml.bundle.min.js" type="text/javascript"></script>
-  </head>
-
-  <body class="main">
-
-    <h1>Title</h1>
-
-  </body>
-
-</html>
+<body>
+  <h1>Title</h1>
+</body>
 ```
 
 Use attrbiute `data-apply-code-highlighting="true"`, if you want to use code highligher in your markdowns.
@@ -890,7 +783,7 @@ Template with `is="e-wrapper"` attribute is very powerful element which you can 
 So, let's say you have basic static template in your app:
 
 ```html
-<div class="base">
+<div>
   <p>
     Header content
   </p>
@@ -906,7 +799,7 @@ So, let's say you have basic static template in your app:
 Then you can use this static template as a warapper in other pages
 
 ```html
-<body class="main">
+<body>
   <template 
     is="e-wrapper" 
     data-src="/html/wrapper.html" 
@@ -926,7 +819,7 @@ You can aso specify the way how it can be wrapped via `data-how-to-place` attrib
 So, your page with `e-wrapper` in this case will be rendered like
 
 ```html
-<div class="base">
+<div>
   <p>
     Header content
   </p>
