@@ -903,7 +903,7 @@ Let's take a look at very simple example:
 
 ```
 
-We start by declaring **&lt;template is="e-ws"&gt;**. The reason for using a template instead of just **&lt;e-ws&gt;** is crucial for determining other elements like**&lt;e-json&gt;** and **&lt;e-form&gt;** that must be rendered. Therefore, we enforce this by using **&lt;template&gt;**. You can use the attribute `data-connection-icon` to specify the progress icon while connections are being established. You can also run additional actions in `data-actions-on-open-connection`. The most important attribute in this element is `data-socket-name`. You will be able to refer to this socket name as the source of your incoming messages and also as the destination where you can send messages to.
+We start by declaring **&lt;template is="e-ws"&gt;**. The reason for using a template instead of just **&lt;e-ws&gt;** is crucial for determining other elements like**&lt;e-json&gt;** and **&lt;e-form&gt;** that must be rendered. Therefore, we enforce this by using **&lt;template&gt;**. You can use the attribute `data-connection-icon` to specify the progress icon while connections are being established. You can also run additional actions in `data-actions-on-open-connection` and `data-actions-on-close-connection`. The most important attribute in this element is `data-socket-name`. You will be able to refer to this socket name as the source of your incoming messages and also as the destination where you can send messages to.
 
 Inside of **&lt;template is="e-ws"&gt;** we declare **&lt;e-json&gt;**(also possible with **&lt;template is="e-json"&gt;**), where we are using attribute `data-socket`. This informs **&lt;e-json&gt;** that, instead of the usual `data-src` attribute used for regular HTTP requests, we expect incoming messages in **JSON** format from the specified socket. Other things remain the same, such as `data-response-name` where you declare a variable for your response that you can use in `data-actions-on-response`.
 
@@ -923,6 +923,17 @@ Additionally, as shown, we can declare **&lt;e-form&gt;** for sending messages t
 ```
 
 You can declare as many clients for the socket as you wish on one page. [In this example](/html/examples/simple-ws.html), you can see a very simple chat app.
+
+You have access to `event` variable in `data-actions-on-open-connection` and `data-actions-on-close-connection`:
+
+```html
+data-actions-on-open-connection="
+  console.log('connection is opened', event)
+"
+data-actions-on-close-connection="
+  console.log('connection is closed', event.code, event.reason)
+"
+```
 
 You can also add attributes `data-actions-on-progress-start` and `data-actions-on-progress-end`, where you can do some actions while waiting for response:
 ```html
