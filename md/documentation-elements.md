@@ -14,7 +14,7 @@ Sometimes html files can be very big, so why not just split them into different 
 </body>
 ```
 
-and as you can see, we have three `e-html` tags here. And each of them refers to some html file which contains some part of the `article.html`. This tag has only one custom attribute `data-src`, which tells us where exactly the file that we want to include is served.
+and as you can see, we have three `e-html` tags here. And each of them refers to a separate article. This tag has only one custom attribute `data-src`, which tells us where exactly the file that we want to include is served.
 
 And for example, `first.html` would look something like this
 
@@ -43,6 +43,8 @@ And when you open `articles.html` in a browser, it will be rendered as if you in
 The main benefit of using this element is that you can much more easily modify your big html files. So, instead of having one big html file where you have to find a specific part of it to modify, you can just find a file, which contains this specific part and make changes there.
 
 Of course, this element makes an additional http(s) request for fetching a specific part, but you can always cache the files, so it would not cause any performance issues.
+
+Actually, the ability to cache your html files is an incredible boost for loading your pages.
 
 You can also add attributes `data-actions-on-progress-start` and `data-actions-on-progress-end`, where you can do some actions while waiting for response:
 ```html
@@ -101,6 +103,11 @@ In this case we just decided to map `body` of our response to the element with i
 As you see, we are using predefined `mapToTemplate` function in `data-actions-on-response`. There are few more such functions or actions on response, we will discuss them later.
 
 If you need some request headers, you can specify them in the attribute `data-request-headers` with format `{ "headerName": "headerValue", ... }`.
+
+The attribute `data-src` can also contain dynamic data which is being evalutated right before the request:
+```html
+data-src="/album/${getAlbumNameSomehow()}"
+```
 
 You can also add attributes `data-ajax-icon` and `data-progress-bar` as element selectors for presenting progress of fetching data from the server. You can see how to use them in the [examples](/html/examples.html).
 
@@ -446,6 +453,11 @@ So, like standard `form` element `e-form` can have inputs with different types, 
 This element will be rendered as a standard `form` element with attribute `data-e-form="true"`, but it will send its data as json object. You can do it by attaching events on buttons or other active elements with function: `this.form.submit(this)`, which constructs a request body by the form's items and submits it. Such approach is much better than standard `action` attribute in the `form` tag because you can attach different requests on several active elements using the same form. 
 
 Also you have to add other information about the request you want to make in the attributes: `data-request-url`, `data-request-method`, `data-request-headers`. You can even add attributes like `data-ajax-icon`, `data-progress-bar` and `data-upload-progress-bar` which can display progress of the request.
+
+The attribute `data-request-url` can contain dynamic data which is evaluated right before form is being sent:
+```html
+data-request-url="/artist/${getArtistNameSomehow()}/albums/add"
+```
 
 You can change button text and add class to it while you're waiting for ajax request to be completed. You can do it via `data-button-ajax-text` and `data-button-ajax-class`.
 
