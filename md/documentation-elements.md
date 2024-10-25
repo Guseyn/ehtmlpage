@@ -454,7 +454,7 @@ This element will be rendered as a standard `form` element with attribute `data-
 
 Also you have to add other information about the request you want to make in the attributes: `data-request-url`, `data-request-method`, `data-request-headers`. You can even add attributes like `data-ajax-icon`, `data-progress-bar` and `data-upload-progress-bar` which can display progress of the request.
 
-The attribute `data-request-url` can contain dynamic data which is evaluated right before form is being sent:
+The attribute `data-request-url` can contain dynamic data which is evaluated right before the form is being sent:
 ```html
 data-request-url="/artist/${getArtistNameSomehow()}/albums/add"
 ```
