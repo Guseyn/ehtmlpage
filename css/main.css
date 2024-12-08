@@ -184,7 +184,7 @@ iframe {
   border: 0;
 }
 
-.base {
+.page {
   width: 100%;
   height: auto;
   clear: both;
@@ -323,7 +323,7 @@ img:not(.logo):not(.photo):not(.project-logo):not(.article-logo):not(.youtube-vi
 }
 
 @media only screen and (min-width: 700px) {
-  .base {
+  .page {
     width: 780px;
     font-size: 1.2em;
   }
