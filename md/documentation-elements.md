@@ -616,7 +616,7 @@ In the redirect uri we expect `code` param, which we want to retrieve via `e-pag
 
 After we get the **JWT** token, we save it into local storage and make turbo redirect to the original page where we have been redirected from. And you can notice that we use all `data-request-*` attributes right in the `e-form`. That allows us to send the form on rendering page, so we don't have to click on some button, for example.
 
-Demo of `e-google-oauth-button` you can find in this [example](/html/examples/simple-e-github-oauth-button.html).
+Demo of `e-github-oauth-button` you can find in this [example](/html/examples/simple-e-github-oauth-button.html).
 
 
 </details><details><summary><b>&lt;template is="e-page-with-url"&gt;</b></summary>
