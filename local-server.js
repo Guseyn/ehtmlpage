@@ -9,12 +9,6 @@ const mapperForStatic = (url) => {
   return path.join(...parts)
 }
 
-const mapperForSrc = (url) => {
-  const mainPart = `${url.split('.html')[0]}.html`
-  const parts = mainPart.split('/').filter(part => part !== '')
-  return path.join(...parts)
-}
-
 new Backend(
   'http',
   4200,
@@ -27,12 +21,6 @@ new Backend(
     new ServingFilesEndpoint(
       new RegExp(/^\/(html|js|json|image|css|md)/),
       mapperForStatic,
-      {},
-      new NotFoundEndpoint(new RegExp(/\/not-found/))
-    ),
-    new ServingFilesEndpoint(
-      new RegExp(/[^\s]+.html([/?][^\s]*)?$/),
-      mapperForSrc,
       {},
       new NotFoundEndpoint(new RegExp(/\/not-found/))
     ),
