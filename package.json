@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "description": "EHTML",
   "scripts": {
-    "server": "node local-server"
+    "server": "node local-server",
+    "ehtml:update": "rm -rf js/ehtml && cp -r ../EHTML/src js/ehtml"
   },
   "repository": {
     "type": "git",
