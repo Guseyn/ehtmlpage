@@ -1,7 +1,7 @@
 # Usage
 <p></p>
 
-Since **v2.0.0** EHTML moved to [**\#NoBuild**](https://world.hey.com/dhh/you-can-t-get-faster-than-no-build-7a44131c). We believe, it will bring more quality into our ecosystem and will improve the quality drastically. It will also educate young software developers, because they can see real code that's running in their browsers.
+Since **v2.0.0** EHTML moved to [**\#NoBuild**](https://world.hey.com/dhh/you-can-t-get-faster-than-no-build-7a44131c). We believe, it will bring more consistency into our ecosystem and will improve the quality of the software itself drastically. It will also educate young software developers, because they can see real code that's running in their browsers.
 
 **EHTML** is still very easy to include in your project. 
 
