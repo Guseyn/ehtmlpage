@@ -284,7 +284,7 @@ When submitted, the e-form-array will serialize its contents into a JSON array u
 >  
 > This separation ensures that every `e-form` can handle its own request, validation, and response actions without interfering with other forms or nested data structures on the page.
 
-<details><summary><b>&lt;template is="e-json"&gt;</b></summary>
+</details><details><summary><b>&lt;template is="e-json"&gt;</b></summary>
 
 You can use `e-json` as a `<template>` element, if you just need to map response. 
 
