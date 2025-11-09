@@ -153,11 +153,11 @@ window.getObjectFromSessionStorage = (key) => {
 If `window.getObjectFromSessionStorage` returns **null**, `e-json` will make a request, otherwise it will use cached response.
 
 To invalidate cache, all you need to is just to assign cache object to **null** or **undefined**.
-</details><details><summary><b>&lt;e-form-object&gt; and &lt;e-form-array&gt;</b></summary>
+</details><details><summary><b>&lt;e-form-object and e-form-array&gt;</b></summary>
 
 Custom elements `e-form-object` and `e-form-array` extend the power of `e-form` by allowing you to build complex and nested JSON structures directly from your HTML form.
 
-**&lt;e-form-object&gt;**
+**e-form-object**
 
 The `e-form-object` element lets you group multiple related inputs into a single JSON object.  
 Every input, select, checkbox, or textarea inside the object will contribute to a key–value pair in that nested object.
@@ -210,7 +210,7 @@ When submitted, the `e-form-object` will automatically be serialized into a nest
 You can nest `e-form-object` elements inside each other as deeply as you like.
 Each nesting level will correspond to another nested object in the resulting JSON structure.
 
-**&lt;e-form-array&gt;**
+**e-form-array**
 
 The e-form-array element allows you to define an array of objects or values within your form.
 Each e-form-object inside the array becomes one item of that array.
