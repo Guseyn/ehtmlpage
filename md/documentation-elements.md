@@ -157,9 +157,7 @@ To invalidate cache, all you need to is just to assign cache object to **null** 
 
 Custom elements `e-form-object` and `e-form-array` extend the power of `e-form` by allowing you to build complex and nested JSON structures directly from your HTML form.
 
----
-
-### **&lt;e-form-object&gt;**
+**&lt;e-form-object&gt;**
 
 The `e-form-object` element lets you group multiple related inputs into a single JSON object.  
 Every input, select, checkbox, or textarea inside the object will contribute to a key–value pair in that nested object.
@@ -212,9 +210,7 @@ When submitted, the `e-form-object` will automatically be serialized into a nest
 You can nest `e-form-object` elements inside each other as deeply as you like.
 Each nesting level will correspond to another nested object in the resulting JSON structure.
 
----
-
-### **&lt;e-form-array&gt;**
+**&lt;e-form-array&gt;**
 
 The e-form-array element allows you to define an array of objects or values within your form.
 Each e-form-object inside the array becomes one item of that array.

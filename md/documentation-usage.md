@@ -31,9 +31,7 @@ rm -rf js/ehtml && cp -r ../EHTML/src js/ehtml
 }
 </script>
 ```
-</details>
-
-You can adjust the import map according to how your server serves JavaScript files.
+</details>You can adjust the import map according to how your server serves JavaScript files.
 
 In the example above, it assumes that you cloned the `ehtml` directory inside the `js` folder of your static files.
 
