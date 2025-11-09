@@ -153,7 +153,7 @@ window.getObjectFromSessionStorage = (key) => {
 If `window.getObjectFromSessionStorage` returns **null**, `e-json` will make a request, otherwise it will use cached response.
 
 To invalidate cache, all you need to is just to assign cache object to **null** or **undefined**.
-</details><details><summary><b>&lt;e-form-object and e-form-array&gt;</b></summary>
+</details><details><summary><b>&lt;e-form-object&gt; and &lt;e-form-array&gt;</b></summary>
 
 Custom elements `e-form-object` and `e-form-array` extend the power of `e-form` by allowing you to build complex and nested JSON structures directly from your HTML form.
 
@@ -633,10 +633,6 @@ Generally **EHTML** has static binding for elements (unless it's input fields th
 ```
 
 More details you can find in this [example](/html/examples/e-form-dynamic-value.html).
-
-</details><details><summary><b>&lt;e-form-object and e-form-array&gt;</b></summary>
-
-
 
 </details><details><summary><b>&lt;template is="e-reusable"&gt;</b></summary>
 
