@@ -409,104 +409,6 @@ Generally **EHTML** has static binding for elements (unless it's input fields th
 
 More details you can find in this [example](/html/examples/e-form-dynamic-value.html).
 
-</details><details><summary><b>&lt;e-json&gt;</b></summary>
-
-`e-json` allows you to fetch **JSON** resource by **GET** request from the server and apply some actions on the response. So, for example, let's say you have an endpoint `/album/{title}`, which returns following response:
-
-```json
-title = 'Humbug'
-{
-  "title": "Humbug",
-  "artist": "Arctic Monkeys",
-  "type": "studio album",
-  "releaseDate": "19 August 2009",
-  "genre": "psychedelic rock, hard rock, stoner rock, desert rock",
-  "length": "39:20",
-  "label": "Domino",
-  "producer": "James Ford, Joshua Homme"
-}
-```
-
-Then you can fetch it via `e-json` like in following html code:
-
-```html
-<e-json
-  data-src="/album/Humbug"
-  data-response-name="albumResponse"
-  data-actions-on-response="
-    mapToTemplate('#album-info', albumResponse.body)
-  ">
-
-  <template id="album-info" data-object-name="album">
-    <div data-text="Title: ${album.title}"></div>
-    <div data-text="Artist: ${album.artist}"></div>
-    <div data-text="Type: ${album.type}"></div>
-    <div data-text="Release date: ${album.releaseDate}"></div>
-    <div data-text="Genre: ${album.genre}"></div>
-    <div data-text="Length: ${album.length}"></div>
-    <div data-text="Label: ${album.label}"></div>
-    <div data-text="Producer: ${album.producer}"></div>
-  </template>
-</e-json>
-```
-
-So, `e-json` has attributes `data-src` which tells us where from we can fetch **JSON** response. Attribute `data-response-name` specifies the name that we want to use for the response. It contains `body`, `statusCode` and `headers` properties, so you can use them in the attribute `data-actions-on-response`.
-
-In this case we just decided to map `body` of our response to the element with id `album-info`, which also must have the attribute `data-object-name`. This attribute specifies the name of the object that we want to map. It's important to mention that you can map object only to `<template>`, which is in `e-json` that provides the object for mapping.
-
-As you see, we are using predefined `mapToTemplate` function in `data-actions-on-response`. There are few more such functions or actions on response, we will discuss them later.
-
-If you need some request headers, you can specify them in the attribute `data-request-headers` with format `{ "headerName": "headerValue", ... }`.
-
-The attribute `data-src` can also contain dynamic data which is being evalutated right before the request:
-```html
-data-src="/album/${getAlbumNameSomehow()}"
-```
-
-You can also add attributes `data-ajax-icon` and `data-progress-bar` as element selectors for presenting progress of fetching data from the server. You can see how to use them in the [examples](/html/examples.html).
-
-Also, it is worth mentioning that in `data-actions-on-response`, you can run any JavaScript code without using curly brackets ${someVariable}. On the other hand, in other attributes like `data-text` or `data-value` (for input fields), you must use curly brackets for parameters, as everything must be evaluated back to the string.  You can see how to use them in this [example](/html/examples/simple-e-json.html).
-
-You can also add attributes `data-actions-on-progress-start` and `data-actions-on-progress-end`, where you can do some actions while waiting for response:
-```html
-data-actions-on-progress-start="
-  console.log('waiting for progress')
-"
-data-actions-on-progress-end="
-  console.log('progress finished')
-"
-```
-
-There is an option to use cache in `e-json`(it's supported only for this particular element). By using `data-cache-from="${someGlobalObjectFromMemoryOrStorage}"`, you can just get the response from the cache. For single-page applications, you can use some memory storage, for multiple-page it can be **localStorage** or **sessionStorage**. It's important that in `data-cache-from` you must specify an object that represents real response, otherwise your actions on response would behave unpredictably. You must initialize cache in `data-actions-on-response`, for example:
-
-
-```html
-data-actions-on-response="
-  sessionStorage.setItem('cacheKey', JSON.stringify(response))
-"
-```
-
-And then you can use it:
-
-```html
-data-cache-from="${window.getObjectFromSessionStorage('cacheKey')}"
-```
-
-where `getObjectFromSessionStorage` is something like:
-
-```js
-window.getObjectFromSessionStorage = (key) => {
-  const item = sessionStorage.getItem(key)
-  if (item) {
-    return JSON.parse(item)
-  }
-  return null
-}
-```
-
-If `window.getObjectFromSessionStorage` returns **null**, `e-json` will make a request, otherwise it will use cached response.
-
-To invalidate cache, all you need to is just to assign cache object to **null** or **undefined**.
 </details><details><summary><b>&lt;e-form-object&gt; and &lt;e-form-array&gt;</b></summary>
 
 Custom elements `e-form-object` and `e-form-array` extend the power of `e-form` by allowing you to build complex and nested JSON structures directly from your HTML form.
@@ -634,6 +536,104 @@ Each `e-form` works independently — meaning if you have multiple `e-form` elem
   
 This separation ensures that every `e-form` can handle its own request, validation, and response actions without interfering with other forms or nested data structures on the page.
 
+</details><details><summary><b>&lt;e-json&gt;</b></summary>
+
+`e-json` allows you to fetch **JSON** resource by **GET** request from the server and apply some actions on the response. So, for example, let's say you have an endpoint `/album/{title}`, which returns following response:
+
+```json
+title = 'Humbug'
+{
+  "title": "Humbug",
+  "artist": "Arctic Monkeys",
+  "type": "studio album",
+  "releaseDate": "19 August 2009",
+  "genre": "psychedelic rock, hard rock, stoner rock, desert rock",
+  "length": "39:20",
+  "label": "Domino",
+  "producer": "James Ford, Joshua Homme"
+}
+```
+
+Then you can fetch it via `e-json` like in following html code:
+
+```html
+<e-json
+  data-src="/album/Humbug"
+  data-response-name="albumResponse"
+  data-actions-on-response="
+    mapToTemplate('#album-info', albumResponse.body)
+  ">
+
+  <template id="album-info" data-object-name="album">
+    <div data-text="Title: ${album.title}"></div>
+    <div data-text="Artist: ${album.artist}"></div>
+    <div data-text="Type: ${album.type}"></div>
+    <div data-text="Release date: ${album.releaseDate}"></div>
+    <div data-text="Genre: ${album.genre}"></div>
+    <div data-text="Length: ${album.length}"></div>
+    <div data-text="Label: ${album.label}"></div>
+    <div data-text="Producer: ${album.producer}"></div>
+  </template>
+</e-json>
+```
+
+So, `e-json` has attributes `data-src` which tells us where from we can fetch **JSON** response. Attribute `data-response-name` specifies the name that we want to use for the response. It contains `body`, `statusCode` and `headers` properties, so you can use them in the attribute `data-actions-on-response`.
+
+In this case we just decided to map `body` of our response to the element with id `album-info`, which also must have the attribute `data-object-name`. This attribute specifies the name of the object that we want to map. It's important to mention that you can map object only to `<template>`, which is in `e-json` that provides the object for mapping.
+
+As you see, we are using predefined `mapToTemplate` function in `data-actions-on-response`. There are few more such functions or actions on response, we will discuss them later.
+
+If you need some request headers, you can specify them in the attribute `data-request-headers` with format `{ "headerName": "headerValue", ... }`.
+
+The attribute `data-src` can also contain dynamic data which is being evalutated right before the request:
+```html
+data-src="/album/${getAlbumNameSomehow()}"
+```
+
+You can also add attributes `data-ajax-icon` and `data-progress-bar` as element selectors for presenting progress of fetching data from the server. You can see how to use them in the [examples](/html/examples.html).
+
+Also, it is worth mentioning that in `data-actions-on-response`, you can run any JavaScript code without using curly brackets ${someVariable}. On the other hand, in other attributes like `data-text` or `data-value` (for input fields), you must use curly brackets for parameters, as everything must be evaluated back to the string.  You can see how to use them in this [example](/html/examples/simple-e-json.html).
+
+You can also add attributes `data-actions-on-progress-start` and `data-actions-on-progress-end`, where you can do some actions while waiting for response:
+```html
+data-actions-on-progress-start="
+  console.log('waiting for progress')
+"
+data-actions-on-progress-end="
+  console.log('progress finished')
+"
+```
+
+There is an option to use cache in `e-json`(it's supported only for this particular element). By using `data-cache-from="${someGlobalObjectFromMemoryOrStorage}"`, you can just get the response from the cache. For single-page applications, you can use some memory storage, for multiple-page it can be **localStorage** or **sessionStorage**. It's important that in `data-cache-from` you must specify an object that represents real response, otherwise your actions on response would behave unpredictably. You must initialize cache in `data-actions-on-response`, for example:
+
+
+```html
+data-actions-on-response="
+  sessionStorage.setItem('cacheKey', JSON.stringify(response))
+"
+```
+
+And then you can use it:
+
+```html
+data-cache-from="${window.getObjectFromSessionStorage('cacheKey')}"
+```
+
+where `getObjectFromSessionStorage` is something like:
+
+```js
+window.getObjectFromSessionStorage = (key) => {
+  const item = sessionStorage.getItem(key)
+  if (item) {
+    return JSON.parse(item)
+  }
+  return null
+}
+```
+
+If `window.getObjectFromSessionStorage` returns **null**, `e-json` will make a request, otherwise it will use cached response.
+
+To invalidate cache, all you need to is just to assign cache object to **null** or **undefined**.
 </details><details><summary><b>&lt;template is="e-reusable"&gt;</b></summary>
 
 You use action `mapToTemplate` on a template with attribute `is="e-reusable"`, so you can map response object multiple times. Also you can specify attribute `data-append-to="#someSelector"` or `data-prepend-to="#someSelector"` to decide where and how mapped content of the template should be placed. If you don't specify one of these attributes, then mapped content of the template will be placed right before the template.
