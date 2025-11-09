@@ -274,11 +274,11 @@ You can write:
 
 When submitted, the e-form-array will serialize its contents into a JSON array under the key specified in its name attribute.
 
-> **Note:**  
-> The main `e-form` does **not** include the input fields from nested `e-form` elements inside it when constructing its request body.  
-> Each `e-form` works independently — meaning if you have multiple `e-form` elements on the same page (or one inside another), each will only serialize and submit its **own** inputs, selects, and textareas.  
->  
-> This separation ensures that every `e-form` can handle its own request, validation, and response actions without interfering with other forms or nested data structures on the page.
+**Note:**  
+The main `e-form` does **not** include the input fields from nested `e-form` elements inside it when constructing its request body.  
+Each `e-form` works independently — meaning if you have multiple `e-form` elements on the same page (or one inside another), each will only serialize and submit its **own** inputs, selects, and textareas.  
+  
+This separation ensures that every `e-form` can handle its own request, validation, and response actions without interfering with other forms or nested data structures on the page.
 
 </details><details><summary><b>&lt;template is="e-json"&gt;</b></summary>
 
