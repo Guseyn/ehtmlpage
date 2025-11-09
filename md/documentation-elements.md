@@ -153,7 +153,138 @@ window.getObjectFromSessionStorage = (key) => {
 If `window.getObjectFromSessionStorage` returns **null**, `e-json` will make a request, otherwise it will use cached response.
 
 To invalidate cache, all you need to is just to assign cache object to **null** or **undefined**.
-</details><details><summary><b>&lt;template is="e-json"&gt;</b></summary>
+</details><details><summary><b>&lt;e-form-object&gt; and &lt;e-form-array&gt;</b></summary>
+
+Custom elements `e-form-object` and `e-form-array` extend the power of `e-form` by allowing you to build complex and nested JSON structures directly from your HTML form.
+
+---
+
+### **&lt;e-form-object&gt;**
+
+The `e-form-object` element lets you group multiple related inputs into a single JSON object.  
+Every input, select, checkbox, or textarea inside the object will contribute to a key–value pair in that nested object.
+
+For example, imagine you want to send the following JSON:
+
+```json
+{
+  "artist": {
+    "name": "Arctic Monkeys",
+    "genre": "indie rock",
+    "yearStarted": 2002
+  }
+}
+```
+
+You can achieve this with:
+
+```html
+<e-form>
+  <e-form-object name="artist">
+    <label>
+      Name:
+      <input type="text" name="name" value="Arctic Monkeys">
+    </label>
+    <label>
+      Genre:
+      <input type="text" name="genre" value="indie rock">
+    </label>
+    <label>
+      Year Started:
+      <input type="number" name="yearStarted" value="2002">
+    </label>
+  </e-form-object>
+
+  <button
+    data-request-url="/artist/add"
+    data-request-method="POST"
+    data-response-name="createdArtist"
+    onclick="this.form.submit(this)"
+    data-actions-on-response="console.log(createdArtist)"
+  >
+    Add Artist
+  </button>
+</e-form>
+```
+
+When submitted, the `e-form-object` will automatically be serialized into a nested JSON object under its name attribute.
+
+You can nest `e-form-object` elements inside each other as deeply as you like.
+Each nesting level will correspond to another nested object in the resulting JSON structure.
+
+---
+
+### **&lt;e-form-array&gt;**
+
+The e-form-array element allows you to define an array of objects or values within your form.
+Each e-form-object inside the array becomes one item of that array.
+
+For example, if your expected request body looks like this:
+
+```json
+{
+  "albums": [
+    {
+      "title": "AM",
+      "year": 2013
+    },
+    {
+      "title": "Tranquility Base Hotel & Casino",
+      "year": 2018
+    }
+  ]
+}
+```
+
+You can write:
+
+```html
+<e-form>
+  <e-form-array name="albums">
+    <e-form-object>
+      <label>
+        Title:
+        <input type="text" name="title" value="AM">
+      </label>
+      <label>
+        Year:
+        <input type="number" name="year" value="2013">
+      </label>
+    </e-form-object>
+
+    <e-form-object>
+      <label>
+        Title:
+        <input type="text" name="title" value="Tranquility Base Hotel & Casino">
+      </label>
+      <label>
+        Year:
+        <input type="number" name="year" value="2018">
+      </label>
+    </e-form-object>
+  </e-form-array>
+
+  <button
+    data-request-url="/artist/Arctic_Monkeys/albums/add"
+    data-request-method="POST"
+    data-response-name="addedAlbums"
+    onclick="this.form.submit(this)"
+    data-actions-on-response="console.log(addedAlbums)"
+  >
+    Add Albums
+  </button>
+</e-form>
+```
+
+When submitted, the e-form-array will serialize its contents into a JSON array under the key specified in its name attribute.
+
+> **Note:**  
+> The main `e-form` does **not** include the input fields from nested `e-form` elements inside it when constructing its request body.  
+> Each `e-form` works independently — meaning if you have multiple `e-form` elements on the same page (or one inside another), each will only serialize and submit its **own** inputs, selects, and textareas.  
+>  
+> This separation ensures that every `e-form` can handle its own request, validation, and response actions without interfering with other forms or nested data structures on the page.
+
+<details><summary><b>&lt;template is="e-json"&gt;</b></summary>
 
 You can use `e-json` as a `<template>` element, if you just need to map response. 
 
@@ -486,6 +617,13 @@ data-actions-on-progress-end="
   console.log('progress finished')
 "
 ```
+
+You can also use the special endpoint **`echo/request/body`** in the `data-request-url` attribute.  
+It simply returns the same request body that your form sends.  
+This is useful when you need all the features of `e-form`, such as validation, but don’t actually require server-side processing.
+
+In future versions, we also plan to introduce **worker endpoints**.
+
 </details><details><summary><b>&lt;e-form-dynamic-value&gt;</b></summary>
 
 Generally **EHTML** has static binding for elements (unless it's input fields that can change value by the user interaction). In order to bind value in memory (and also local/session storages and other global variables) and send this value in the `e-form`, you can use `e-form-dynamic-value`. By using `e-form-dynamic-value` attribute, you can be sure that its value is calculated only when you submit a form.
@@ -499,6 +637,10 @@ Generally **EHTML** has static binding for elements (unless it's input fields th
 ```
 
 More details you can find in this [example](/html/examples/e-form-dynamic-value.html).
+
+</details><details><summary><b>&lt;e-form-object and e-form-array&gt;</b></summary>
+
+
 
 </details><details><summary><b>&lt;template is="e-reusable"&gt;</b></summary>
 

@@ -25,16 +25,5 @@
   "bugs": {
     "url": "https://github.com/Guseyn/ehtmlpage/issues"
   },
-  "homepage": "https://github.com/Guseyn/ehtmlpage",
-  "dependencies": {
-  },
-  "devDependencies": {
-    "@cuties/async": "^1.0.1",
-    "@cuties/buffer": "^1.2.3",
-    "@cuties/cutie": "^1.7.5",
-    "@cuties/fs": "^1.2.4",
-    "@cuties/https": "^1.1.4",
-    "@cuties/json": "^1.1.1",
-    "@cuties/rest": "^1.2.16"
-  }
+  "homepage": "https://github.com/Guseyn/ehtmlpage"
 }
