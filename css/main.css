@@ -1,301 +1,325 @@
-/* ─────────────────────────────────────────────── */
-/*  GLOBAL RESET & TYPOGRAPHY                      */
-/* ─────────────────────────────────────────────── */
-* {
-  padding: 0;
+/* =============================================================
+   Global Layout & Theme
+============================================================= */
+html {
+  font-size: 16px; /* base for rems */
+}
+
+html, body {
   margin: 0;
-  box-sizing: border-box;
-  line-height: 1.5em;
-  -webkit-font-smoothing: antialiased;
+  padding: 0;
+  font-family: Tahoma, sans-serif;
+  background: #f4f4f4;
+  color: #111;
+  line-height: 1.5;
 }
 
 body {
-  background: #ececec;
-  color: #111;
-  font-family: Tahoma, sans-serif;
+  max-width: 60rem; /* ~960px */
+  margin: 0 auto;
+  padding-bottom: 3rem;
 }
 
-/* Slight fade effect for turbo-loading */
-.progress-opacity {
-  opacity: 0.65;
-  transition: opacity 0.25s ease;
-}
-
-/* ─────────────────────────────────────────────── */
-/*  SCROLLBARS                                     */
-/* ─────────────────────────────────────────────── */
-::-webkit-scrollbar {
-  width: 6px;
-  height: 8px;
-}
-
-::-webkit-scrollbar-track {
-  background: #e9e9e9;
-}
-
-::-webkit-scrollbar-thumb {
-  background: #999;
-  border-radius: 10px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: #555;
-}
-
-/* Turbo progress bar */
-.turbo-progress-bar {
-  height: 4px;
-  background-color: #ffa801;
-}
-
-/* ─────────────────────────────────────────────── */
-/*  TYPOGRAPHY                                     */
-/* ─────────────────────────────────────────────── */
-
-h1 {
-  margin: 0.6em 0 0.4em 0;
-  font-weight: 700;
-  line-height: 1.15em;
-}
-
-h1:first-child {
-  margin-top: 0.5em;
-}
-
-h3, h4 {
-  font-size: 1.05em;
-  font-weight: 600;
-  margin: 0.8em 0 0.4em;
-}
-
-p {
-  margin-bottom: 0.7em;
-  line-height: 1.55em;
-}
-
+/* =============================================================
+   Links
+============================================================= */
 a {
   color: #111;
+  text-decoration: underline;
+}
+
+/* =============================================================
+   Header
+============================================================= */
+header {
+  text-align: center;
+  padding: 2.5rem 1.25rem 2rem 1.25rem; /* 40px 20px 32px */
+  background: linear-gradient(270deg, #1e272e 0%, #343c42 100%);
+  color: #fff;
+}
+
+header img {
+  display: block;
+  margin: 0 auto 1rem auto;
+}
+
+/* Navigation */
+nav {
+  margin-top: 1rem;
+}
+
+nav a {
+  color: #fff;
+  margin: 0 0.875rem;
+  font-size: 1.1rem;
   text-decoration: none;
-  transition: color 0.2s ease;
 }
 
-a:hover {
-  color: #444;
+nav a:hover {
+  color: #ffffffaa;
 }
 
-/* Lists */
-ol, ul {
-  padding-left: 1.3em;
-  margin-bottom: 0.8em;
+/* =============================================================
+   Main Section
+============================================================= */
+main {
+  background: #fff;
+  padding: 2rem 1.8rem;
+  border-left: 0.063rem solid #ddd;
+  border-right: 0.063rem solid #ddd;
+  border-bottom: 0.063rem solid #ddd;
+  border-bottom-left-radius: 0.75rem;
+  border-bottom-right-radius: 0.75rem;
 }
 
-li {
-  padding: 0.2em 0;
+main h1, main h2, main h3 {
+  margin-top: 0;
+  line-height: 1.25;
 }
 
-/* ─────────────────────────────────────────────── */
-/*  DETAILS / SUMMARY                               */
-/* ─────────────────────────────────────────────── */
-details {
-  padding: 0.2em 0.5em 0.7em 0;
+main h1 {
+  font-size: 2rem;
+}
+
+main p {
+  margin: 0.5rem 0 1.2rem 0;
+  font-size: 1.05rem;
+}
+
+/* =============================================================
+   Footer
+============================================================= */
+footer {
+  margin-top: 2.5rem;
+  padding: 1.5rem;
+  text-align: center;
+  font-size: 0.9rem;
+  color: #555;
+}
+
+/* =============================================================
+   Images
+============================================================= */
+img {
+  max-width: 100%;
+  height: auto;
+  margin: 1rem 0;
+}
+
+/* =============================================================
+   Code Blocks & Inline Code
+============================================================= */
+pre {
+  padding: 1rem;
+  border-radius: 0.5rem;
+  border: 0.063rem solid #ddd;
+  overflow: auto;
+  font-size: 0.9rem;
+  margin: 1.5rem 0;
+}
+
+code {
+  background: #f5f5f5;
+  padding: 0.15rem 0.35rem;
+  border-radius: 0.3rem;
+  border: 0.063rem solid #ccc;
+  font-size: 0.9rem;
+}
+
+/* =============================================================
+   Tables
+============================================================= */
+table {
   width: 100%;
+  border-collapse: collapse;
+  margin: 1.5rem 0;
+  font-size: 1rem;
+}
+
+th, td {
+  padding: 0.75rem;
+}
+
+/* =============================================================
+   Details / Summary (Accordion)
+============================================================= */
+details {
+  display: block;
+  border: 1px solid #111;
+  border-radius: 0.75rem;
+  padding: 1rem 1.25rem;
+  transition: all 0.3s ease;
+  break-inside: avoid;
+  margin: 1.5rem 0;
+  box-shadow: 0 0.125rem 0.25rem rgba(0,0,0,0.05);
+  box-sizing: border-box;
+  cursor: default;
 }
 
 summary {
   cursor: pointer;
   font-weight: 600;
-  padding: 0.4em 0;
+  list-style: none;
+  cursor: pointer;
+  outline: none;
+  position: relative;
+  padding-right: 1.5rem;
+  align-items: center;
+  margin: -0.25rem 0; /* tighten spacing */
   outline: none;
 }
 
-details p {
-  padding: 4px 8px;
-  background: #fafafa;
-  border-left: 3px solid #ddd;
-  border-radius: 3px;
-  margin-bottom: 0.6em;
+details p, details ul, details ol {
+  margin-top: 1rem;
 }
 
-/* ─────────────────────────────────────────────── */
-/*  CODE BLOCKS                                     */
-/* ─────────────────────────────────────────────── */
+details p { overflow: hidden; }
 
-pre {
-  overflow: auto;
-  margin-top: 1em;
-  margin-bottom: 2em;
-  padding: 8px 10px;
-  font-size: 0.75em;
-  background: #ffffff;
-  border: 1px solid #dcdcdc;
-  border-radius: 4px;
+summary::-webkit-details-marker { display: none; }
+
+summary::after {
+  content: "›";
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%) translateY(-0.1rem) rotate(0deg);
+  font-size: 1.2rem;
+  transition: transform 0.3s ease;
+  color: var(--accent-dark-blue);
+}
+
+details[open] summary::after {
+  transform: translateY(-50%) rotate(90deg);
+}
+
+/* =============================================================
+   Responsive
+============================================================= */
+@media only screen and (min-width: 48rem) { /* ~768px */
+  nav a {
+    font-size: 1.2rem;
+  }
+
+  main {
+    font-size: 1.1rem;
+    padding: 2.5rem 2rem;
+  }
+}
+
+/* =============================================================
+   YouTube Embeds
+============================================================= */
+
+/* Frame wrapper */
+.youtube-iframe,
+iframe {
+  position: relative;
+  width: 100%;
+  margin-top: 1.25rem;   /* 20px */
   cursor: pointer;
-  transition: background 0.15s ease;
+  opacity: 0.8;
+  border-radius: 1.25rem; /* 20px */
+  border: 0;
 }
 
-pre:hover {
-  background: #fafafa;
-}
-
-code {
-  overflow: auto;
-  background: #f8f8f8;
-  border-radius: 3px;
-  border: 1px solid #ccc;
-  padding: 0.15em 0.3em;
-  font-family: Consolas, 'Liberation Mono', Courier, monospace;
-  font-size: 0.95em;
-}
-
-code:hover {
-  background: #f3f3f3;
-}
-
-/* ─────────────────────────────────────────────── */
-/*  MAIN PAGE STRUCTURE                             */
-/* ─────────────────────────────────────────────── */
-
-.page {
-  width: 100%;
-  max-width: 780px;
-  margin: 0 auto;
-  padding: 10px 10px 4em;
-  background: #fff;
-  border-radius: 10px;
-  border: 1px solid #d7d7d7;
-  box-shadow: rgba(0,0,0,0.05) 0px 2px 6px;
-}
-
-/* Header area */
-.header {
-  padding: 20px;
-  border-radius: 6px;
-  background: linear-gradient(270deg, #1e272e 0%, #343C42 100%);
-  text-align: center;
-}
-
-.logo {
-  display: block;
-  margin: 0 auto;
-}
-
-/* Big Nav Links */
-.big-links {
-  margin-top: 18px;
-}
-
-.big-links a {
-  margin-right: 16px;
-  font-size: 1.15em;
-  color: #fff;
-  text-decoration: none;
-  transition: opacity 0.2s ease;
-}
-
-.big-links a:hover {
-  opacity: 0.7;
-}
-
-/* Middle content wrappers */
-.middle {
-  padding: 12px;
-}
-
-.footer {
-  height: 30px;
-}
-
-/* ─────────────────────────────────────────────── */
-/*  FLOATING PANEL / BOX-LINKS                      */
-/* ─────────────────────────────────────────────── */
-
-.floating-link-panel {
-  display: block;
-  background-color: #fff;
-  margin: 15px auto;
-  padding: 18px;
-  max-width: 580px;
-  font-size: 0.95em;
-  border-radius: 10px;
-  text-align: center;
-  box-shadow: rgba(9, 30, 66, 0.25) 0px 1px 3px,
-              rgba(9, 30, 66, 0.15) 0px 0px 1px 1px;
-  transition: background 0.15s ease;
-}
-
-.floating-link-panel:hover {
-  background-color: #f7f7f7;
-  cursor: pointer;
-}
-
-.floating-link-panel:first-child {
-  margin-top: 12px;
-}
-
-/* ─────────────────────────────────────────────── */
-/*  MISC ELEMENTS                                   */
-/* ─────────────────────────────────────────────── */
-
-.date {
-  font-size: 0.88em;
-  color: #555;
-  margin: 0.5em 0 1em;
-}
-
-.refs {
-  margin: 1em 0 0.4em;
-  width: 100%;
-  font-size: 1.3em;
-  color: #676767;
-}
-
-/* Image handling */
-img:not(.logo):not(.photo):not(.project-logo):not(.article-logo):not(.youtube-video):not(.link-icon):not(.left-to-link):not(.sponsor-icon):not(.youtube-video-play) {
-  width: 100%;
-  height: auto;
-}
-
-/* YouTube */
-.youtube-iframe {
-  width: 100%;
-  margin-top: 20px;
-  opacity: 0.9;
-  border-radius: 20px;
-  transition: opacity 0.2s ease;
-}
-
+/* Hover effect */
 .youtube-iframe:hover {
-  opacity: 1.0;
+  opacity: 1;
 }
 
-/* Play button */
+/* Big play button (the translucent circle image) */
 .youtube-video-play {
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 86px;
-  height: 86px;
-  transform: translate(-50%, -50%);
+  width: 5.375rem;   /* 86px */
+  height: 5.375rem;
+  margin-top: -2.6875rem; /* -43px */
+  margin-left: -2.6875rem;
+  pointer-events: none; /* allows click-through */
 }
 
-/* ─────────────────────────────────────────────── */
-/*  RESPONSIVE                                      */
-/* ─────────────────────────────────────────────── */
 
-@media only screen and (min-width: 700px) {
-  .page {
-    padding: 20px 25px 4em;
-    font-size: 1.1em;
-  }
+/* Float-like link panels */
+.floating-link-panel {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 1.5rem;
+  background-color: #ffffff;
+  margin: 1rem auto;
+  width: 100%;
+  max-width: 36rem;    /* 580px */
+  padding: 1rem;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  text-align: center;
+  text-decoration: none;
+  color: inherit;
+  box-shadow:
+    rgba(9, 30, 66, 0.45) 0 0.0625rem 0.0625rem,
+    rgba(9, 30, 66, 0.25) 0 0 0.0625rem 0.0625rem;
+  cursor: pointer;
+}
 
-  .project-logo {
-    float: right;
-    margin-left: 2em;
-    margin-bottom: 0.5em;
-  }
+.floating-link-panel:first-child {
+  margin-top: 1.25rem;
+}
 
-  .article-logo {
-    float: left;
-    margin-right: 1em;
-  }
+.floating-link-panel:hover {
+  transform: scale(1.01);
+}
+
+.floating-link-panel > img {
+  max-height: 64px;
+}
+
+/* =============================================================
+   Cute Table Styling (works in Markdown or HTML)
+============================================================= */
+
+table {
+  width: 100%;
+  border-collapse: separate;         /* allow border-radius */
+  border-spacing: 0;
+  margin: 2rem 0;
+  font-size: 1rem;
+  background: #ffffff;
+  border-radius: 0.75rem;            /* softer corners */
+  overflow: hidden;                  /* clips child corners */
+  box-shadow: 0 0.25rem 0.75rem rgba(0,0,0,0.08);
+}
+
+thead tr {
+  background: #f2f3f5;               /* soft gray header */
+}
+
+thead th {
+  font-weight: 600;
+  padding: 1rem;
+  text-align: left;
+  color: #333;
+  border-bottom: 0.063rem solid #e0e0e0;
+}
+
+tbody tr {
+  background: #fff;
+  transition: background 0.2s ease;
+}
+
+tbody tr:nth-child(even) {
+  background: #fafafa;
+}
+
+td {
+  padding: 0.875rem 1rem;
+  border-bottom: 0.063rem solid #eee;
+  color: #333;
+  vertical-align: top;
+}
+
+/* Last row bottom border fix */
+tbody tr:last-child td {
+  border-bottom: none;
 }

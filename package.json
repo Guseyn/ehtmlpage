@@ -1,10 +1,12 @@
 {
   "name": "ehtmlpage",
   "version": "1.0.0",
-  "description": "EHTML",
+  "description": "EHTML Web Page",
+  "type": "module",
   "scripts": {
-    "server": "node local-server",
-    "ehtml:update": "rm -rf js/ehtml && cp -r ../EHTML/src js/ehtml"
+    "server": "node main",
+    "ehtml:update": "yes | cp -rf ../../node-projects/EHTML/src/ js/ehtml",
+    "nodes:update": "yes | cp -rf ../../node-projects/nodes.js/nodes/ nodes/"
   },
   "repository": {
     "type": "git",
@@ -25,5 +27,8 @@
   "bugs": {
     "url": "https://github.com/Guseyn/ehtmlpage/issues"
   },
-  "homepage": "https://github.com/Guseyn/ehtmlpage"
+  "homepage": "https://github.com/Guseyn/ehtmlpage",
+  "imports": {
+    "#nodes/*": "./nodes/*"
+  }
 }
