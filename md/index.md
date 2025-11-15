@@ -59,5 +59,5 @@ Clone the repo, drop the `src` folder into your project, add an import map, and 
 
 # Sponsors
 
-<a href="https://unisonofficial.com"><img style="height: 64px;" class="sponsor-icon" src="https://unisonofficial.com/svg/logo.svg" alt="Unison logo."></a><a href="https://instruxmusic.com"><img style="height: 64px;" class="sponsor-icon" src="https://instruxmusic.com/images/stacked-logo.svg" alt="InstruxMusic logo."></a>
+<a href="https://unisonofficial.com"><img style="height: 64px; width: auto;" class="sponsor-icon" src="https://unisonofficial.com/svg/logo.svg" alt="Unison logo."></a><a href="https://instruxmusic.com"><img style="height: 64px; width: auto;" class="sponsor-icon" src="https://instruxmusic.com/images/stacked-logo.svg" alt="InstruxMusic logo."></a>
 
