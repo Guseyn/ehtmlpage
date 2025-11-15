@@ -238,6 +238,7 @@ iframe {
 /* Float-like link panels */
 .floating-link-panel {
   display: flex;
+  overflow: hidden;
   flex-direction: row;
   justify-content: center;
   align-items: center;
