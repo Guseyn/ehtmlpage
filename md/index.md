@@ -7,3 +7,9 @@ A key feature of EHTML is simplifying AJAX operations, allowing you to perform t
 Additionally, EHTML treats HTML not only as a markup language but also as a templating language, enhancing its versatility and functionality.
 
 <template is="youtube" id="dzrW3D_yIrc" class="youtube-iframe"></template><template is="youtube" id="iaP3Y4SW0MY" class="youtube-iframe"></template>
+
+# Sponsors
+
+<a href="https://unisonofficial.com/svg/logo.svg"><img class="sponsor-icon" src="/image/JetBrains_beam_logo.png" alt="Unison logo."></a>
+<a href="https://instruxmusic.com/images/stacked-logo.svg"><img class="sponsor-icon" src="/image/JetBrains_beam_logo.png" alt="InstruxMusic logo."></a>
+
