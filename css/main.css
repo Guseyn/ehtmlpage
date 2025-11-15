@@ -245,8 +245,6 @@ iframe {
   background-color: #ffffff;
   margin: 1rem auto;
   width: 100%;
-  max-width: 36rem;    /* 580px */
-  padding: 1rem;
   border-radius: 0.5rem;
   font-size: 1rem;
   text-align: center;
