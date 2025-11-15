@@ -127,6 +127,12 @@ code {
   border-radius: 0.3rem;
   border: 0.063rem solid #ccc;
   font-size: 0.9rem;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE/Edge */
+}
+
+code::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Edge */
 }
 
 /* =============================================================
@@ -319,4 +325,26 @@ hr {
   border: none;
   border-top: 2px dashed rgb(255, 168, 1);
   margin: 2rem 0;
+}
+
+#tooltip {
+  position: absolute;
+  background: #111;
+  color: #fff;
+  padding: 0.6rem;
+  border-radius: 1rem;
+
+  opacity: 1;                /* starts visible */
+  animation: fade-away 2.2s ease-out forwards;
+  animation-delay: 1s;
+}
+
+@keyframes fade-away {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    visibility: hidden;
+  }
 }

@@ -12,13 +12,19 @@ window.copyUnilangExample = (pre) => {
 }
 
 function showTooltip(event) {
-  const tooltip = document.getElementById('tooltip')
+  const old = document.getElementById('tooltip')
+  if (old) {
+    old.remove()
+  }
+
+  const tooltip = document.createElement('div')
+  tooltip.id = 'tooltip'
+  tooltip.textContent = 'Copied'
+
   tooltip.style.left = (event.pageX + 10) + 'px'
   tooltip.style.top = (event.pageY + 10) + 'px'
-  tooltip.style.opacity = 1
-  setTimeout(function () {
-    tooltip.style.opacity = 0
-  }, 2000)
+
+  document.body.appendChild(tooltip) 
 }
 
 document.addEventListener('click', (event) => {
