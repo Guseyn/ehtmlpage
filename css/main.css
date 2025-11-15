@@ -333,7 +333,7 @@ hr {
   color: #fff;
   padding: 0.6rem;
   border-radius: 1rem;
-
+  top: -100rem;
   opacity: 1;                /* starts visible */
   animation: fade-away 2.2s ease-out forwards;
   animation-delay: 1s;
