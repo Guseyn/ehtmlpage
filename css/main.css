@@ -255,6 +255,7 @@ iframe {
     rgba(9, 30, 66, 0.25) 0 0 0.0625rem 0.0625rem;
   cursor: pointer;
   box-sizing: border-box;
+  flex-wrap: nowrap;
 }
 
 .floating-link-panel:first-child {
@@ -267,6 +268,7 @@ iframe {
 
 .floating-link-panel > img {
   max-height: 64px;
+  flex-shrink: 0;
 }
 
 /* =============================================================
