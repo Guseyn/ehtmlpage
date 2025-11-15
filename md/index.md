@@ -1,17 +1,63 @@
-**EHTML (Extended HTML)** is a no-build, lightweight framework that turns standard HTML into a powerful application layer. Instead of relying on large JavaScript bundles or complex frontend tooling, EHTML uses custom elements and intuitive `data-*` attributes to let developers create dynamic interfaces directly in markup. A built-in MutationObserver keeps everything reactive, allowing pages to update automatically as content loads or changes.
+# EHTML — Extended HTML for Real Apps, Zero Build
 
-With elements like `<e-html>` for modular page composition, `<e-json>` for fetching and mapping server data, and templates such as `e-for-each`, `e-if`, `e-reusable`, and `e-wrapper`, EHTML enables rich templating and reusable UI patterns using only HTML. Its advanced form system—including `<e-form>`, `<e-form-object>`, `<e-form-array>`, and `<e-form-dynamic-value>` — lets you build deeply nested JSON request bodies without writing custom JavaScript logic. Even WebSockets, Markdown, SVG, and URL-based pages can be handled declaratively through dedicated elements.
+## Build Dynamic Apps Using Mostly HTML
+EHTML transforms standard HTML into a powerful application layer. Write less JavaScript and let HTML handle templating, data loading, rendering, and interactions.
 
-Beyond its custom tags, EHTML provides a powerful set of built-in actions like `mapToTemplate`, `releaseTemplate`, `insertHTMLInto` and others, giving developers high-level tools to manipulate the DOM, display loading states, or respond to AJAX events—all defined inline through attributes. Storage helpers such as `<e-local-storage-value>` and `<e-session-storage-value>` make global state trivial to integrate.
+---
 
-You can even extend EHTML with your own custom elements or custom templates by registering processing functions to integrate seamlessly into EHTML’s declarative workflow.
+## No-Build. No Bundlers. No Complexity.
+EHTML runs directly in the browser using native ES modules and import maps. No Webpack, no Vite, no transpilers — just open your page and it works.
 
-Together, these features create an ecosystem where HTML becomes expressive, maintainable, and capable of handling complex front-end logic. EHTML dramatically reduces JavaScript boilerplate, improves clarity, and enables teams to build interactive web applications faster—with a smaller footprint and clearer, more declarative structure.
+---
+
+## Declarative Data Loading (Fetch JSON, HTML, SVG, Markdown)
+Elements like `<e-json>`, `<e-html>`, `<e-markdown>`, and `<e-svg>` let you fetch and display content directly from HTML. Loading states, headers, caching, and mapping functions are all built-in.
+
+---
+
+## Powerful HTML-Native Templating
+Use templates such as `e-for-each`, `e-if`, `e-reusable`, `e-wrapper`, and `e-page-with-url` to build loops, conditions, reusable components, and URL-aware pages — all without JavaScript glue.
+
+---
+
+## Advanced Form Handling (Nested JSON, Dynamic Values)
+`<e-form>` and its companion elements (`e-form-object`, `e-form-array`, `e-form-dynamic-value`) serialize any form into deeply structured JSON. Add validation, progress indicators, uploads, and dynamic URLs with simple attributes.
+
+---
+
+## Real-Time WebSockets With No JS
+With `<template is="e-ws">`, you can receive WebSocket messages as JSON and send messages with `<e-form>`, giving you real-time features like chat and live updates entirely in HTML.
+
+---
+
+## Built-In Actions for Interactive Behavior
+Use high-level actions like `mapToTemplate`, `releaseTemplate`, `insertHTMLInto`, and more — all triggered from attributes, no custom scripts required.
+
+---
+
+## Local & Session Storage Made Easy
+Elements like `e-local-storage-value` and `e-session-storage-value` let you integrate stored values directly into forms and attributes.
+
+---
+
+## Create Your Own Custom Elements
+Extend EHTML by registering custom HTML elements or custom templates, enabling domain-specific UI patterns and reusable components that integrate seamlessly with the declarative EHTML ecosystem.
+
+---
+
+## Fast. Minimal. Maintainable.
+EHTML keeps your frontend simple, readable, and fast — perfect for teams that want clarity, minimal dependencies, and an HTML-first architecture.
+
+---
+
+## Get Started in Minutes
+Clone the repo, drop the `src` folder into your project, add an import map, and you're ready to build without compiling anything.
+
+---
 
 <template is="youtube" id="dzrW3D_yIrc" class="youtube-iframe"></template><template is="youtube" id="iaP3Y4SW0MY" class="youtube-iframe"></template>
 
 # Sponsors
 
-<a href="https://unisonofficial.com"><img class="sponsor-icon" src="https://unisonofficial.com/svg/logo.svg" alt="Unison logo."></a>
-<a href="https://instruxmusic.com"><img class="sponsor-icon" src="https://instruxmusic.com/images/stacked-logo.svg" alt="InstruxMusic logo."></a>
+<a href="https://unisonofficial.com"><img style="height: 64px;" class="sponsor-icon" src="https://unisonofficial.com/svg/logo.svg" alt="Unison logo."></a><a href="https://instruxmusic.com"><img style="height: 64px;" class="sponsor-icon" src="https://instruxmusic.com/images/stacked-logo.svg" alt="InstruxMusic logo."></a>
 
