@@ -1,4 +1,4 @@
-# EHTML — Extended HTML for Real Apps, Zero Build
+# EHTML — Extended HTML for Real Apps
 
 ## Build Dynamic Apps Using Mostly HTML
 EHTML transforms standard HTML into a powerful application layer. Write less JavaScript and let HTML handle templating, data loading, rendering, and interactions.

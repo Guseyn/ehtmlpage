@@ -8,7 +8,7 @@ html {
 html, body {
   margin: 0;
   padding: 0;
-  font-family: Tahoma, sans-serif;
+  font-family: sans-serif;
   background: #f4f4f4;
   color: #111;
   line-height: 1.5;
@@ -33,7 +33,7 @@ a {
 ============================================================= */
 header {
   text-align: center;
-  padding: 2.5rem 1.25rem 2rem 1.25rem; /* 40px 20px 32px */
+  padding: 2.5rem 1.25rem 1.25rem 1.25rem;
   background: linear-gradient(270deg, #1e272e 0%, #343c42 100%);
   color: #fff;
 }
@@ -70,6 +70,9 @@ main {
   border-bottom: 0.063rem solid #ddd;
   border-bottom-left-radius: 0.75rem;
   border-bottom-right-radius: 0.75rem;
+  width: 100%;
+  overflow: auto;
+  box-sizing: border-box;
 }
 
 main h1, main h2, main h3 {
@@ -124,20 +127,6 @@ code {
   border-radius: 0.3rem;
   border: 0.063rem solid #ccc;
   font-size: 0.9rem;
-}
-
-/* =============================================================
-   Tables
-============================================================= */
-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin: 1.5rem 0;
-  font-size: 1rem;
-}
-
-th, td {
-  padding: 0.75rem;
 }
 
 /* =============================================================
@@ -261,6 +250,7 @@ iframe {
     rgba(9, 30, 66, 0.45) 0 0.0625rem 0.0625rem,
     rgba(9, 30, 66, 0.25) 0 0 0.0625rem 0.0625rem;
   cursor: pointer;
+  box-sizing: border-box;
 }
 
 .floating-link-panel:first-child {
@@ -287,8 +277,9 @@ table {
   font-size: 1rem;
   background: #ffffff;
   border-radius: 0.75rem;            /* softer corners */
-  overflow: hidden;                  /* clips child corners */
   box-shadow: 0 0.25rem 0.75rem rgba(0,0,0,0.08);
+  overflow: auto;
+  box-sizing: border-box;
 }
 
 thead tr {
@@ -322,4 +313,10 @@ td {
 /* Last row bottom border fix */
 tbody tr:last-child td {
   border-bottom: none;
+}
+
+hr {
+  border: none;
+  border-top: 2px dashed rgb(255, 168, 1);
+  margin: 2rem 0;
 }
