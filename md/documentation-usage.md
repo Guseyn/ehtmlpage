@@ -57,14 +57,3 @@ window.turnEhtmlMutationObserverOff(
 ```
 
 You can disable some elements for **EHTML** by adding attribute `data-no-ehtml="true"`. It would improve performance, by reducing the number of elements that **EHTML** needs to observe.
-
-# EHTML Bundles
-
-You still can use EHTML bundles. There are two versions: [regular](https://github.com/Guseyn/EHTML/blob/master/dist/ehtml.min.js), and [light](https://github.com/Guseyn/EHTML/blob/master/dist/ehtml.light.min.js) version without extra features like code highlighting and LaTeX support in markdown files.
-
-```html
-<script type="module" src="/../js/ehtml.min.js"></script>
-<script type="module" src="/../js/ehtml.light.min.js"></script>
-```
-
-As you can see, you must specify: `type="module"` now in `<script>` tag.
