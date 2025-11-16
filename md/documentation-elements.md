@@ -55,6 +55,173 @@ data-actions-on-progress-end="
   console.log('progress finished')
 "
 ```
+</details><details><summary><b>&lt;template is="e-wrapper"&gt;</b></summary>
+  
+Template with `is="e-wrapper"` attribute is very powerful element which you can use for wrapping your dynamic content with some base static template.
+
+So, let's say you have basic static template in your app:
+
+```html
+<div>
+  <p>
+    Header content
+  </p>
+  <p id="dynamic-content">
+    <span>Default content</span>
+  </p>
+  <p>
+    Footer content
+  </p>
+</div> 
+```
+
+Then you can use this static template as a warapper in other pages
+
+```html
+<body>
+  <template 
+    is="e-wrapper" 
+    data-src="/html/wrapper.html" 
+    data-where-to-place="#dynamic-content" 
+    data-how-to-place="instead">
+    <p>
+      Variation of content
+    </p>
+  </template>
+</body>
+```
+
+Attribute `data-src` specifies a path where base static template is served. By attribute `data-where-to-place` you specify which element from the template you want to wrap or replace with the content inside of `e-wrapper` template.
+
+You can aso specify the way how it can be wrapped via `data-how-to-place` attribute with one of the possible values: 'inside', 'instead', 'before' and 'after'. If you use option 'instead', element by selector in attribute `data-where-to-place` will be just replaced with content in your template `e-wrapper`. By using 'before' option, content in `e-wrapper` will be placed before the first element with selector in the attribute `data-where-to-place`. By using 'after' option, the content will be placed after the element. And by using `inside` option, the content will be placed inside the element.
+
+So, your page with `e-wrapper` in this case will be rendered like
+
+```html
+<body>
+  <div>
+    <p>
+      Header content
+    </p>
+    <p>
+      Variation of content
+    </p>
+    <p>
+      Footer content
+    </p>
+  </div>
+</body>
+```
+
+You can also use `data-headers` attribute, if needed.
+
+You can also add attributes `data-actions-on-progress-start` and `data-actions-on-progress-end`, where you can do some actions while waiting for response:
+```html
+data-actions-on-progress-start="
+  console.log('waiting for progress')
+"
+data-actions-on-progress-end="
+  console.log('progress finished')
+"
+```
+</details><details><summary><b>&lt;e-json&gt;</b></summary>
+
+`e-json` allows you to fetch **JSON** resource by **GET** request from the server and apply some actions on the response. So, for example, let's say you have an endpoint `/album/{title}`, which returns following response:
+
+```json
+title = 'Humbug'
+{
+  "title": "Humbug",
+  "artist": "Arctic Monkeys",
+  "type": "studio album",
+  "releaseDate": "19 August 2009",
+  "genre": "psychedelic rock, hard rock, stoner rock, desert rock",
+  "length": "39:20",
+  "label": "Domino",
+  "producer": "James Ford, Joshua Homme"
+}
+```
+
+Then you can fetch it via `e-json` like in following html code:
+
+```html
+<e-json
+  data-src="/album/Humbug"
+  data-response-name="albumResponse"
+  data-actions-on-response="
+    mapToTemplate('#album-info', albumResponse.body)
+  ">
+
+  <template id="album-info" data-object-name="album">
+    <div data-text="Title: ${album.title}"></div>
+    <div data-text="Artist: ${album.artist}"></div>
+    <div data-text="Type: ${album.type}"></div>
+    <div data-text="Release date: ${album.releaseDate}"></div>
+    <div data-text="Genre: ${album.genre}"></div>
+    <div data-text="Length: ${album.length}"></div>
+    <div data-text="Label: ${album.label}"></div>
+    <div data-text="Producer: ${album.producer}"></div>
+  </template>
+</e-json>
+```
+
+So, `e-json` has attributes `data-src` which tells us where from we can fetch **JSON** response. Attribute `data-response-name` specifies the name that we want to use for the response. It contains `body`, `statusCode` and `headers` properties, so you can use them in the attribute `data-actions-on-response`.
+
+In this case we just decided to map `body` of our response to the element with id `album-info`, which also must have the attribute `data-object-name`. This attribute specifies the name of the object that we want to map. It's important to mention that you can map object only to `<template>`, which is in `e-json` that provides the object for mapping.
+
+As you see, we are using predefined `mapToTemplate` function in `data-actions-on-response`. There are few more such functions or actions on response, we will discuss them later.
+
+If you need some request headers, you can specify them in the attribute `data-request-headers` with format `{ "headerName": "headerValue", ... }`.
+
+The attribute `data-src` can also contain dynamic data which is being evalutated right before the request:
+```html
+data-src="/album/${getAlbumNameSomehow()}"
+```
+
+You can also add attributes `data-ajax-icon` and `data-progress-bar` as element selectors for presenting progress of fetching data from the server. You can see how to use them in the [examples](/html/examples.html).
+
+Also, it is worth mentioning that in `data-actions-on-response`, you can run any JavaScript code without using curly brackets ${someVariable}. On the other hand, in other attributes like `data-text` or `data-value` (for input fields), you must use curly brackets for parameters, as everything must be evaluated back to the string.  You can see how to use them in this [example](/html/examples/simple-e-json.html).
+
+You can also add attributes `data-actions-on-progress-start` and `data-actions-on-progress-end`, where you can do some actions while waiting for response:
+```html
+data-actions-on-progress-start="
+  console.log('waiting for progress')
+"
+data-actions-on-progress-end="
+  console.log('progress finished')
+"
+```
+
+There is an option to use cache in `e-json`(it's supported only for this particular element). By using `data-cache-from="${someGlobalObjectFromMemoryOrStorage}"`, you can just get the response from the cache. For single-page applications, you can use some memory storage, for multiple-page it can be **localStorage** or **sessionStorage**. It's important that in `data-cache-from` you must specify an object that represents real response, otherwise your actions on response would behave unpredictably. You must initialize cache in `data-actions-on-response`, for example:
+
+
+```html
+data-actions-on-response="
+  sessionStorage.setItem('cacheKey', JSON.stringify(response))
+"
+```
+
+And then you can use it:
+
+```html
+data-cache-from="${window.getObjectFromSessionStorage('cacheKey')}"
+```
+
+where `getObjectFromSessionStorage` is something like:
+
+```js
+window.getObjectFromSessionStorage = (key) => {
+  const item = sessionStorage.getItem(key)
+  if (item) {
+    return JSON.parse(item)
+  }
+  return null
+}
+```
+
+If `window.getObjectFromSessionStorage` returns **null**, `e-json` will make a request, otherwise it will use cached response.
+
+To invalidate cache, all you need to is just to assign cache object to **null** or **undefined**.
 </details><details><summary><b>&lt;template is="e-json"&gt;</b></summary>
 
 You can use `e-json` as a `<template>` element, if you just need to map response. 
@@ -536,104 +703,6 @@ Each `e-form` works independently — meaning if you have multiple `e-form` elem
   
 This separation ensures that every `e-form` can handle its own request, validation, and response actions without interfering with other forms or nested data structures on the page.
 
-</details><details><summary><b>&lt;e-json&gt;</b></summary>
-
-`e-json` allows you to fetch **JSON** resource by **GET** request from the server and apply some actions on the response. So, for example, let's say you have an endpoint `/album/{title}`, which returns following response:
-
-```json
-title = 'Humbug'
-{
-  "title": "Humbug",
-  "artist": "Arctic Monkeys",
-  "type": "studio album",
-  "releaseDate": "19 August 2009",
-  "genre": "psychedelic rock, hard rock, stoner rock, desert rock",
-  "length": "39:20",
-  "label": "Domino",
-  "producer": "James Ford, Joshua Homme"
-}
-```
-
-Then you can fetch it via `e-json` like in following html code:
-
-```html
-<e-json
-  data-src="/album/Humbug"
-  data-response-name="albumResponse"
-  data-actions-on-response="
-    mapToTemplate('#album-info', albumResponse.body)
-  ">
-
-  <template id="album-info" data-object-name="album">
-    <div data-text="Title: ${album.title}"></div>
-    <div data-text="Artist: ${album.artist}"></div>
-    <div data-text="Type: ${album.type}"></div>
-    <div data-text="Release date: ${album.releaseDate}"></div>
-    <div data-text="Genre: ${album.genre}"></div>
-    <div data-text="Length: ${album.length}"></div>
-    <div data-text="Label: ${album.label}"></div>
-    <div data-text="Producer: ${album.producer}"></div>
-  </template>
-</e-json>
-```
-
-So, `e-json` has attributes `data-src` which tells us where from we can fetch **JSON** response. Attribute `data-response-name` specifies the name that we want to use for the response. It contains `body`, `statusCode` and `headers` properties, so you can use them in the attribute `data-actions-on-response`.
-
-In this case we just decided to map `body` of our response to the element with id `album-info`, which also must have the attribute `data-object-name`. This attribute specifies the name of the object that we want to map. It's important to mention that you can map object only to `<template>`, which is in `e-json` that provides the object for mapping.
-
-As you see, we are using predefined `mapToTemplate` function in `data-actions-on-response`. There are few more such functions or actions on response, we will discuss them later.
-
-If you need some request headers, you can specify them in the attribute `data-request-headers` with format `{ "headerName": "headerValue", ... }`.
-
-The attribute `data-src` can also contain dynamic data which is being evalutated right before the request:
-```html
-data-src="/album/${getAlbumNameSomehow()}"
-```
-
-You can also add attributes `data-ajax-icon` and `data-progress-bar` as element selectors for presenting progress of fetching data from the server. You can see how to use them in the [examples](/html/examples.html).
-
-Also, it is worth mentioning that in `data-actions-on-response`, you can run any JavaScript code without using curly brackets ${someVariable}. On the other hand, in other attributes like `data-text` or `data-value` (for input fields), you must use curly brackets for parameters, as everything must be evaluated back to the string.  You can see how to use them in this [example](/html/examples/simple-e-json.html).
-
-You can also add attributes `data-actions-on-progress-start` and `data-actions-on-progress-end`, where you can do some actions while waiting for response:
-```html
-data-actions-on-progress-start="
-  console.log('waiting for progress')
-"
-data-actions-on-progress-end="
-  console.log('progress finished')
-"
-```
-
-There is an option to use cache in `e-json`(it's supported only for this particular element). By using `data-cache-from="${someGlobalObjectFromMemoryOrStorage}"`, you can just get the response from the cache. For single-page applications, you can use some memory storage, for multiple-page it can be **localStorage** or **sessionStorage**. It's important that in `data-cache-from` you must specify an object that represents real response, otherwise your actions on response would behave unpredictably. You must initialize cache in `data-actions-on-response`, for example:
-
-
-```html
-data-actions-on-response="
-  sessionStorage.setItem('cacheKey', JSON.stringify(response))
-"
-```
-
-And then you can use it:
-
-```html
-data-cache-from="${window.getObjectFromSessionStorage('cacheKey')}"
-```
-
-where `getObjectFromSessionStorage` is something like:
-
-```js
-window.getObjectFromSessionStorage = (key) => {
-  const item = sessionStorage.getItem(key)
-  if (item) {
-    return JSON.parse(item)
-  }
-  return null
-}
-```
-
-If `window.getObjectFromSessionStorage` returns **null**, `e-json` will make a request, otherwise it will use cached response.
-
-To invalidate cache, all you need to is just to assign cache object to **null** or **undefined**.
 </details><details><summary><b>&lt;template is="e-reusable"&gt;</b></summary>
 
 You use action `mapToTemplate` on a template with attribute `is="e-reusable"`, so you can map response object multiple times. Also you can specify attribute `data-append-to="#someSelector"` or `data-prepend-to="#someSelector"` to decide where and how mapped content of the template should be placed. If you don't specify one of these attributes, then mapped content of the template will be placed right before the template.
@@ -908,75 +977,6 @@ Use attribute `data-apply-latex="true"` to use LaTeX in your markdowns. In order
 ```
 
 Another important detail about LaTex, make sure that you don't have conflicting css classes like `.base`.
-
-You can also add attributes `data-actions-on-progress-start` and `data-actions-on-progress-end`, where you can do some actions while waiting for response:
-```html
-data-actions-on-progress-start="
-  console.log('waiting for progress')
-"
-data-actions-on-progress-end="
-  console.log('progress finished')
-"
-```
-</details><details><summary><b>&lt;template is="e-wrapper"&gt;</b></summary>
-  
-Template with `is="e-wrapper"` attribute is very powerful element which you can use for wrapping your dynamic content with some base static template.
-
-So, let's say you have basic static template in your app:
-
-```html
-<div>
-  <p>
-    Header content
-  </p>
-  <p id="dynamic-content">
-    <span>Default content</span>
-  </p>
-  <p>
-    Footer content
-  </p>
-</div> 
-```
-
-Then you can use this static template as a warapper in other pages
-
-```html
-<body>
-  <template 
-    is="e-wrapper" 
-    data-src="/html/wrapper.html" 
-    data-where-to-place="#dynamic-content" 
-    data-how-to-place="instead">
-    <p>
-      Variation of content
-    </p>
-  </template>
-</body>
-```
-
-Attribute `data-src` specifies a path where base static template is served. By attribute `data-where-to-place` you specify which element from the template you want to wrap or replace with the content inside of `e-wrapper` template.
-
-You can aso specify the way how it can be wrapped via `data-how-to-place` attribute with one of the possible values: 'inside', 'instead', 'before' and 'after'. If you use option 'instead', element by selector in attribute `data-where-to-place` will be just replaced with content in your template `e-wrapper`. By using 'before' option, content in `e-wrapper` will be placed before the first element with selector in the attribute `data-where-to-place`. By using 'after' option, the content will be placed after the element. And by using `inside` option, the content will be placed inside the element.
-
-So, your page with `e-wrapper` in this case will be rendered like
-
-```html
-<body>
-  <div>
-    <p>
-      Header content
-    </p>
-    <p>
-      Variation of content
-    </p>
-    <p>
-      Footer content
-    </p>
-  </div>
-</body>
-```
-
-You can also use `data-headers` attribute, if needed.
 
 You can also add attributes `data-actions-on-progress-start` and `data-actions-on-progress-end`, where you can do some actions while waiting for response:
 ```html
