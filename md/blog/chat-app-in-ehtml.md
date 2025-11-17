@@ -21,7 +21,7 @@ As we see, we have two phones with chat apps on them. First phone belongs to Ali
  data-src="ws://localhost:8000" 
  data-socket-name="firstSocket"
  data-actions-on-open-connection="
-    showElms('#connetion-open-message-1')
+    showElms('#connection-open-message-1')
   "
 >
 </template>
@@ -31,13 +31,13 @@ As we see, we have two phones with chat apps on them. First phone belongs to Ali
   data-src="ws://localhost:8000" 
   data-socket-name="secondSocket"
   data-actions-on-open-connection="
-    showElms('#connetion-open-message-2')
+    showElms('#connection-open-message-2')
   "
 >
 </template>
 ```
 
-Just by using **&lt;template is="e-ws"&gt;**, we can create as many socket clients as we want. The attribute `data-socket-name` declares the name of our socket. You will be able to refer to this socket name as the source of your incoming messages and also as the destination where you can send messages to. You can use the attribute `data-connection-icon` to specify the progress icon while connections are being established. In the `data-actions-on-open-connection` attribute we can indicate somehow that the clients are connected and are ready to send and recieve messages. In this case, we are just going to show messages in the elements '#connetion-open-message-1' and '#connetion-open-message-2'.
+Just by using **&lt;template is="e-ws"&gt;**, we can create as many socket clients as we want. The attribute `data-socket-name` declares the name of our socket. You will be able to refer to this socket name as the source of your incoming messages and also as the destination where you can send messages to. You can use the attribute `data-connection-icon` to specify the progress icon while connections are being established. In the `data-actions-on-open-connection` attribute we can indicate somehow that the clients are connected and are ready to send and recieve messages. In this case, we are just going to show messages in the elements '#connection-open-message-1' and '#connection-open-message-2'.
 
 Inside of each phone, let's add some visual elements:
 
@@ -47,7 +47,7 @@ Inside of each phone, let's add some visual elements:
  data-src="ws://localhost:8000" 
  data-socket-name="firstSocket"
  data-actions-on-open-connection="
-    showElms('#connetion-open-message-1')
+    showElms('#connection-open-message-1')
   "
 >
   <div class="iphone">
@@ -68,7 +68,7 @@ Then let's add `#connection-open-message-1` element with a message that indicate
  data-src="ws://localhost:8000" 
  data-socket-name="firstSocket"
  data-actions-on-open-connection="
-    showElms('#connetion-open-message-1')
+    showElms('#connection-open-message-1')
   "
 >
   <span id="connection-open-message-1" class="connection-open-message">You are connected (Alice)</span>
@@ -88,7 +88,7 @@ The most flexible format to handle incoming message is **JSON**. We can use **e-
  data-src="ws://localhost:8000" 
  data-socket-name="firstSocket"
  data-actions-on-open-connection="
-    showElms('#connetion-open-message-1')
+    showElms('#connection-open-message-1')
   "
 >
   <div class="iphone">

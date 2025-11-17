@@ -34,7 +34,7 @@
  data-src="ws://localhost:4200" 
  data-socket-name="firstSocket"
  data-actions-on-open-connection="
-    showElms('#connetion-open-message-1', '#connetion-open-message-2')
+    showElms('#connection-open-message-1', '#connection-open-message-2')
   "
 >
   <div class="iphone">
@@ -99,7 +99,7 @@
   data-src="ws://localhost:4200" 
   data-socket-name="secondSocket"
   data-actions-on-open-connection="
-    showElms('#connetion-open-message-1', '#connetion-open-message-2')
+    showElms('#connection-open-message-1', '#connection-open-message-2')
   "
 >
   <div class="iphone">
