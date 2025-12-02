@@ -9,7 +9,7 @@
 </details>
 
 ```html
-<body class="main">
+<body>
   <template is="e-page-with-url" data-url-pattern="/e-page-url-with-e-json.html?{name}">
     <div class="base">
       <e-json

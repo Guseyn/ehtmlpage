@@ -1,4 +1,3 @@
-<div style="height: 10px"></div>
 You can find the code in the [examples](https://github.com/Guseyn/EHTML/tree/master/examples/static/html) folder.
 
 You can run examples locally:

@@ -7,7 +7,7 @@
 </details>
 
 ```html
-<body class="main">
+<body>
   <div class="base">
     <e-html data-src="/../html/why-i-dont-use-promises-and-async-await.html"></e-html>
     <e-html data-src="/../html/simple-rs-jwt.html"></e-html>

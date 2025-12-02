@@ -24,7 +24,7 @@ Content-Type: application/json
 </details>
 
 ```html
-<body class="main">
+<body>
   <div class="base">
     <e-json
       data-src="/../profile?name=Unknown"

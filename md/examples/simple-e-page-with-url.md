@@ -9,7 +9,7 @@
 </details>
 
 ```html
-<body class="main">
+<body>
   <template is="e-page-with-url" data-url-pattern="/e-page-url.html/{one}/{two}/{three}?{query}">
     <input data-value="${urlParams.one}"/>
     <input data-value="${urlParams.two}"/>

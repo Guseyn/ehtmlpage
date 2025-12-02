@@ -1,4 +1,17 @@
-<a class="floating-link-panel" href="/html/blog.html"><img style="width: 64px;" src="/image/post-icon.svg" class="link-icon" style="border-radius: 10px;"><span>Blog</span>
-</a><a class="floating-link-panel" href="https://github.com/guseyn/ehtml"><img src="/image/github.svg" class="link-icon" style="border-radius: 10px;"><span>Source Code</span>
-</a><a class="floating-link-panel" href="/html/support.html"><img src="/image/heart.png" class="link-icon" style="border-radius: 10px;"><span>Support Project</span>
-</a><a class="floating-link-panel" href="https://guseyn.com/html/about.html"><img src="/image/4T7A8796.jpg" class="link-icon" style="border-radius: 10px;"><span>guseyn.com</span></a>
+<p>
+  <s-column style="--align-items: center;">
+    <s-row>
+      <a href="/html/blog.html"><img src="/image/post-icon.svg" style="border-radius: 0.75rem; width: 64px;"><span>Blog</span></a>
+    </s-row>
+    <s-row>
+      <a href="https://github.com/guseyn/ehtml"><img src="/image/github.svg" style="border-radius: 0.75rem; width: 64px;"><span>Source Code</span>
+      </a>
+    </s-row>
+    <s-row>
+      <a href="/html/support.html"><img src="/image/heart.png" style="border-radius: 0.75rem; width: 64px;"><span>Support Project</span></a>
+    </s-row>
+    <s-row>
+      <a href="https://guseyn.com/html/about.html"><img src="/image/4T7A8796.jpg" style="border-radius: 0.75rem; width: 64px;"><span>guseyn.com</span></a>  
+    </s-row>
+  </s-column>
+</p>

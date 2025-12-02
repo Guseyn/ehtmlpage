@@ -31,7 +31,7 @@
 </details>
 
 ```html
-<body class="main">
+<body>
   <div class="base">
     <e-json
       data-src="/../playlist"

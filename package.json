@@ -5,8 +5,8 @@
   "type": "module",
   "scripts": {
     "server": "node main",
-    "ehtml:update": "yes | cp -rf ../../node-projects/EHTML/src/ js/ehtml",
-    "nodes:update": "yes | cp -rf ../../node-projects/nodes.js/nodes/ nodes/"
+    "ehtml:update": "yes | cp -rf ../../my-projects/EHTML/src/ js/ehtml",
+    "nodes:update": "yes | cp -rf ../../my-projects/nodes.js/nodes/ nodes/"
   },
   "repository": {
     "type": "git",

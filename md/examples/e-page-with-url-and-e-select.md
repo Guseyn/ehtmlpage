@@ -9,7 +9,7 @@
 </details>
 
 ```html
-<body class="main">
+<body>
   <template is="e-page-with-url" data-url-pattern="/turbo-actions.html?{color}">
     <div class="base">
       <e-select

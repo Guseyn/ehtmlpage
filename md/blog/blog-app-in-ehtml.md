@@ -27,7 +27,7 @@ This is an index page, let's take a look at the source:
     <script src="/../js/ehtml.js" type="text/javascript"></script>
   </head>
 
-  <body class="main">
+  <body>
     <div class="base">
       
       <e-html data-src="/../html/add-post.html"></e-html>
@@ -140,7 +140,7 @@ When you open a post, you would see something like this:
 Let's see how we can build the page above:
 
 ```html
-<body class="main">
+<body>
   <div class="base">
     
     <template is="e-page-with-url" data-url-pattern="/html/post.html?{id}">
@@ -305,7 +305,7 @@ Finally, let's explore how we can build a page with list of posts with paginatio
 Let's take a look at the source:
 
 ```html
-<body class="main">
+<body>
   <div class="base">
     
     <template is="e-page-with-url" data-url-pattern="/html/posts.html?{page}&{size}">

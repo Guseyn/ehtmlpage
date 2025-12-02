@@ -29,7 +29,7 @@ Content-Type: application/json
 </details>
 
 ```html
-<body class="main">
+<body>
   <div class="base">
     <div class="profile-box">
       <img class="ajax-icon" id="ajax-icon" src="/../images/ajax-icon.svg"/>

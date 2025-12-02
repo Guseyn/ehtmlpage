@@ -55,10 +55,10 @@ Clone the repo, drop the `src` folder into your project, add an import map, and 
 
 ---
 
-<template is="youtube" id="dzrW3D_yIrc" class="youtube-iframe"></template><template is="youtube" id="iaP3Y4SW0MY" class="youtube-iframe"></template>
+<s-row style="--gap: 1rem; --align: center; --justify-content: center;"><iframe width="560" height="315" src="https://www.youtube.com/embed/dzrW3D_yIrc?si=tzW3gdMK2dJIPLa9" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe><iframe width="560" height="315" src="https://www.youtube.com/embed/iaP3Y4SW0MY?si=KaVofAuxx23_4dER" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></s-row>
 
 # Sponsors
 
-<div style="display: flex; flex-direction: row; gap: 1rem; align-items: center;">
+<s-row style="display: flex; flex-direction: row; gap: 1rem; align-items: center;">
   <a href="https://unisonofficial.com"><img style="height: 128px; width: auto;" class="sponsor-icon" src="https://unisonofficial.com/svg/logo.svg" alt="Unison logo."></a><a href="https://instruxmusic.com"><img style="height: 64px; width: auto;" class="sponsor-icon" src="https://instruxmusic.com/images/stacked-logo.svg" alt="InstruxMusic logo."></a>
-</div>
+</s-row>

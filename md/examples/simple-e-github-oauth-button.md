@@ -26,7 +26,7 @@ Content-Type: application/json
 </details>
 
 ```html
-<body class="main">
+<body>
   <div class="base">
     
     <template is="e-if" data-condition-to-display="${localStorage.getItem('jwt') != null}">
@@ -105,7 +105,7 @@ span.buttonText {
 **Page on redirect URL:**
 
 ```html
-<body class="main">
+<body>
   <template is="e-page-with-url" data-url-pattern="/html/github.html?{code}">
     <div class="base">
       <e-form
