@@ -21,21 +21,21 @@
 @font-face {
   font-family: "Gelasio";
   src: url("/font/Gelasio-VariableFont_wght.ttf") format("truetype");
-  font-weight: 400;
+  font-weight: 100 900;
   font-style: normal;
 }
 
 @font-face {
   font-family: "Varta";
   src: url("/font/Varta-VariableFont_wght.ttf") format("truetype");
-  font-weight: 400;
+  font-weight: 100 900;
   font-style: normal;
 }
 
 @font-face {
   font-family: "FiraCode";
   src: url("/font/FiraCode-Regular.ttf") format("truetype");
-  font-weight: 400;
+  font-weight: 100 900;
   font-style: normal;
 }
 
@@ -51,7 +51,7 @@
   --color-surface-muted: #f6f1e9;
   --color-text: #2D383A;
   --color-text-muted: #2D383A;
-  --color-border: #343434;
+  --color-border: var(--color-text);
 
   /* Accent system */
   --color-accent: #36454F;
@@ -64,7 +64,7 @@
   --color-focus-ring: rgba(59, 130, 246, 0.6);
 
   --color-header-bg: var(--color-surface);
-  --color-header-border: var(--color-text);
+  --color-header-border: var(--color-border);
 
   --color-input-bg: var(--color-surface);
   --color-input-border: var(--color-border);
@@ -477,13 +477,21 @@ s-scrollable {
   -webkit-overflow-scrolling: touch;
 }
 
+code {
+  overflow-x: auto;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+}
+
 /* Hide scrollbar visually */
-s-scrollable::-webkit-scrollbar {
+s-scrollable::-webkit-scrollbar,
+code::-webkit-scrollbar {
   height: 0;
   width: 0;
 }
 
-s-scrollable {
+s-scrollable,
+code {
   scrollbar-width: none;
 }
 
@@ -670,14 +678,23 @@ ul,
 ol {
   margin-block: 0 var(--space-md);
   padding-inline-start: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
 }
 
 /* Turn items into flex rows */
 li {
   display: flex;
-  align-items: center;
+  flex-wrap: wrap;
+  align-items: flex-start;
   gap: var(--space-sm);
   list-style: none;
+}
+
+li > ul {
+  flex-basis: 100%;
+  margin-left: 1rem; /* optional indent */
 }
 
 /* Synthetic bullet via pseudo-element */
@@ -844,10 +861,6 @@ s-tooltip:focus-within::after {
   opacity: 1;
   transform: translate(-50%, -0.25rem);
 }
-
-/* ==========================================================================
-   Misc small touches
-   ========================================================================== */
 
 pre {
   font-family: var(--font-family-mono);

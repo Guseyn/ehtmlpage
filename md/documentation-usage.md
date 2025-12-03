@@ -1,3 +1,7 @@
+# EHTML is built on a simple idea: the browser is already the framework.
+
+Instead of inventing virtual DOMs, reactive engines, or build pipelines, EHTML activates plain HTML once and then reacts only to real DOM insertions—doing the minimum work needed, exactly when it’s needed. Its event-based activation model gives every node, template, and custom element a predictable lifecycle, independent of browser quirks and without hidden reactivity. The result is a UI framework that stays invisible, fast, and fully aligned with the platform you’re already using.
+
 # Usage
 <p></p>
 

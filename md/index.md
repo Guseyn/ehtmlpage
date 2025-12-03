@@ -1,12 +1,28 @@
 # EHTML — Extended HTML for Real Apps
 
+## EHTML v3 Demo
+
+<s-row style="--gap: 1rem; --align: center; --justify-content: center;"><iframe width="560" height="315" src="https://www.youtube.com/embed/dzrW3D_yIrc?si=tzW3gdMK2dJIPLa9" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></s-row>
+
+---
+
 ## Build Dynamic Apps Using Mostly HTML
 EHTML transforms standard HTML into a powerful application layer. Write less JavaScript and let HTML handle templating, data loading, rendering, and interactions.
 
 ---
 
+## For Solo Entrepreneurs & Indie Hackers
+If you’re a solo founder, indie hacker, or a small team with strong individual developers, EHTML lets you build clean, functional interfaces without drowning in framework overhead.
+
+---
+
 ## No-Build. No Bundlers. No Complexity.
-EHTML runs directly in the browser using native ES modules and import maps. No Webpack, no Vite, no transpilers — just open your page and it works.
+Forget endless configs, toolchains, and dev-server rituals. With EHTML, your browser is the runtime—just write HTML, load your scripts, and ship instantly.
+
+---
+
+## 100% Web Component Compatible
+EHTML embraces the Web Component standard, not replaces it. Everything you build is native, future-proof, interoperable, and works alongside any custom element ecosystem.
 
 ---
 
@@ -21,7 +37,7 @@ Use templates such as `e-for-each`, `e-if`, `e-reusable`, `e-wrapper`, and `e-pa
 ---
 
 ## Advanced Form Handling (Nested JSON, Dynamic Values)
-`<e-form>` and its companion elements (`e-form-object`, `e-form-array`, `e-form-dynamic-value`) serialize any form into deeply structured JSON. Add validation, progress indicators, uploads, and dynamic URLs with simple attributes.
+`<form is="e-form">` and its companion elements (`e-form-object`, `e-form-array`, `e-form-dynamic-value`) serialize any form into deeply structured JSON. Add validation, progress indicators, uploads, and dynamic URLs with simple attributes.
 
 ---
 
@@ -54,8 +70,6 @@ EHTML keeps your frontend simple, readable, and fast — perfect for teams that 
 Clone the repo, drop the `src` folder into your project, add an import map, and you're ready to build without compiling anything.
 
 ---
-
-<s-row style="--gap: 1rem; --align: center; --justify-content: center;"><iframe width="560" height="315" src="https://www.youtube.com/embed/dzrW3D_yIrc?si=tzW3gdMK2dJIPLa9" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe><iframe width="560" height="315" src="https://www.youtube.com/embed/iaP3Y4SW0MY?si=KaVofAuxx23_4dER" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></s-row>
 
 # Sponsors
 

@@ -1,74 +1,151 @@
-# Registering Custom Elements
+# Defining Custom Elements in EHTML v3
 
-You can register your own custom elements, so that **EHTML** can process them. All you need is just to assign a function for your custom element in `window.__ehtmlCustomElements__`. Below, you will see how you can do it for `<template>` and just some custom element. If you need some element that relies on some preprocessing, it's recommended to use template, so that you will see only processed data on screen. In other case, you can use just regular custom elements.
+EHTML v3 makes it extremely simple to define your own custom HTML elements.  
+A custom element is just a class that extends `HTMLElement`(or other native element), and EHTML automatically activates it by dispatching the `"ehtml:activated"` event during its activation pipeline. This means your element will behave consistently across all browsers—including those where native customized built-in elements fail—because EHTML manually guarantees element activation.
 
-## 1. Registering Custom Templates
+Custom elements work beautifully with EHTML features such as:
 
-Let's start with custom `<template is="custom">`. When you register a template element, you must assume that in HTML code you need to specify attribute `is="custom"`, where 'custom' is just a name of your template. And when you're adding a function into `window.__ehtmlCustomElements__` to register the template, you must attach key with name `custom-template`. In another words, the key for your template in `window.__ehtmlCustomElements__` must end with `-template` postfix.
+- **`${...}` expressions**  
+- **`data-internal-state`** for attaching component state  
+- **template mapping**  
+- **the EHTML activation sequence**
 
-```html
-<head>
-	<script src="/../js/ehtml.bundle.min.js" type="text/javascript"></script>
-	<script type="text/javascript">
-		window.__ehtmlCustomElements__['custom-template'] = (node) => {
-		  if (node.nodeName.toLowerCase() !== 'template') {
-		    throw new Error('node is not template')
-		  }
-		  const elmContentNode = document.importNode(node.content, true)
-		  const child = document.createElement('div')
-		  child.innerText = node.getAttribute('data-content')
-		  elmContentNode.appendChild(child)
-		  node.parentNode.replaceChild(elmContentNode, node)
-		}
-	</script>
-</head>
-<body>
-	<template
-		is="custom"
-		data-content="This content will be displayed inside of <div>">
-  </template>
-</body>
+Once defined, your custom element participates in the same lifecycle as all other EHTML elements.
+
+---
+
+# Defining Custom Elements in EHTML v3 (Customized Built-Ins)
+
+EHTML v3 fully supports **customized built-in elements**, such as:
+
+```
+<button is="my-counter">
 ```
 
-In the example above, we're adding `ehtml` script, and then we're using `<script>` to register our custom template. Our register function is just a function that accepts only one argument `node`, this argument is the template itself. In that function, we're checking that our element is template. You can skip this validation step, but it's recommended to have it just to avoid confusion in case you made an error while declaring the element in HTML code. This custom template just renders a `<div>` element with content from `data-content` attribute.
+This is possible because EHTML includes a polyfill that guarantees activation across all browsers (even iOS Safari, which normally blocks this feature).  
+Your component participates in the EHTML activation cycle, receives the `ehtml:activated` event, supports `data-internal-state`, and works seamlessly with EHTML expressions.
 
-So, in the end it will be rendered like:
+---
 
-```html
-<body>
-	<div>
-		This content will be displayed inside of <div>
-	</div>
-</body>
+## Example — A Counter Button `<button is="my-counter">`
+
+### **my-counter.js**
+
+```js
+export default class MyCounter extends HTMLButtonElement {
+  constructor() {
+    super();
+    this.count = 0
+  }
+
+  connectedCallback() {
+    this.addEventListener("ehtml:activated", () => {
+      // Initial render using internalState (if provided)
+      this.count = this.internalState?.start ?? 0
+      this.step  = this.internalState?.step ?? 1
+
+      this.render()
+
+      // Clicking increments the counter
+      this.onclick = () => {
+        this.count += this.step
+        this.render()
+      };
+    }, { once: true })
+  }
+
+  render() {
+    this.textContent = `Count: ${this.count}`
+  }
+}
 ```
 
-## 2. Registering Custom Regular Elements
+#### Registering the element
 
-In case of regular custom elements, you simply need to register them with the exact same name in `window.__ehtmlCustomElements__`:
+```js
+import MyCounter from './my-counter.js'
 
-
-```html
-<head>
-	<script src="/../js/ehtml.bundle.min.js" type="text/javascript"></script>
-	<script type="text/javascript">
-		window.__ehtmlCustomElements__['custom-element'] = (node) => {
-			node.style.opacity = '0.5'
-		}
-	</script>
-</head>
-<body>
-	<custom-element>
-		This element will be with opacity 0.5
-	</custom-element>
-</body>
+// Note the 3rd parameter — required for customized built-in elements
+customElements.define('my-counter', MyCounter, { extends: 'button' })
 ```
 
-The example above will be redered in the following manner:
+#### Using the Custom Counter in HTML
 
 ```html
-<body>
-	<custom-element style="opacity: 0.5;">
-		This element will be with opacity 0.5
-	</custom-element>
-</body>
+<button is="my-counter"></button>
 ```
+
+EHTML activation process:
+
+1. Button enters the DOM  
+2. EHTML activates the node and dispatches `"ehtml:activated"`  
+3. Your element initializes and renders (because it listens for `"ehtml:activated"`)  
+4. Clicking increments the counter
+
+Rendered behavior:  
+```html
+Count: 0  →  Count: 1  →  Count: 2  → ...
+```
+
+---
+
+## Customizing Behavior with `data-internal-state`
+
+You can pass structured state directly through HTML:
+
+```html
+<button
+  is="my-counter"
+  data-internal-state="${{
+    start: 10,
+    step: 5
+  }}"
+></button>
+```
+
+Updated JavaScript already reads:
+
+```js
+this.count = this.internalState?.start ?? 0;
+this.step  = this.internalState?.step ?? 1;
+```
+
+Resulting behavior:
+
+```
+Count: 10  → 15 → 20 → 25 …
+```
+
+Each button instance can have different state.
+
+---
+
+## Using EHTML Expressions Inside Custom Elements
+
+Any `${...}` expressions inside attributes of your custom element are evaluated during activation.  
+This works because EHTML activates *all* elements—native, custom, and customized built-ins.
+
+Example:
+
+```html
+<button
+  is="my-counter"
+  data-text="Initial: ${5 + 5}"
+></button>
+```
+
+EHTML evaluates `${5 + 5}` and sets `"Initial: 10"`.
+
+---
+
+## Why `<button is="my-counter">` is Powerful in EHTML v3
+
+- **Safari/iOS compatibility** via EHTML's polyfill  
+- Fully participates in the **EHTML activation pipeline**  
+- Auto-evaluates EHTML expressions inside its markup  
+- Supports `data-internal-state` out of the box  
+- State, configuration, and behavior live directly in HTML  
+
+Customized built-ins allow you to progressively “enhance” real HTML elements without inventing new tags.
+
+---

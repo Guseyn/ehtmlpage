@@ -4,7 +4,7 @@
 
 This action allows you to insert some **HTML** into some element by a query selector:
 
-```js
+```html
 data-actions-on-response="
 	insertHTMLInto('#some-id', someHTML)
 "
@@ -14,7 +14,7 @@ data-actions-on-response="
 
 This action allows you to append some **HTML** into some element by a query selector:
 
-```js
+```html
 data-actions-on-response="
 	addHTMLInto('#some-id', someHTML)
 "
@@ -24,7 +24,7 @@ data-actions-on-response="
 
 This action allows you to load **HTML** from some external source and insert it into some element by some query selector:
 
-```
+```html
 data-actions-on-response='
   loadHTMLInto("#some-id", "https://some/url/with/html", { "name": "value" })
 '
@@ -34,7 +34,7 @@ data-actions-on-response='
 
 This action allows you to load **HTML** from some external source and append it into some element by some query selector:
 
-```
+```html
 data-actions-on-response='
   loadAndAddHTMLInto("#some-id", "https://some/url/with/html", { "name": "value" })
 '
@@ -44,7 +44,7 @@ data-actions-on-response='
 
 This action allows you to insert some text into some element by a query selector:
 
-```js
+```html
 data-actions-on-response="
 	insertTextInto('#some-id', someText)
 "
@@ -54,7 +54,7 @@ data-actions-on-response="
 
 This action allows you to append some text into some element by a query selector:
 
-```js
+```html
 data-actions-on-response="
 	addTextInto('#some-id', someText)
 "
@@ -64,7 +64,7 @@ data-actions-on-response="
 
 This action allows you to load text from some external source and insert it into some element by some query selector:
 
-```
+```html
 data-actions-on-response='
   loadTextInto("#some-id", "https://some/url/with/text", { "name": "value" })
 '
@@ -74,7 +74,7 @@ data-actions-on-response='
 
 This action allows you to load text from some external source and append it into some element by some query selector:
 
-```
+```html
 data-actions-on-response='
   loadAndAddTextInto("#some-id", "https://some/url/with/text", { "name": "value" })
 '
@@ -84,7 +84,7 @@ data-actions-on-response='
 
 This action allows you to map an object from response (or just in memory) to some template by some query selector:
 
-```js
+```html
 data-actions-on-response="
   mapToTemplate('#some-template-id', someObjectFromResponse)
 "
@@ -94,7 +94,7 @@ data-actions-on-response="
 
 This action allows you to release template.
 
-```js
+```html
 data-actions-on-response="
   releaseTemplate('#some-template-id')
 "
@@ -119,7 +119,7 @@ If you want to, let's say, render the **&lt;template is="e-json"&gt;** on some e
 
 This action allows you to show elements by some query selectors:
 
-```js
+```html
 data-actions-on-response="
   showElms('.some-class", '.some-another-class')
 "
@@ -129,7 +129,7 @@ data-actions-on-response="
 
 This action allows you to hide elements by some query selectors:
 
-```js
+```html
 data-actions-on-response="
   hideElms('.some-class', '.some-another-class')
 "
@@ -139,7 +139,7 @@ data-actions-on-response="
 
 This action allows you to enable elements by some query selectors:
 
-```js
+```html
 data-actions-on-response="
   enableElms('.some-class', '.some-another-class')
 "
@@ -149,7 +149,7 @@ data-actions-on-response="
 
 This action allows you to disable elements by some query selectors:
 
-```js
+```html
 data-actions-on-response="
   disableElms('.some-class', '.some-another-class')
 "
@@ -159,7 +159,7 @@ data-actions-on-response="
 
 This action allows you to remove elements by some query selectors:
 
-```js
+```html
 data-actions-on-response="
   removeElms('.some-class', '.some-another-class')
 "
@@ -169,7 +169,7 @@ data-actions-on-response="
 
 This action allows you to toggle elements by some query selectors:
 
-```js
+```html
 data-actions-on-response="
   toggleElms('.some-class-name', '#some-element-id', '#some-other-element-id')
 "
@@ -179,7 +179,7 @@ data-actions-on-response="
 
 This action allows you to change a value of input elements by some query selectors:
 
-```js
+```html
 data-actions-on-response="
   changeValueOf('#some-id', someValue)
 "
@@ -189,7 +189,7 @@ data-actions-on-response="
 
 This action allows you to update an attribute value by some query selectors:
 
-```js
+```html
 data-actions-on-response="
   updateAttributeOf('#some-id', 'attrName', 'attrValue')
 "
@@ -199,7 +199,7 @@ data-actions-on-response="
 
 This action allows you to scroll into element by some query selectors:
 
-```js
+```html
 data-actions-on-response="
   scrollIntoViewOf('#some-id')
 "
@@ -209,7 +209,7 @@ data-actions-on-response="
 
 This action reloads the page:
 
-```js
+```html
 data-actions-on-response="
 	reload()
 "
@@ -219,7 +219,7 @@ data-actions-on-response="
 
 This action redirects to specified page:
 
-```js
+```html
 data-actions-on-response="
 	redirect('/some/path')
 "
@@ -238,7 +238,7 @@ You can define and call your own custom actions:
 
 ```
 
-```js
+```html
 data-actions-on-response="
   customAction(response)
 "
@@ -248,15 +248,18 @@ data-actions-on-response="
 
 Instead of element selectors, you can directly specify the elements themselves.
 
-# thisElement in data-actions-on-response
+# Using <code>this</code> in data-actions-on-response
 
-On elements with attribute `data-actions-on-response`, you can use variable `thisElement` inside of the script in the attribute:
+Inside any `data-actions-on-response` attribute, you can use **`this`** to reference the element on which the actions are defined.  
+This allows you to read and modify your own attributes directly inside the action script.
 
-```js
+```html
 data-actions-on-response="
-  console.log(thisElement.attributes['some-attr-name'].value)
-  someAction(response)
+  console.log(this.getAttribute('some-attr-name'));
+  someAction(response);
 "
 ```
 
-Such feature makes it much easier to access information about the applicaton state which you can persist, let say, in attributes of the element with `data-actions-on-response`.
+Because elements can store state or configuration in their own attributes, having access to `this` makes it easy to retrieve that information during response handling—without relying on external variables or additional JavaScript.  
+This keeps component logic self-contained and declarative.
+
