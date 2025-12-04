@@ -751,16 +751,17 @@ summary::-webkit-details-marker {
   display: none;
 }
 
-summary::before {
+summary::after {
   content: "▸";
   display: inline-block;
   transition: transform var(--transition-normal);
   font-size: 0.8em;
   color: var(--color-text-muted);
+  margin-left: auto;
 }
 
 /* Rotate arrow when open */
-details[open] summary::before {
+details[open] summary::after {
   transform: rotate(90deg);
 }
 
@@ -870,6 +871,30 @@ pre {
   background-color: var(--color-surface-muted);
   overflow-x: auto;
   border: 1px solid var(--color-text);
+}
+
+pre {
+  position: relative;
+}
+
+/* The "Copy" label/button */
+pre::before {
+  content: "Copy";
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  padding: 4px 8px;
+  background: var(--color-surface);
+  border-radius: 4px;
+  font-size: 12px;
+  font-family: sans-serif;
+  cursor: pointer;
+  transition: opacity .2s;
+  color: var(--color-text);
+}
+
+pre.copied::before {
+  content: var(--copy-label, "Copy");
 }
 
 code {

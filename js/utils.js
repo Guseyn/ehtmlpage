@@ -1,43 +1,34 @@
-window.copyUnilangExample = (pre) => {
-  const text = pre.innerText
-  const textarea = document.createElement('textarea')
-  textarea.value = text
-  textarea.setAttribute('readonly', '')
-  textarea.style.position = 'absolute'
-  textarea.style.top = '-9999px'
-  document.body.appendChild(textarea)
-  textarea.select()
-  document.execCommand('copy')
-  document.body.removeChild(textarea)
-}
-
-function showTooltip(event) {
-  const old = document.getElementById('tooltip')
-  if (old) {
-    old.remove()
+document.addEventListener("click", (e) => {
+  // Detect click on pre::before
+  const pre = e.target.closest("pre")
+  if (!pre) {
+    return
   }
 
-  const tooltip = document.createElement('div')
-  tooltip.id = 'tooltip'
-  tooltip.textContent = 'Copied'
+  // Check if click is near right corner (i.e., on the pseudo-element)
+  const rect = pre.getBoundingClientRect()
+  const clickX = e.clientX - rect.left
+  const clickY = e.clientY - rect.top
 
-  tooltip.style.left = (event.pageX + 10) + 'px'
-  tooltip.style.top = (event.pageY + 10) + 'px'
-
-  document.body.appendChild(tooltip) 
-}
-
-document.addEventListener('click', (event) => {
-  let clickedElement = event.target
-  while (clickedElement !== null) {
-    if (clickedElement.tagName && clickedElement.tagName.toLowerCase() === 'code') {
-      const selectedText = window.getSelection().toString()
-      if (selectedText.length === 0) {
-        window.copyUnilangExample(clickedElement)
-        showTooltip(event)
-      }
-      break
-    }
-    clickedElement = clickedElement.parentNode;
+  // Match the pseudo-element dimensions (top-right corner)
+  if (clickX < rect.width - 70 || clickY > 40) {
+    return
   }
-})
+
+  // Get the code text
+  const code =
+    pre.querySelector("code")?.innerText ||
+    pre.innerText
+
+  navigator.clipboard.writeText(code).then(() => {
+    // Temporary feedback
+    const original = getComputedStyle(pre, "::before").content
+    pre.style.setProperty("--copy-label", '"Copied!"')
+    pre.classList.add("copied")
+
+    setTimeout(() => {
+      pre.style.removeProperty("--copy-label")
+      pre.classList.remove("copied")
+    }, 1000)
+  });
+});
