@@ -2,6 +2,18 @@
 
 Instead of inventing virtual DOMs, reactive engines, or build pipelines, EHTML activates plain HTML once and then reacts only to real DOM insertions—doing the minimum work needed, exactly when it’s needed. Its event-based activation model gives every node, template, and custom element a predictable lifecycle, independent of browser quirks and without hidden reactivity. The result is a UI framework that stays invisible, fast, and fully aligned with the platform you’re already using.
 
+Contents
+==============
+
+- [Usage](#usage)
+- [Supported Elements](#supported-elements)
+    - [`this` in elements](#this-in-elements)
+- [Provided Actions On AJAX Response](#provided-actions-on-ajax-response)
+    - [Using `this` in `data-actions-on-response`](#using-c0c-in-data-actions-on-response)
+- [Defining Custom Elements in EHTML v3](#defining-custom-elements-in-ehtml-v3)
+- [Defining Custom Elements in EHTML v3 (Customized Built-Ins)](#defining-custom-elements-in-ehtml-v3-customized-built-ins)
+- [Some Tips To Improve Performance](#some-tips-to-improve-performance)
+
 # Usage
 <p></p>
 
@@ -30,7 +42,7 @@ rm -rf js/ehtml && cp -r ../EHTML/src js/ehtml
 {
   "imports": {
     "#ehtml/": "/js/ehtml/",
-    "#ehtml/main": "/js/ehtml/main.js?v=18dc6218",
+    "#ehtml/main": "/js/ehtml/main.js"
   }
 }
 </script>

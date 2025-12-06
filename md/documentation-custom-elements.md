@@ -112,7 +112,7 @@ this.step  = this.internalState?.step ?? 1;
 
 Resulting behavior:
 
-```
+```js
 Count: 10  → 15 → 20 → 25 …
 ```
 
