@@ -18,7 +18,7 @@ Once defined, your custom element participates in the same lifecycle as all othe
 
 EHTML v3 fully supports **customized built-in elements**, such as:
 
-```
+```html
 <button is="my-counter">
 ```
 
