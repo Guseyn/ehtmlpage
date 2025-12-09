@@ -240,6 +240,10 @@ p {
   margin-block-end: var(--space-md);
 }
 
+p img {
+  max-width: 100%;
+}
+
 /* Heading following heading: tighter */
 h1 + h2,
 h2 + h3,
