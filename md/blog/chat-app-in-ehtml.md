@@ -174,6 +174,6 @@ So, you can use such quite straightforward and declarative approach where you en
 
 <!-- [Reddit Comments](https://www.reddit.com/user/gyen/comments/11lbupc/blog_app_in_ehtml/) / [HN Comments](https://news.ycombinator.com/newest) / [Medium Comments](https://medium.com/@guseynism/blog-app-in-ehtml-93a0aacaed1d) -->
 
-<div class="refs">References</div>
+### References
 * [Chat app on GitHub](https://github.com/Guseyn/ehtml-simple-chat-app)
 * [EHTML](https://github.com/Guseyn/EHTML)

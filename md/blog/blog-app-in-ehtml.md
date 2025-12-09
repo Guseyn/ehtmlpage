@@ -394,6 +394,6 @@ So, it's quite straightforward and declarative approach how you can encapsulate 
 
 [Reddit Comments](https://www.reddit.com/user/gyen/comments/11lbupc/blog_app_in_ehtml/) / [HN Comments](https://news.ycombinator.com/newest) / [Medium Comments](https://medium.com/@guseynism/blog-app-in-ehtml-93a0aacaed1d)
 
-<div class="refs">References</div>
+### References:
 * [Blog app on GitHub](https://github.com/Guseyn/ehtml-simple-blog-app)
 * [EHTML](https://github.com/Guseyn)
