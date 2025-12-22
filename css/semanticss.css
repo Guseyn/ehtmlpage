@@ -477,6 +477,7 @@ s-row > a:has(img) {
   flex-wrap: wrap;
   gap: var(--space-sm);
   align-items: center;
+  width: auto;
 }
 
 /* Column = vertical stacking always */
