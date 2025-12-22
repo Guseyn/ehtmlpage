@@ -26,7 +26,7 @@
 }
 
 @font-face {
-  font-family: "Varta";
+  font-family: "Nunito";
   src: url("/font/Varta-VariableFont_wght.ttf") format("truetype");
   font-weight: 100 900;
   font-style: normal;
@@ -42,7 +42,7 @@
 :root {
   /* Fonts */
   --font-family-serif: "Gelasio", serif;
-  --font-family-sans: "Varta", sans-serif;
+  --font-family-sans: "Nunito", sans-serif;
   --font-family-mono: "FiraCode", monospace;
 
   /* Base colors - neutral theme */
@@ -90,6 +90,15 @@
   --font-size-xl: 1.5rem;
   --font-size-2xl: 2rem;
 
+  /* Element sizes */
+  --size-xs: 0.75rem;
+  --size-sm: 0.875rem;
+  --size-md: 1rem;
+  --size-lg: 2rem;
+  --size-ml: 3rem;
+  --size-xl: 4rem;
+  --size-2xl: 6rem;
+
   /* Spacing scale */
   --space-2xs: 0.125rem;
   --space-xs: 0.25rem;
@@ -112,7 +121,7 @@
   --transition-normal: 180ms ease-out;
 
   /* Layout / responsive tokens */
-  --content-width-max: 72rem;
+  --content-width-max: 60rem;
 
   /* Logical breakpoints (for reference; media queries use fixed px) */
   --breakpoint-mobile: 768px;
@@ -344,9 +353,9 @@ code div {
 
 header {
   display: flex;
-  flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
+  gap: var(--space-md);
   padding-inline: var(--layout-gutter-inline);
   padding-block: var(--header-padding-y);
   background-color: var(--color-header-bg);
@@ -365,9 +374,12 @@ header nav {
   display: flex;
   gap: var(--space-md);
   flex-wrap: wrap;
+  justify-content: flex-end;
 }
 
 header nav a {
+  flex-shrink: 0;
+  white-space: nowrap;
   font-size: var(--font-size-md);
   border-radius: var(--radius-sm);
   border-bottom: none;
@@ -384,18 +396,17 @@ header nav a:focus-visible {
   header {
     flex-direction: column;
     align-items: center;
-    gap: var(--space-sm);
+    gap: var(--space-md);
     text-align: center;
   }
 
   header nav {
-    /*flex-direction: column;*/
     align-items: center;
-    gap: 0.4rem;
+    gap: var(--space-sm);
+    justify-content: center;
   }
 
   header nav a {
-    width: 100%;
     text-decoration: underline;
   }
 }
@@ -418,12 +429,27 @@ s-column {
   box-sizing: border-box;
   gap: var(--gap, var(--space-md));
   align-items: var(--align, center);
-  justify-content: var(--justify-content, center);
-  flex-wrap: wrap;
+  justify-content: var(--justify-content, start);
+  flex-wrap: nowrap;
 }
 
 s-row s-row {
   width: auto;
+}
+
+s-row s-column {
+  width: auto;
+  flex: 1;
+  min-width: 0;
+}
+
+form s-row s-column {
+  width: 100%;
+}
+
+s-row:has(s-column) {
+  align-items: start;
+  justify-content: stretch;
 }
 
 /* Row = horizontal on large screens, becomes column on small */
@@ -432,7 +458,16 @@ s-row {
 }
 
 /* Children should not shrink; wrap when needed */
-s-row > * {
+s-row > 
+:not(span)
+:not(p)
+:not(a)
+:not(em)
+:not(strong)
+:not(code)
+:not(small)
+:not(s-column)
+:not(s-row) {
   flex: 0 0 auto;
 }
 
@@ -450,8 +485,35 @@ s-column {
   align-items: stretch;
 }
 
-s-column > * {
+s-row s-cols-column > * {
   width: 100%;
+}
+
+s-img-box {
+  display: inline-block;
+}
+
+s-center {
+  text-align: center;
+  display: inline-block;
+  width: 100%;
+}
+
+s-box {
+  display: block;
+  box-sizing: border-box;
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font: inherit;
+  color: inherit;
+  line-height: inherit;
+  background: transparent;
+}
+
+s-box, s-box * {
+  box-sizing: border-box;
 }
 
 /* Mobile: treat rows as columns */
@@ -461,6 +523,10 @@ s-column > * {
   }
 
   s-row > * {
+    width: 100%;
+  }
+
+  s-row s-column {
     width: 100%;
   }
 }
@@ -618,6 +684,11 @@ textarea,
 button {
   font: inherit;
   color: var(--color-input-text);
+  min-height: var(--size-lg);
+}
+
+textarea {
+  resize: vertical;
 }
 
 input,
@@ -634,11 +705,6 @@ textarea {
 input::placeholder,
 textarea::placeholder {
   color: var(--color-input-placeholder);
-}
-
-/* When grouped in forms, vertical rhythm */
-form > * + * {
-  margin-block-start: var(--space-sm);
 }
 
 /* Buttons: accent by default */
@@ -674,6 +740,28 @@ s-column textarea {
   margin-block: 0;
 }
 
+s-row input,
+s-row select,
+s-row textarea {
+  width: auto;
+  flex-shrink: 0;
+}
+
+label input,
+label select,
+label textarea {
+  width: auto;
+  flex-shrink: 0;
+}
+
+@media(max-width: 768px) {
+  s-row input,
+  s-row select,
+  s-row textarea {
+      width: 100%;
+  }
+}
+
 /* ==========================================================================
    Smart lists: items with img + text aligned center
    ========================================================================== */
@@ -684,12 +772,11 @@ ol {
   padding-inline-start: 1.25rem;
   display: flex;
   flex-direction: column;
-  gap: 0.4rem;
+  gap: var(--space-sm);
 }
 
 /* Turn items into flex rows */
 li {
-  display: flex;
   flex-wrap: wrap;
   align-items: flex-start;
   gap: var(--space-sm);
@@ -699,6 +786,10 @@ li {
 li > ul {
   flex-basis: 100%;
   margin-left: 1rem; /* optional indent */
+}
+
+li > s-column {
+  gap: var(--space-xs);
 }
 
 /* Synthetic bullet via pseudo-element */
@@ -823,6 +914,7 @@ s-modal > *:first-child {
 s-tooltip {
   position: relative;
   display: inline-flex;
+  cursor: pointer;
 }
 
 /* Tooltip bubble */
