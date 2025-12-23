@@ -486,6 +486,12 @@ s-column {
   align-items: stretch;
 }
 
+s-column:has(a > img) {
+  width: max-content;
+  margin: 0 auto;
+  align-items: center;
+}
+
 s-row s-cols-column > * {
   width: 100%;
 }
