@@ -31,7 +31,7 @@ git clone git@github.com:Guseyn/EHTML.git
 
 ```bash
 cd your-project-folder
-rm -rf js/ehtml && cp -r ../EHTML/src js/ehtml
+yes | cp -rf ../EHTML/src/ js/ehtml
 ```
 
 3) Add [import map](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/script/type/importmap) in your HTML file in `<head>` element:

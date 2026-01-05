@@ -1,161 +1,261 @@
-import getNodeScopedState from "#ehtml/getNodeScopedState.js?v=41ab2bfa";
-import responseFromAjaxRequest from "#ehtml/responseFromAjaxRequest.js?v=b4193065";
-import evaluatedValueWithParamsFromState from "#ehtml/evaluatedValueWithParamsFromState.js?v=01fa3e7e";
-import evaluatedStringWithParamsFromState from "#ehtml/evaluatedStringWithParamsFromState.js?v=01fa3e7e";
-import evaluateActionsOnProgress from "#ehtml/evaluateActionsOnProgress.js?v=c7f83d7b";
-import mapToTemplate from "#ehtml/actions/mapToTemplate.js?v=735f9456";
-import templateTriggerEventListener from "#ehtml/templateTriggerEventListener.js?v=5b49af76";
-import scrollToHash from "#ehtml/actions/scrollToHash.js?v=e7d61ab5";
+import getNodeScopedState from '#ehtml/getNodeScopedState.js'
+import responseFromAjaxRequest from '#ehtml/responseFromAjaxRequest.js'
+import evaluatedValueWithParamsFromState from '#ehtml/evaluatedValueWithParamsFromState.js'
+import evaluatedStringWithParamsFromState from '#ehtml/evaluatedStringWithParamsFromState.js'
+import evaluateActionsOnProgress from '#ehtml/evaluateActionsOnProgress.js'
+import templateTriggerEventListener from '#ehtml/templateTriggerEventListener.js'
+import mapToTemplate from '#ehtml/actions/mapToTemplate.js'
+import scrollToHash from '#ehtml/actions/scrollToHash.js'
 
 export default class EJsonMapTemplate extends HTMLTemplateElement {
   constructor() {
-    super();
-    this.ehtmlActivated = false;
+    super()
+    this.ehtmlActivated = false
   }
 
   connectedCallback() {
-    this.addEventListener("ehtml:activated", this.onEHTMLActivated, { once: true });
-    this.addEventListener("ehtml:template-triggered", this.onEHTMLTemplateTriggered);
+    this.addEventListener(
+      'ehtml:activated',
+      this.onEHTMLActivated,
+      { once: true }
+    )
+    this.addEventListener(
+      'ehtml:template-triggered',
+      this.onEHTMLTemplateTriggered
+    )
   }
 
   disconnectedCallback() {
-    this.removeEventListener("ehtml:template-triggered", this.onEHTMLTemplateTriggered);
+    this.removeEventListener(
+      'ehtml:template-triggered',
+      this.onEHTMLTemplateTriggered
+    )
   }
 
   onEHTMLActivated() {
     if (this.ehtmlActivated) {
-      return;
+      return
     }
-    this.ehtmlActivated = true;
-    this.run();
+    this.ehtmlActivated = true
+    this.run()
   }
 
   run() {
-    const state = getNodeScopedState(this);
-
-    const ajaxIconSelector = this.getAttribute("data-ajax-icon");
-    const ajaxIcon = ajaxIconSelector ? document.querySelector(ajaxIconSelector) : null;
-    if (ajaxIcon) {
-      ajaxIcon.style.display = "";
-    }
-
-    const progressBarSelector = this.getAttribute("data-progress-bar");
-    const progressBar = progressBarSelector ? document.querySelector(progressBarSelector) : null;
-    if (progressBar) {
-      progressBar.max = 100;
-      progressBar.value = 0;
-      progressBar.style.display = "none";
-    }
-
-    // ---------------------------------------------------------
-    // SOCKET MODE
-    // ---------------------------------------------------------
-    const socketName = this.getAttribute("data-socket");
+    const socketName = this.getAttribute('data-socket')
     if (socketName) {
-      const sockets = window.__EHTML_WEB_SOCKETS__;
-      if (!sockets || !sockets[socketName]) {
-        throw new Error(`socket with name "${socketName}" is not defined or not opened yet`);
-      }
-
-      const socket = sockets[socketName];
-
-      socket.addEventListener("message", event => {
-        const response = JSON.parse(event.data);
-        mapToTemplate(this, response);
-      });
-
-      return;
+      return this.runSocketMode()
     }
 
-    // ---------------------------------------------------------
-    // PROGRESS START
-    // ---------------------------------------------------------
-    if (this.hasAttribute("data-actions-on-progress-start")) {
+    const eventSourceName = this.getAttribute('data-event-source')
+    if (eventSourceName) {
+      return this.runEventSourceMode()
+    }
+
+    const cacheAttr = this.getAttribute('data-cache-from')
+    if (cacheAttr) {
+      const cached = this.tryCache()
+      if (cached) {
+        return
+      }
+    }
+
+    return this.runAjax()
+  }
+
+  runSocketMode() {
+    const state = getNodeScopedState(this)
+
+    const socketName = evaluatedStringWithParamsFromState(
+      this.getAttribute('data-socket'),
+      state,
+      this
+    )
+
+    const sockets = window.__EHTML_WEB_SOCKETS__
+    if (!sockets || !sockets[socketName]) {
+      throw new Error(`socket "${socketName}" is not defined or not opened yet`)
+    }
+
+    const socket = sockets[socketName]
+
+    socket.addEventListener('message', event => {
+      const response = JSON.parse(event.data)
+      mapToTemplate(this, response)
+      scrollToHash()
+    })
+  }
+
+  runEventSourceMode() {
+    const state = getNodeScopedState(this)
+
+    const eventSourceName = evaluatedStringWithParamsFromState(
+      this.getAttribute('data-event-source'),
+      state,
+      this
+    )
+
+    const eventSources = window.__EHTML_SERVER_EVENT_SOURCES__
+    if (!eventSources || !eventSources[eventSourceName]) {
+      throw new Error(`eventSource "${eventSourceName}" is not defined or not opened yet`)
+    }
+
+    const eventSource = eventSources[eventSourceName]
+
+    if (!this.hasAttribute('data-event')) {
+      eventSource.onmessage = (event) => {
+        const response = JSON.parse(event.data)
+        mapToTemplate(this, response)
+        scrollToHash()
+      }
+    } else {
+      eventSource.addEventListener(this.getAttribute('data-event'), (event) => {
+        const response = JSON.parse(event.data)
+        mapToTemplate(this, response)
+        scrollToHash()
+      })
+    }
+  }
+
+  tryCache() {
+    const state = getNodeScopedState(this)
+    const cacheAttr = this.getAttribute('data-cache-from')
+
+    const evaluated = evaluatedValueWithParamsFromState(
+      cacheAttr,
+      state,
+      this
+    )
+
+    if (evaluated === 'undefined' || evaluated === 'null') {
+      return false
+    }
+
+    const obj = evaluated
+
+    if (!obj) {
+      return false
+    }
+
+    mapToTemplate(this, obj)
+    scrollToHash()
+
+    return true
+  }
+
+  runAjax() {
+    const state = getNodeScopedState(this)
+
+    const src = this.getAttribute('data-src')
+    if (!src) {
+      throw new Error('<e-json> must have data-src or data-socket')
+    }
+
+    const ajaxIcon = this.resolveIcon()
+    if (ajaxIcon) {
+      ajaxIcon.style.display = ''
+    }
+
+    const progressBar = this.resolveProgressBar()
+    if (progressBar) {
+      progressBar.max = 100
+      progressBar.value = 0
+      progressBar.style.display = 'none'
+    }
+
+    if (this.hasAttribute('data-actions-on-progress-start')) {
       evaluateActionsOnProgress(
-        this.getAttribute("data-actions-on-progress-start"),
+        this.getAttribute('data-actions-on-progress-start'),
         this,
         state
-      );
+      )
     }
 
-    // ---------------------------------------------------------
-    // AJAX MODE
-    // ---------------------------------------------------------
-    if (!this.hasAttribute("data-src")) {
-      throw new Error("e-json-map-template must have \"data-src\" attribute if no socket is used");
-    }
-
-    const src = evaluatedStringWithParamsFromState(
-      this.getAttribute("data-src"),
-      state,
-      this
-    );
+    const url = encodeURI(
+      evaluatedStringWithParamsFromState(src, state, this)
+    )
 
     const headers = evaluatedValueWithParamsFromState(
-      this.getAttribute("data-request-headers") || "${{}}",
+      this.getAttribute('data-request-headers') || '${{}}',
       state,
       this
-    );
+    )
 
     responseFromAjaxRequest(
       {
-        url: encodeURI(src),
-        method: "GET",
+        url: url,
+        method: 'GET',
         headers: headers,
         progressEvent: event => {
           if (!progressBar || !event.lengthComputable) {
-            return;
+            return
           }
-          progressBar.style.display = "";
-          const percent = parseInt((event.loaded / event.total) * 100);
-          progressBar.value = percent;
+          progressBar.style.display = ''
+          const percent = Math.floor((event.loaded / event.total) * 100)
+          progressBar.value = percent
           if (percent === 100) {
-            progressBar.style.display = "none";
+            progressBar.style.display = 'none'
           }
         }
       },
       undefined,
       (err, resObj) => {
         if (err) {
-          throw err;
+          throw err
         }
 
         if (ajaxIcon) {
-          ajaxIcon.style.display = "none";
+          ajaxIcon.style.display = 'none'
         }
 
-        const buffer = resObj.body;
-        const text = buffer.toString("utf-8", 0, buffer.length);
-        const obj = JSON.parse(text);
+        const buffer = resObj.body
+        const text = buffer.toString('utf-8', 0, buffer.length)
+        const obj = JSON.parse(text)
 
-        mapToTemplate(this, {
+        const responsePayload = {
           body: obj,
-          headers: resObj.headers,
-          statusCode: resObj.statusCode
-        });
+          statusCode: resObj.statusCode,
+          headers: resObj.headers
+        }
 
-        if (this.hasAttribute("data-actions-on-progress-end")) {
+        mapToTemplate(this, response)
+        scrollToHash()
+
+        if (this.hasAttribute('data-actions-on-progress-end')) {
           evaluateActionsOnProgress(
-            this.getAttribute("data-actions-on-progress-end"),
+            this.getAttribute('data-actions-on-progress-end'),
             this,
             state
-          );
+          )
         }
-
-        scrollToHash();
       }
-    );
+    )
+  }
+
+  resolveProgressBar() {
+    const sel = this.getAttribute('data-progress-bar')
+    if (!sel) {
+      return null
+    }
+    return document.querySelector(sel)
+  }
+
+  resolveIcon() {
+    const sel = this.getAttribute('data-ajax-icon')
+    if (!sel) {
+      return null
+    }
+    return document.querySelector(sel)
   }
 
   onEHTMLTemplateTriggered(event) {
-    const template = event?.target ?? this;
-    const state = event?.detail?.state ?? getNodeScopedState(this);
+    const template = event?.target ?? this
+    const state = event?.detail?.state ?? getNodeScopedState(this)
 
-    templateTriggerEventListener(template, state);
-    if (event.target.parentNode) {
-      event.target.parentNode.removeChild(event.target);
+    templateTriggerEventListener(template, state)
+    if (event.target.parentNode && !event.target.hasAttribute('data-reusable')) {
+      event.target.parentNode.removeChild(event.target)
     }
   }
 }
 
-customElements.define("e-json-map", EJsonMapTemplate, { extends: "template" });
+customElements.define('e-json-map', EJsonMapTemplate, { extends: 'template' })

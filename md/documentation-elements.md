@@ -1137,6 +1137,10 @@ These allow you to show spinners, apply dimming, or implement any loading UI whi
 
 More examples will be included in a dedicated section.
 
+### Using data-internal-state
+
+If you just set markdown text in `data-internal-state` attribute by `mapToTemplate`, it will render that markdown as HTML.
+
 </details><details><summary><b>&lt;e-json-view&gt;</b></summary>
 
 `<e-json-view>` lets you fetch a JSON resource and display it in a clean, formatted, human-readable way—perfect for debugging, admin pages, or API inspection tools.  
@@ -1275,7 +1279,9 @@ data-actions-on-close-connection="
 Inside the WebSocket template, you can use:
 
 ```html
-<e-json data-socket="mySocket">
+<e-json
+  data-socket="mySocket"
+  data-actions-on-response="...">
 ```
 
 This means:
@@ -1309,24 +1315,138 @@ if (this.form.isValid) {
 
 ---
 
-### **5. Progress hooks** (optional)
+### Notes
+
+- You can define multiple independent WebSocket clients on a single page.  
+- `<template is="e-ws">` must wrap everything that needs access to the socket.  
+
+</details><details><summary><b>&lt;template is="e-sse"&gt;</b></summary>
+
+`<template is="e-sse">` provides a complete Server-Sent Events workflow inside HTML.  
+It establishes a EventSource instance, gives it a name, and allows other EHTML elements inside it—such as `<e-json>` or `<template is="e-json-map">`—to **receive** JSON structured events through that event source.
+
+Using a `<template>` is required because `e-sse` must initialize **before** the inner elements are activated.
+
+---
+
+### Full example
 
 ```html
-data-actions-on-progress-start="console.log('waiting…')"
-data-actions-on-progress-end="console.log('done')"
+<img src="/images/ajax-icon" id="connection-icon" alt="connecting">
+
+<span id="connection-open-message" style="display:none">
+  You are connected
+</span>
+
+<template
+  is="e-sse"
+  data-src="http://localhost:3000"
+  data-event-source-name="myEventSource"
+  data-with-credentials="true"
+  data-connection-icon="#connection-icon"
+  data-actions-on-open-connection="
+    showElms('#connection-open-message')
+  "
+>
+
+  <!-- Receive messages on `specificEventType` (event: specificEventType) -->
+  <e-json
+    data-event-source="myEventSource"
+    data-response-name="eventWithJSONData"
+    data-event="specifictEventType"
+    data-actions-on-response="
+      mapToTemplate('#msg', eventWithJSONData)
+    "
+  >
+    <template
+      is="e-reusable"
+      id="msg"
+      data-object-name="message"
+    >
+      <span data-text="${message.user}"></span>
+      <span data-text="${message.text}"></span>
+    </template>
+  </e-json>
+
+  <!-- Receive messages on any event (no event: specified) -->
+  <e-json
+    data-event-source="myEventSource"
+    data-response-name="eventWithJSONData"
+    data-actions-on-response="
+      mapToTemplate('#msg', eventWithJSONData)
+    "
+  >
+    <template
+      is="e-reusable"
+      id="msg"
+      data-object-name="message"
+    >
+      <span data-text="${message.user}"></span>
+      <span data-text="${message.text}"></span>
+    </template>
+  </e-json>
+
+</template>
 ```
 
-These run while the WebSocket is establishing a connection.
+---
+
+### How it works
+
+#### **1. Declaring the EventSource instance**
+```html
+<template is="e-ess" data-src="ws://..." data-event-source-name="myEventSource">
+```
+
+- `data-src` — EventSource URL  
+- `data-event-source-name` — unique name under which EHTML stores this event source  
+- Other EHTML components refer to this event source by name
+
+You can create *multiple* EventSource instances on the same page by giving them different names.
+
+---
+
+### **2. Optional UI helpers**
+
+- `data-connection-icon` — show/hide icon while connecting  
+- `data-actions-on-open-connection` — runs event source opens  
+
+You have access to the WebSocket event as `event`:
+
+```html
+data-actions-on-open-connection="
+  console.log('opened', event)
+"
+```
+
+---
+
+### **3. Receiving events with `<e-json>`**
+
+Inside the WebSocket template, you can use:
+
+```html
+<e-json 
+  data-event-source="myEventSource"
+  data-event="someSpecificEvent"
+  data-actions-on-respons="...">
+```
+
+This means:
+
+- Instead of fetching via HTTP (`data-src`),  
+- It listens for incoming events, if you specify `data-event` attribute, then it will listen only to certain events, otherwise it will listen to all messages without event field 
+- Parses them as JSON,  
+- And triggers `data-actions-on-response` exactly like an HTTP response.
+
+You can use `<template is="e-json-map">` as well.
 
 ---
 
 ### Notes
 
-- You can define multiple independent WebSocket clients on a single page.  
-- `<template is="e-ws">` must wrap everything that needs access to the socket.  
-- `<e-json>` inside `e-ws` behaves exactly like HTTP mapping—only the source changes.
-
-A simple chat demo is available in the examples.
+- You can define multiple independent EventSource instances on a single page.  
+- `<template is="e-sse">` must wrap everything that needs access to the event source.
 
 </details>
 
@@ -1334,6 +1454,23 @@ A simple chat demo is available in the examples.
 
 You can use `this` inside any EHTML-evaluated attribute to reference the element itself.  
 This makes it easy to read or modify your own attributes without duplication.
+
+# Using EHTML Expressions Inside Elements and Templates
+
+Most of `${...}`` expressions inside attributes are evaluated during activation. Some others are evaulated under certain conditions depending on the logic of a certain element.
+
+Most common attributes:
+- `data-text` attribute inserts evaluated text inside of an element (in the beginning)
+- `data-value` attaches evaluated value to input fields
+- `data-src` evaluates src attribute of such elements as img, but you can also just use `src` attribute although it may result not in the best UX, since it src with `${...}` is not valid src
+- `data-internal-state` allows you to set a state inside of your element, which you can access by `elm.internalState`
+- `data-*` - you can use any custom attribute, but those will be just evaluated and inserted as attributes, unless there is any logic you may want to run inside of your [custom elements](#defining-custom-elements-in-ehtml-v3)
+
+There are some other data attributes the different elements in EHTML utilize like `data-headers`, `data-actions-on-response`, etc. Action attributes are not really expressions but rather JS code where you can directly use state from the node scope.
+
+Expressions in attributes can be evaluated on page load, but also when you call `mapToTemplate()`, `releaseTemplate()` functions.
+
+You can also use attribute `data-attributes-to-ignore="data-some-attribute-1, data-some-attribute-2"`, where you can tell ETHML to not process attributes on start and evaluate those attributes inside of custom elements let's say, or just ignore them entirely if you want.
 
 ### Basic example
 

@@ -138,6 +138,10 @@ EHTML evaluates `${5 + 5}` and sets `"Initial: 10"`.
 
 ---
 
+You can also use attribute `data-attributes-to-ignore="data-some-attribute-1, data-some-attribute-2"`, where you can tell ETHML to not process attributes on start and evaluate those attributes inside of custom elements, or just ignore them entirely if you want.
+
+You can evaluate those expressions yourself via `evaluatedValueWithParamsFromState(expression, state, node)` or `evaluatedStringWithParamsFromState(string, state, node)`. You can also use `evaluateActionsOnResponse(string, resName, resObj, node, state)` - if your logic requires it. It's more advance usage of this framework, and it's recommended you to see how those things works inside of existing elements, like `e-json` and others.
+
 ## Why `<button is="my-counter">` is Powerful in EHTML v3
 
 - **Safari/iOS compatibility** via EHTML's polyfill  
