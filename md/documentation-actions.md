@@ -90,6 +90,8 @@ data-actions-on-response="
 "
 ```
 
+You can map any template, including those with `e-reusable` attribute. You can also use your own custom template with `data-reusable` attribute to let them be mapped multiple times.
+
 </details><details><summary><b>releaseTemplate</b></summary>
 
 This action allows you to release template.
@@ -99,6 +101,8 @@ data-actions-on-response="
   releaseTemplate('#some-template-id')
 "
 ```
+
+You can release any template, including those with `e-reusable` attribute. You can also use your own custom template with `data-reusable` attribute to let them be released multiple times.
 
 If you want to, let's say, render the **&lt;template is="e-json"&gt;** on some event like a button click, you can simply wrap `e-json` template with another template, like **&lt;template id="template-on-click"&gt;** and do the following:
 

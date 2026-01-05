@@ -364,6 +364,8 @@ Notes:
 - You do **not** use `data-response-name` because this element does not expose `data-actions-on-response`.  
 - You **must** define `data-object-name` so the response object can be used inside the template.  
 - Progress attributes (`data-ajax-icon`, `data-progress-bar`, `data-actions-on-progress-start`, `data-actions-on-progress-end`) work the same way as in `<e-json>`.
+- You can still use `data-cache-from` as in `e-json`
+- You can attach attribute `data-reusable` to map the same e-json-map template multiple time by `mapToTemplate` function.
 
 </details><details><summary><b>&lt;template is="e-for-each"&gt;</b></summary>
 
