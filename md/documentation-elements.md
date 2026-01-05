@@ -1452,27 +1452,10 @@ You can use `<template is="e-json-map">` as well.
 
 </details>
 
-# `this` in elements
+## `this` in elements
 
 You can use `this` inside any EHTML-evaluated attribute to reference the element itself.  
 This makes it easy to read or modify your own attributes without duplication.
-
-# Using EHTML Expressions Inside Elements and Templates
-
-Most of `${...}`` expressions inside attributes are evaluated during activation. Some others are evaulated under certain conditions depending on the logic of a certain element.
-
-Most common attributes:
-- `data-text` attribute inserts evaluated text inside of an element (in the beginning)
-- `data-value` attaches evaluated value to input fields
-- `data-src` evaluates src attribute of such elements as img, but you can also just use `src` attribute although it may result not in the best UX, since it src with `${...}` is not valid src
-- `data-internal-state` allows you to set a state inside of your element, which you can access by `elm.internalState`
-- `data-*` - you can use any custom attribute, but those will be just evaluated and inserted as attributes, unless there is any logic you may want to run inside of your [custom elements](#defining-custom-elements-in-ehtml-v3)
-
-There are some other data attributes the different elements in EHTML utilize like `data-headers`, `data-actions-on-response`, etc. Action attributes are not really expressions but rather JS code where you can directly use state from the node scope.
-
-Expressions in attributes can be evaluated on page load, but also when you call `mapToTemplate()`, `releaseTemplate()` functions.
-
-You can also use attribute `data-attributes-to-ignore="data-some-attribute-1, data-some-attribute-2"`, where you can tell ETHML to not process attributes on start and evaluate those attributes inside of custom elements let's say, or just ignore them entirely if you want.
 
 ### Basic example
 
@@ -1518,3 +1501,20 @@ Combining `this` with internal state attached to the form or button gives clean,
 Every time the user clicks **Save**, the counter stored in `internalState` increases and updates the UI.
 
 You can also use `this` to easily access any attribute that was previously declared on the same element—making it simple to read configuration values, compare old and new states, or dynamically react to your own settings. For example, inside `data-actions-on-response`, you can retrieve values such as `this.getAttribute('data-user-id')`, `this.getAttribute('value')`, or `this.getAttribute('data-mode')` without repeating them elsewhere. This eliminates duplication, keeps logic self-contained, and allows each element to behave like a tiny component whose own attributes become its configuration API.
+
+## Using EHTML Expressions Inside Elements and Templates
+
+Most of `${...}` expressions inside attributes are evaluated during activation. Some others are evaulated under certain conditions depending on the logic of a certain element.
+
+Most common attributes:
+- `data-text` attribute inserts evaluated text inside of an element (in the beginning)
+- `data-value` attaches evaluated value to input fields
+- `data-src` evaluates src attribute of such elements as img, but you can also just use `src` attribute although it may result not in the best UX, since it src with `${...}` is not valid src
+- `data-internal-state` allows you to set a state inside of your element, which you can access by `elm.internalState`
+- `data-*` - you can use any custom attribute, but those will be just evaluated and inserted as attributes, unless there is any logic you may want to run inside of your [custom elements](#defining-custom-elements-in-ehtml-v3)
+
+There are some other data attributes the different elements in EHTML utilize like `data-headers`, `data-actions-on-response`, etc. Action attributes are not really expressions but rather JS code where you can directly use state from the node scope.
+
+Expressions in attributes can be evaluated on page load, but also when you call `mapToTemplate()`, `releaseTemplate()` functions.
+
+You can also use attribute `data-attributes-to-ignore="data-some-attribute-1, data-some-attribute-2"`, where you can tell ETHML to not process attributes on start and evaluate those attributes inside of custom elements let's say, or just ignore them entirely if you want.

@@ -8,6 +8,7 @@ Contents
 - [Usage](#usage)
 - [Supported Elements](#supported-elements)
     - [`this` in elements](#this-in-elements)
+    - [Using EHTML Expressions Inside Elements and Templates](#using-ehtml-expressions-inside-elements-and-templates)
 - [Provided Actions On AJAX Response](#provided-actions-on-ajax-response)
     - [Using `this` in `data-actions-on-response`](#using-c0c-in-data-actions-on-response)
 - [Defining Custom Elements in EHTML v3](#defining-custom-elements-in-ehtml-v3)
