@@ -63,8 +63,8 @@ export default function activateNode(node) {
               event.detail.state
             )
             // Remove template after triggering it,
-            // since it's not e-reusable or does not data-reusable attribute
-            if (event.target.parentNode && !event.target.hasAttribute('data-reusable')) {
+            // since it's not e-reusable
+            if (event.target.parentNode) {
               event.target.parentNode.removeChild(event.target)
             }
           },

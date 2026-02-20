@@ -17,7 +17,6 @@ import EMarkdown from '#ehtml/E/e-markdown.js'
 import ESelect from '#ehtml/E/e-select.js'
 import ESvg from '#ehtml/E/e-svg.js'
 import EWs from '#ehtml/E/e-ws-template.js'
-import ESse from '#ehtml/E/e-sse-template.js'
 
 export default {
   Ehtml,
@@ -38,6 +37,5 @@ export default {
   EMarkdown,
   ESelect,
   ESvg,
-  EWs,
-  ESse
+  EWs  
 }

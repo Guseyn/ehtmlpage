@@ -256,7 +256,25 @@ In other attributes like `data-text` or `data-value`, you must use `${...}` beca
 
 ---
 
-### Caching
+### Caching (HTTP Level), Tiggering, Reusability
+
+You can use caching for `<e-json>` on HTTP level (your server returns cache header with 'max-age'). By adding `data-use-session-cache` attribute to `<e-json>`, it will create a cache key that will be appended to the request url as a query parameter: `?sessionCacheKey=<cacheKey>`. That cache key will generated and stored in local storage, so that they can be shared between tabs. However, once a new session started (new tab/window is opened), all the cache keys in local storage are removed, so that they will be generated again and synced bettwen tabs in the browser again. This is intentional, because it allows to invalidated potentially stale cache.
+
+When you go back and forth between tabs, session cache keys are also getting updated, and with `data-use-session-key`, you must specify `data-reusable` or `data-only-update-session-cache-on-visibility-change`.
+
+If you use `data-reusable` tag, then when you switch tabs - e-json calls method `triggerWithNewSessionCache()`, which basically makes one more request specified in `<e-json>` with new `?sessionCacheKey=<cacheKey>` and cache gets invlaidated, and then the code in `data-actions-on-response` also gets called with new data from the server.
+
+But if you don't want to call `e-json` again on each tab switch, then you can just use `data-only-update-session-cache-on-visibility-change`, it will just update session cache key for the request in `e-json` but it will not make a new request.
+
+When a user reloads the page, then cache keys are also forced to be updated on that specific page.
+
+You can also use attribute `data-do-not-run-on-activation`, this allows `e-json` to not be triggered automatically. You can trigger `e-json` yourself by calling method `trigger()` or `triggerWithNewSessionCache()`, which is very useful if you need to update cache after some CRUD operations that relates to that `e-json`. `triggerWithNewSessionCache()` also has one optional argument: `onlyUpdateSessionCache`, which is `false` by default. If you set it to `true`, then you can just update session cache key without sending a new request in `e-json`. It's useful, when you don't really need to make a request, but wish to update cache for that request.
+
+Method `trigger()` also accepts an optional argument: `triggerElm`. Trigger element gets disabled during request. It will allow to avoid double clicks and ensure that we calling `e-json` once at a time.
+
+---
+
+### Caching (Custom Implementation)
 
 `<e-json>` can use a cached response instead of making a request.  
 You define the cache **and** the source of the cache **in the same element**.

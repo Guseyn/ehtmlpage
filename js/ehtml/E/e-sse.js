@@ -14,20 +14,20 @@ export default class ESse extends HTMLTemplateElement {
   connectedCallback() {
     this.addEventListener(
       'ehtml:activated',
-      this.onEHTMLActivated,
+      this.#onEHTMLActivated,
       { once: true }
     )
   }
 
-  onEHTMLActivated() {
+  #onEHTMLActivated() {
     if (this.ehtmlActivated) {
       return
     }
     this.ehtmlActivated = true
-    this.run()
+    this.#run()
   }
 
-  run() {
+  #run() {
     const state = getNodeScopedState(this)
 
     if (!this.hasAttribute('data-src')) {
