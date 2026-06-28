@@ -611,7 +611,7 @@ data-request-url="/artist/${selectedArtist}/albums/add"
 
 ### Validation
 
-Supported attributes include:
+Supported attributes for form elements include:
 
 - `required`
 - `data-validation-pattern`
@@ -626,7 +626,9 @@ A dedicated validation section will explain these in detail.
 
 ### Optional features
 
-- **`unchecked-value`** — value to assign when a checkbox is not checked.  
+These are some optional attributes for form elements
+
+- **`data-unchecked-value`** — value to assign when a checkbox is not checked.  
 - **`data-is-query-param`** — moves a field into the URL query string instead of the JSON body.  
 - **`data-download-response-body-as-file-with-name="file.zip"`** — treats the server response body as a downloadable file.
 
