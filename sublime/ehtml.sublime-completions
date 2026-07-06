@@ -1,0 +1,334 @@
+{
+  "scope": "text.html - source",
+  "completions": [
+
+    /* ═══════════════════════════════════════════════════════════════════
+       EHTML — custom elements & templates
+       ═══════════════════════════════════════════════════════════════════ */
+
+    {
+      "trigger": "e-html",
+      "contents": "<e-html\n  data-src=\"$1\"\n  data-request-headers=\"\\${{}}\"\n  data-actions-on-progress-start=\"$2\"\n  data-actions-on-progress-end=\"$3\"\n>$0</e-html>"
+    },
+    {
+      "trigger": "e-json",
+      "contents": "<e-json\n  data-src=\"$1\"\n  data-response-name=\"$2\"\n  data-request-headers=\"\\${{}}\"\n  data-actions-on-response=\"$3\"\n  data-ajax-icon=\"$4\"\n  data-progress-bar=\"$5\"\n  data-use-session-cache\n  data-reusable\n  data-internal-state=\"\\${{ page: 1 }}\"\n  data-actions-on-progress-start=\"$6\"\n  data-actions-on-progress-end=\"$7\"\n>$0</e-json>"
+    },
+    {
+      "trigger": "e-json-view",
+      "contents": "<e-json-view\n  data-src=\"$1\"\n  data-request-headers=\"\\${{}}\"\n  data-actions-on-progress-start=\"$2\"\n  data-actions-on-progress-end=\"$3\"\n></e-json-view>"
+    },
+    {
+      "trigger": "e-markdown",
+      "contents": "<e-markdown\n  data-src=\"$1\"\n  data-request-headers=\"\\${{}}\"\n  data-apply-code-highlighting=\"true\"\n  data-apply-latex=\"false\"\n  data-actions-on-progress-start=\"$2\"\n  data-actions-on-progress-end=\"$3\"\n></e-markdown>"
+    },
+    {
+      "trigger": "e-svg",
+      "contents": "<e-svg\n  data-src=\"$1\"\n  data-request-headers=\"\\${{}}\"\n  data-actions-on-progress-start=\"$2\"\n  data-actions-on-progress-end=\"$3\"\n></e-svg>"
+    },
+    {
+      "trigger": "e-wrapper",
+      "contents": "<template\n  is=\"e-wrapper\"\n  data-src=\"$1\"\n  data-where-to-place=\"$2\"\n  data-how-to-place=\"${3:inside}\"\n  data-headers=\"\\${{}}\"\n  data-actions-on-progress-start=\"$4\"\n  data-actions-on-progress-end=\"$5\"\n>$0</template>"
+    },
+    {
+      "trigger": "e-page-with-url",
+      "contents": "<template\n  is=\"e-page-with-url\"\n  data-url-pattern=\"$1\"\n>$0</template>"
+    },
+    {
+      "trigger": "e-json-map",
+      "contents": "<template\n  is=\"e-json-map\"\n  data-src=\"$1\"\n  data-object-name=\"$2\"\n  data-request-headers=\"\\${{}}\"\n  data-ajax-icon=\"$3\"\n  data-progress-bar=\"$4\"\n  data-cache-from=\"${$5}\"\n  data-actions-on-progress-start=\"$6\"\n  data-actions-on-progress-end=\"$7\"\n>$0</template>"
+    },
+    {
+      "trigger": "e-for-each",
+      "contents": "<template\n  is=\"e-for-each\"\n  data-list-to-iterate=\"${$1}\"\n  data-item-name=\"$2\"\n  data-index-name=\"$3\"\n>$0</template>"
+    },
+    {
+      "trigger": "e-if",
+      "contents": "<template\n  is=\"e-if\"\n  data-condition-to-display=\"${$1}\"\n>$0</template>"
+    },
+    {
+      "trigger": "e-reusable",
+      "contents": "<template\n  is=\"e-reusable\"\n  id=\"$1\"\n  data-object-name=\"$2\"\n  data-internal-state=\"\\${{ $3 }}\"\n  data-append-to=\"$4\"\n  data-prepend-to=\"$5\"\n  data-insert-into=\"$6\"\n  data-release-on-load=\"$7\"\n>$0</template>"
+    },
+    {
+      "trigger": "e-ws",
+      "contents": "<template\n  is=\"e-ws\"\n  data-src=\"$1\"\n  data-socket-name=\"$2\"\n  data-connection-icon=\"$3\"\n  data-actions-on-open-connection=\"$4\"\n  data-actions-on-close-connection=\"$5\"\n  data-actions-on-progress-start=\"$6\"\n  data-actions-on-progress-end=\"$7\"\n>$0</template>"
+    },
+    {
+      "trigger": "e-sse",
+      "contents": "<template\n  is=\"e-sse\"\n  data-src=\"$1\"\n  data-event-source-name=\"$2\"\n  data-with-credentials=\"true\"\n  data-connection-icon=\"$3\"\n  data-actions-on-open-connection=\"$4\"\n>$0</template>"
+    },
+    {
+      "trigger": "e-form",
+      "contents": "<form is=\"e-form\">\n  $0\n</form>"
+    },
+    {
+      "trigger": "e-form-button",
+      "contents": "<button\n  data-request-url=\"$1\"\n  data-request-method=\"${2:POST}\"\n  data-request-headers=\"\\${{}}\"\n  data-response-name=\"${3:response}\"\n  data-socket=\"$4\"\n  data-ajax-icon=\"${5:#ajax-icon}\"\n  data-progress-bar=\"$6\"\n  data-upload-progress-bar=\"$7\"\n  data-button-ajax-text=\"${8:Loading…}\"\n  data-button-ajax-class=\"${9:loading}\"\n  data-download-response-body-as-file-with-name=\"$10\"\n  data-internal-state=\"\\${{ $11 }}\"\n  onclick=\"this.form.submit(this)\"\n  data-actions-on-response=\"$12\"\n>$0</button>"
+    },
+    {
+      "trigger": "e-form-dynamic-value",
+      "contents": "<e-form-dynamic-value\n  name=\"$1\"\n  data-bound-to=\"${$2}\"\n></e-form-dynamic-value>"
+    },
+    {
+      "trigger": "e-form-object",
+      "contents": "<e-form-object name=\"$1\">\n  $0\n</e-form-object>"
+    },
+    {
+      "trigger": "e-form-array",
+      "contents": "<e-form-array name=\"$1\">\n  $0\n</e-form-array>"
+    },
+    {
+      "trigger": "e-local-storage-value",
+      "contents": "<e-local-storage-value\n  name=\"$1\"\n  data-key=\"$2\"\n></e-local-storage-value>"
+    },
+    {
+      "trigger": "e-session-storage-value",
+      "contents": "<e-session-storage-value\n  name=\"$1\"\n  data-key=\"$2\"\n></e-session-storage-value>"
+    },
+    {
+      "trigger": "e-select",
+      "contents": "<select is=\"e-select\" name=\"$1\" value=\"$2\">\n  $0\n</select>"
+    },
+
+    /* ═══════════════════════════════════════════════════════════════════
+       e-ui — custom elements & templates
+       ═══════════════════════════════════════════════════════════════════ */
+
+    {
+      "trigger": "e-toast",
+      "contents": "<e-toast\n  data-type=\"${1:success}\"\n  data-position=\"${2:top-right}\"\n  data-hide-after-n-seconds=\"${3:5}\"\n  data-icon=\"$4\"\n  data-close-icon=\"$5\"\n></e-toast>"
+    },
+    {
+      "trigger": "e-dialog",
+      "contents": "<dialog\n  id=\"$1\"\n  is=\"e-dialog\"\n  data-size=\"${2:normal}\"\n  data-close-icon=\"$3\"\n  data-open-on-load\n  data-onopen=\"$4\"\n  data-onclose=\"$5\"\n>\n  $0\n</dialog>"
+    },
+    {
+      "trigger": "e-sidebar",
+      "contents": "<e-sidebar\n  data-side=\"${1:left}\"\n  data-state=\"${2:closed}\"\n  data-mobile-header=\"$3\"\n  data-mobile-menu-icon=\"$4\"\n  data-mobile-menu-icon-corner=\"${5:left}\"\n  data-mobile-body-overlay=\"$6\"\n>\n  $0\n</e-sidebar>"
+    },
+    {
+      "trigger": "e-tabs",
+      "contents": "<e-tabs\n  data-apply-hash-navigation\n  data-current-tab=\"$1\"\n>\n  $0\n</e-tabs>"
+    },
+    {
+      "trigger": "e-tab",
+      "contents": "<e-tab data-title=\"$1\" data-active=\"$2\">\n  $0\n</e-tab>"
+    },
+    {
+      "trigger": "e-kbd",
+      "contents": "<kbd\n  is=\"e-kbd\"\n  data-action=\"$1\"\n  data-trigger-in-inputs\n  data-absolute\n>$2</kbd>"
+    },
+    {
+      "trigger": "e-kbd-graph",
+      "contents": "<e-kbd-graph data-first-element=\"$1\">\n  $0\n</e-kbd-graph>"
+    },
+    {
+      "trigger": "e-selectable-chip",
+      "contents": "<e-selectable-chip\n  data-value=\"$1\"\n  data-selected=\"${2:false}\"\n  data-text=\"$3\"\n  data-internal-state=\"\\${{ $4 }}\"\n  onclick=\"$5\"\n>$0</e-selectable-chip>"
+    },
+    {
+      "trigger": "e-autoclick",
+      "contents": "<button\n  is=\"e-autoclick\"\n  data-condition-to-click=\"${1:true}\"\n  data-primary\n>$0</button>"
+    },
+    {
+      "trigger": "e-file-upload",
+      "contents": "<template\n  is=\"e-file-upload\"\n  data-name=\"$1\"\n  data-accept=\"$2\"\n  data-icon-src=\"$3\"\n  data-label-text=\"$4\"\n  data-action-text=\"$5\"\n  data-details-text=\"$6\"\n  data-max-size-in-mb=\"$7\"\n  data-max-number-of-files=\"$8\"\n  data-show-errors-in-toast\n  data-set-height\n  data-required\n></template>"
+    },
+    {
+      "trigger": "e-multiselect-dropdown",
+      "contents": "<template\n  is=\"e-multiselect-dropdown\"\n  data-name=\"$1\"\n  data-label=\"$2\"\n  data-internal-state=\"\\${{\n    values: $3,\n    selectedValues: $4,\n    valueDisplayFunction: function (internalState, value) { return value }\n  }}\"\n  data-selected-chip-close-icon=\"$5\"\n  data-no-results-on-search-message=\"$6\"\n  data-always-on\n>\n  <template></template>\n</template>"
+    },
+    {
+      "trigger": "e-week-picker",
+      "contents": "<template\n  is=\"e-week-picker\"\n  data-week-picker-id=\"$1\"\n  data-prev-icon=\"$2\"\n  data-next-icon=\"$3\"\n  data-prev-click=\"$4\"\n  data-next-click=\"$5\"\n  data-on-week-change=\"$6\"\n></template>"
+    },
+    {
+      "trigger": "e-tooltip",
+      "contents": "<e-tooltip data-tip=\"$1\" data-direction=\"${2:to-right}\">\n  $0\n</e-tooltip>"
+    },
+    {
+      "trigger": "e-scrollable",
+      "contents": "<e-scrollable data-show-scrollbar data-padding=\"$1\">\n  $0\n</e-scrollable>"
+    },
+    {
+      "trigger": "e-user-avatar",
+      "contents": "<div\n  is=\"e-user-avatar\"\n  data-size=\"${1:md}\"\n  data-font-size=\"$2\"\n  style=\"$3\"\n  data-text=\"${$4}\"\n></div>"
+    },
+
+    /* ═══════════════════════════════════════════════════════════════════
+       EHTML — JS action attributes (raw JS in attribute value)
+       ═══════════════════════════════════════════════════════════════════ */
+
+    { "trigger": "data-actions-on-response", "contents": "data-actions-on-response=\"$1\"" },
+    { "trigger": "data-actions-on-progress-start", "contents": "data-actions-on-progress-start=\"$1\"" },
+    { "trigger": "data-actions-on-progress-end", "contents": "data-actions-on-progress-end=\"$1\"" },
+    { "trigger": "data-actions-on-progress", "contents": "data-actions-on-progress=\"$1\"" },
+    { "trigger": "data-actions-on-open-connection", "contents": "data-actions-on-open-connection=\"$1\"" },
+    { "trigger": "data-actions-on-close-connection", "contents": "data-actions-on-close-connection=\"$1\"" },
+
+    /* ═══════════════════════════════════════════════════════════════════
+       EHTML — JS expression attributes (${...} or ${{...}})
+       ═══════════════════════════════════════════════════════════════════ */
+
+    { "trigger": "data-internal-state", "contents": "data-internal-state=\"\\${{\n  $1\n}}\"" },
+    { "trigger": "data-request-headers", "contents": "data-request-headers=\"\\${{}}\"" },
+    { "trigger": "data-headers", "contents": "data-headers=\"\\${{ $1 }}\"" },
+    { "trigger": "data-bound-to", "contents": "data-bound-to=\"${$1}\"" },
+    { "trigger": "data-cache-from", "contents": "data-cache-from=\"${$1}\"" },
+    { "trigger": "data-condition-to-display", "contents": "data-condition-to-display=\"${$1}\"" },
+    { "trigger": "data-list-to-iterate", "contents": "data-list-to-iterate=\"${$1}\"" },
+    { "trigger": "data-text", "contents": "data-text=\"${$1}\"" },
+    { "trigger": "data-value", "contents": "data-value=\"${$1}\"" },
+    { "trigger": "data-inner-html", "contents": "data-inner-html=\"${$1}\"" },
+    { "trigger": "data-checked", "contents": "data-checked=\"${$1}\"" },
+    { "trigger": "data-disabled", "contents": "data-disabled=\"${$1}\"" },
+    { "trigger": "data-append-to", "contents": "data-append-to=\"${$1}\"" },
+    { "trigger": "data-prepend-to", "contents": "data-prepend-to=\"${$1}\"" },
+    { "trigger": "data-insert-into", "contents": "data-insert-into=\"${$1}\"" },
+    { "trigger": "data-place-instead", "contents": "data-place-instead=\"${$1}\"" },
+
+    /* ═══════════════════════════════════════════════════════════════════
+       e-ui — JS action attributes
+       ═══════════════════════════════════════════════════════════════════ */
+
+    { "trigger": "data-onopen", "contents": "data-onopen=\"$1\"" },
+    { "trigger": "data-onclose", "contents": "data-onclose=\"$1\"" },
+    { "trigger": "data-action", "contents": "data-action=\"$1\"" },
+    { "trigger": "data-prev-click", "contents": "data-prev-click=\"$1\"" },
+    { "trigger": "data-next-click", "contents": "data-next-click=\"$1\"" },
+    { "trigger": "data-on-week-change", "contents": "data-on-week-change=\"$1\"" },
+    { "trigger": "data-condition-to-click", "contents": "data-condition-to-click=\"${$1}\"" },
+
+    /* ═══════════════════════════════════════════════════════════════════
+       EHTML — fetch / form / template metadata
+       ═══════════════════════════════════════════════════════════════════ */
+
+    { "trigger": "data-src", "contents": "data-src=\"${$1}\"" },
+    { "trigger": "data-request-url", "contents": "data-request-url=\"${$1}\"" },
+    { "trigger": "data-request-method", "contents": "data-request-method=\"${1:POST}\"" },
+    { "trigger": "data-response-name", "contents": "data-response-name=\"$1\"" },
+    { "trigger": "data-object-name", "contents": "data-object-name=\"$1\"" },
+    { "trigger": "data-item-name", "contents": "data-item-name=\"$1\"" },
+    { "trigger": "data-index-name", "contents": "data-index-name=\"$1\"" },
+    { "trigger": "data-socket", "contents": "data-socket=\"$1\"" },
+    { "trigger": "data-socket-name", "contents": "data-socket-name=\"$1\"" },
+    { "trigger": "data-event-source-name", "contents": "data-event-source-name=\"$1\"" },
+    { "trigger": "data-event-source", "contents": "data-event-source=\"$1\"" },
+    { "trigger": "data-event", "contents": "data-event=\"$1\"" },
+    { "trigger": "data-name", "contents": "data-name=\"$1\"" },
+    { "trigger": "data-url-pattern", "contents": "data-url-pattern=\"$1\"" },
+    { "trigger": "data-where-to-place", "contents": "data-where-to-place=\"$1\"" },
+    { "trigger": "data-how-to-place", "contents": "data-how-to-place=\"${1:inside}\"" },
+    { "trigger": "data-key", "contents": "data-key=\"$1\"" },
+    { "trigger": "data-reusable", "contents": "data-reusable" },
+    { "trigger": "data-use-session-cache", "contents": "data-use-session-cache" },
+    { "trigger": "data-only-update-session-cache-on-visibility-change", "contents": "data-only-update-session-cache-on-visibility-change" },
+    { "trigger": "data-do-not-run-on-activation", "contents": "data-do-not-run-on-activation" },
+    { "trigger": "data-release-on-load", "contents": "data-release-on-load=\"$1\"" },
+    { "trigger": "data-attributes-to-ignore", "contents": "data-attributes-to-ignore=\"$1\"" },
+    { "trigger": "data-no-ehtml", "contents": "data-no-ehtml=\"true\"" },
+
+    /* ═══════════════════════════════════════════════════════════════════
+       EHTML — AJAX / progress UX
+       ═══════════════════════════════════════════════════════════════════ */
+
+    { "trigger": "data-ajax-icon", "contents": "data-ajax-icon=\"$1\"" },
+    { "trigger": "data-progress-bar", "contents": "data-progress-bar=\"$1\"" },
+    { "trigger": "data-upload-progress-bar", "contents": "data-upload-progress-bar=\"$1\"" },
+    { "trigger": "data-read-progress-bar", "contents": "data-read-progress-bar=\"$1\"" },
+    { "trigger": "data-button-ajax-text", "contents": "data-button-ajax-text=\"$1\"" },
+    { "trigger": "data-button-ajax-class", "contents": "data-button-ajax-class=\"$1\"" },
+    { "trigger": "data-connection-icon", "contents": "data-connection-icon=\"$1\"" },
+    { "trigger": "data-download-response-body-as-file-with-name", "contents": "data-download-response-body-as-file-with-name=\"$1\"" },
+
+    /* ═══════════════════════════════════════════════════════════════════
+       EHTML — form validation
+       ═══════════════════════════════════════════════════════════════════ */
+
+    { "trigger": "data-validation-pattern", "contents": "data-validation-pattern=\"$1\"" },
+    { "trigger": "data-validation-error-class-for-element", "contents": "data-validation-error-class-for-element=\"$1\"" },
+    { "trigger": "data-validation-error-class-for-message-box", "contents": "data-validation-error-class-for-message-box=\"$1\"" },
+    { "trigger": "data-validation-bad-format-error-message", "contents": "data-validation-bad-format-error-message=\"$1\"" },
+    { "trigger": "data-validation-absence-error-message", "contents": "data-validation-absence-error-message=\"$1\"" },
+    { "trigger": "data-validation-min-files-number", "contents": "data-validation-min-files-number=\"$1\"" },
+    { "trigger": "data-is-query-param", "contents": "data-is-query-param=\"true\"" },
+    { "trigger": "data-unchecked-value", "contents": "data-unchecked-value=\"$1\"" },
+    { "trigger": "data-do-not-trigger-on-enter", "contents": "data-do-not-trigger-on-enter" },
+    { "trigger": "data-ignore", "contents": "data-ignore" },
+
+    /* ═══════════════════════════════════════════════════════════════════
+       e-ui — component config
+       ═══════════════════════════════════════════════════════════════════ */
+
+    { "trigger": "data-tip", "contents": "data-tip=\"$1\"" },
+    { "trigger": "data-direction", "contents": "data-direction=\"${1:to-right}\"" },
+    { "trigger": "data-type", "contents": "data-type=\"${1:success}\"" },
+    { "trigger": "data-position", "contents": "data-position=\"${1:top-right}\"" },
+    { "trigger": "data-hide-after-n-seconds", "contents": "data-hide-after-n-seconds=\"$1\"" },
+    { "trigger": "data-close-icon", "contents": "data-close-icon=\"$1\"" },
+    { "trigger": "data-open-on-load", "contents": "data-open-on-load" },
+    { "trigger": "data-size", "contents": "data-size=\"${1:md}\"" },
+    { "trigger": "data-side", "contents": "data-side=\"${1:left}\"" },
+    { "trigger": "data-state", "contents": "data-state=\"${1:closed}\"" },
+    { "trigger": "data-mobile-header", "contents": "data-mobile-header=\"$1\"" },
+    { "trigger": "data-mobile-menu-icon", "contents": "data-mobile-menu-icon=\"$1\"" },
+    { "trigger": "data-mobile-body-overlay", "contents": "data-mobile-body-overlay=\"$1\"" },
+    { "trigger": "data-title", "contents": "data-title=\"$1\"" },
+    { "trigger": "data-active", "contents": "data-active=\"${1:true}\"" },
+    { "trigger": "data-selected", "contents": "data-selected=\"${1:true}\"" },
+    { "trigger": "data-apply-hash-navigation", "contents": "data-apply-hash-navigation" },
+    { "trigger": "data-current-tab", "contents": "data-current-tab=\"$1\"" },
+    { "trigger": "data-trigger-in-inputs", "contents": "data-trigger-in-inputs" },
+    { "trigger": "data-absolute", "contents": "data-absolute" },
+    { "trigger": "data-first-element", "contents": "data-first-element=\"$1\"" },
+    { "trigger": "data-click-on-enter", "contents": "data-click-on-enter" },
+    { "trigger": "data-left", "contents": "data-left=\"$1\"" },
+    { "trigger": "data-right", "contents": "data-right=\"$1\"" },
+    { "trigger": "data-up", "contents": "data-up=\"$1\"" },
+    { "trigger": "data-down", "contents": "data-down=\"$1\"" },
+    { "trigger": "data-accept", "contents": "data-accept=\"$1\"" },
+    { "trigger": "data-icon-src", "contents": "data-icon-src=\"$1\"" },
+    { "trigger": "data-label-text", "contents": "data-label-text=\"$1\"" },
+    { "trigger": "data-action-text", "contents": "data-action-text=\"$1\"" },
+    { "trigger": "data-details-text", "contents": "data-details-text=\"$1\"" },
+    { "trigger": "data-max-size-in-mb", "contents": "data-max-size-in-mb=\"$1\"" },
+    { "trigger": "data-max-number-of-files", "contents": "data-max-number-of-files=\"$1\"" },
+    { "trigger": "data-show-errors-in-toast", "contents": "data-show-errors-in-toast" },
+    { "trigger": "data-show-errors-in-toast-in-dialog", "contents": "data-show-errors-in-toast-in-dialog" },
+    { "trigger": "data-set-height", "contents": "data-set-height" },
+    { "trigger": "data-hide-upload-file-name", "contents": "data-hide-upload-file-name" },
+    { "trigger": "data-label", "contents": "data-label=\"$1\"" },
+    { "trigger": "data-selected-chip-close-icon", "contents": "data-selected-chip-close-icon=\"$1\"" },
+    { "trigger": "data-no-results-on-search-message", "contents": "data-no-results-on-search-message=\"$1\"" },
+    { "trigger": "data-always-on", "contents": "data-always-on" },
+    { "trigger": "data-prev-icon", "contents": "data-prev-icon=\"$1\"" },
+    { "trigger": "data-next-icon", "contents": "data-next-icon=\"$1\"" },
+    { "trigger": "data-week-picker-id", "contents": "data-week-picker-id=\"$1\"" },
+    { "trigger": "data-show-scrollbar", "contents": "data-show-scrollbar" },
+
+    /* ═══════════════════════════════════════════════════════════════════
+       e-ui — layout / typography utility attributes (is="e-*")
+       ═══════════════════════════════════════════════════════════════════ */
+
+    { "trigger": "data-gap", "contents": "data-gap=\"${1:md}\"" },
+    { "trigger": "data-padding", "contents": "data-padding=\"${1:md}\"" },
+    { "trigger": "data-margin", "contents": "data-margin=\"$1\"" },
+    { "trigger": "data-margin-top", "contents": "data-margin-top=\"$1\"" },
+    { "trigger": "data-margin-bottom", "contents": "data-margin-bottom=\"$1\"" },
+    { "trigger": "data-width", "contents": "data-width=\"${1:full}\"" },
+    { "trigger": "data-font-size", "contents": "data-font-size=\"${1:sm}\"" },
+    { "trigger": "data-font-weight", "contents": "data-font-weight=\"$1\"" },
+    { "trigger": "data-color", "contents": "data-color=\"$1\"" },
+    { "trigger": "data-text-align", "contents": "data-text-align=\"$1\"" },
+    { "trigger": "data-text-case", "contents": "data-text-case=\"$1\"" },
+    { "trigger": "data-flex-direction", "contents": "data-flex-direction=\"$1\"" },
+    { "trigger": "data-justify-content", "contents": "data-justify-content=\"$1\"" },
+    { "trigger": "data-align-items", "contents": "data-align-items=\"$1\"" },
+    { "trigger": "data-keep-flex-direction-row-in-mobile", "contents": "data-keep-flex-direction-row-in-mobile" },
+    { "trigger": "data-border", "contents": "data-border" },
+    { "trigger": "data-border-radius", "contents": "data-border-radius=\"$1\"" },
+    { "trigger": "data-primary", "contents": "data-primary" },
+    { "trigger": "data-underlined", "contents": "data-underlined" }
+  ]
+}
