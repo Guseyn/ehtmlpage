@@ -202,7 +202,7 @@ variables:
       # EHTML evaluated string / HTML attributes
     | data-text | data-value | data-inner-html | data-checked | data-disabled
       # EHTML dynamic URLs and sockets
-    | data-request-url | data-socket | data-src
+    # | data-request-url | data-socket | data-src
       # e-ui JS action hooks
     | data-onopen | data-onclose | data-action
     | data-prev-click | data-next-click | data-on-week-change
