@@ -440,6 +440,7 @@ How it works:
 - `data-list-to-iterate` — the list you want to loop through.  
 - `data-item-name` — variable name for each item.  
 - Each item also has an automatic `index` property (starting at 1).  
+- `data-index-name` — variable name for each item index, if you prefer not to use `index` property name in the item.
 - The `<template>` is duplicated once per list item, replacing its own tag.
 
 The output is the template repeated for each song.
