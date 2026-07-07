@@ -256,7 +256,7 @@ In other attributes like `data-text` or `data-value`, you must use `${...}` beca
 
 ---
 
-### Caching (HTTP Level), Tiggering, Reusability
+### Caching (HTTP Level), Triggering, Reusability
 
 You can use caching for `<e-json>` on HTTP level (your server returns cache header with 'max-age'). By adding `data-use-session-cache` attribute to `<e-json>`, it will create a cache key that will be appended to the request url as a query parameter: `?sessionCacheKey=<cacheKey>`. That cache key will generated and stored in local storage, so that they can be shared between tabs. However, once a new session started (new tab/window is opened), all the cache keys in local storage are removed, so that they will be generated again and synced bettwen tabs in the browser again. This is intentional, because it allows to invalidated potentially stale cache.
 
