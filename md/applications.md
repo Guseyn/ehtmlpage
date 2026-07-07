@@ -7,7 +7,7 @@
   </s-row>
   <s-row>
     <a href="https://instruxmusic.com">
-      <img src="https://instruxmusic.com/images/stacked-logo.svg?v=832b2dd2" style="height: 48px; width: auto;">Instrux Music
+      <img src="https://instruxmusic.com/images/stacked-logo.svg" style="height: 48px; width: auto;">Instrux Music
     </a>
   </s-row>
   <s-row>
