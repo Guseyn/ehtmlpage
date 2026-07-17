@@ -207,6 +207,7 @@ variables:
     | data-onopen | data-onclose | data-action
     | data-prev-click | data-next-click | data-on-week-change
     | data-condition-to-click
+    | data-day-body-onclick | data-event-onclick
     ){{attribute_name_break}}
 
 ###############################################################################

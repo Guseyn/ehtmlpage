@@ -13,7 +13,11 @@ const ATTRIBUTE_NAMES_TO_IGNORE_SINCE_THEY_MUST_BE_RESOLVED_IN_THEIR_OWN_SCOPE_A
   'data-cache-from',
   'data-request-headers',
   'data-request-url',
-  'data-socket'
+  'data-socket',
+  'data-prepend-to',
+  'data-append-to',
+  'data-insert-into',
+  'data-place-instead'
 ]
 
 const TAGS_WITH_SRC_ATTRIBUTE = [
@@ -122,10 +126,24 @@ export default function processAttributes(node) {
     const ignore =
       ATTRIBUTE_NAMES_TO_IGNORE_SINCE_THEY_MUST_BE_RESOLVED_IN_THEIR_OWN_SCOPE_AND_TIME.includes(name) ||
       (name === 'data-src' && !TAGS_WITH_SRC_ATTRIBUTE.includes(tag)) ||
-      NATIVE_EVENT_LISTENERS.includes(name)
+      NATIVE_EVENT_LISTENERS.includes(name) ||
+      (
+        node.hasAttribute('data-attributes-to-ignore') &&
+        node.getAttribute('data-attributes-to-ignore')
+          .split(',')
+          .map(a => a.trim())
+          .includes(name)
+      )
 
     if (ignore) {
       continue
+    }
+
+    if (name === 'data-enter-on-click') {
+      node.addEventListener('keydown', () => {
+        event.preventDefault()
+        this.node.click()
+      })
     }
 
     // not a template expression?
@@ -137,7 +155,7 @@ export default function processAttributes(node) {
     const state = getNodeScopedState(node)
 
     if (name === 'data-internal-state') {
-      const evaluated = evaluatedValueWithParamsFromState(rawValue, state, node)
+      const evaluated = evaluatedValueWithParamsFromState(rawValue, state, node, false)
       node.internalState = evaluated
       node.setAttribute(
         name,

@@ -4,8 +4,9 @@
   "description": "EHTML Web Page",
   "type": "module",
   "scripts": {
-    "server": "node main",
+    "start": "node main",
     "ehtml:update": "yes | cp -rf ../../my-projects/EHTML/src/ js/ehtml",
+    "e-ui:update": "yes | cp -rf ../../my-projects/e-ui/static/js/e-ui/ js/e-ui/ && cp -rf ../../my-projects/e-ui/static/css/e-ui.css css/e-ui.css",
     "nodes:update": "yes | cp -rf ../../my-projects/nodes.js/nodes/ nodes/"
   },
   "repository": {

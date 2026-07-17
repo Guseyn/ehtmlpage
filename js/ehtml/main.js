@@ -405,7 +405,7 @@ window.activateNode = activateNode
  *        1. We run a full-tree activation on <body>.
  *           This is the *only* time EHTML walks the entire DOM.
  *
- *        2. Then the MutationObserver is turned ON.
+ *        2. MutationObserver is turned ON.
  *
  *  After this bootstrap:
  *
