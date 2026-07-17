@@ -20,7 +20,7 @@
     },
     {
       "trigger": "e-markdown",
-      "contents": "<e-markdown\n  data-src=\"$1\"\n  data-request-headers=\"\\${{}}\"\n  data-apply-code-highlighting=\"true\"\n  data-apply-latex=\"false\"\n  data-actions-on-progress-start=\"$2\"\n  data-actions-on-progress-end=\"$3\"\n></e-markdown>"
+      "contents": "<e-markdown\n  data-src=\"$1\"\n  data-apply-e-ui=\"true\"\n  data-request-headers=\"\\${{}}\"\n  data-apply-code-highlighting=\"true\"\n  data-apply-latex=\"false\"\n  data-actions-on-progress-start=\"$2\"\n  data-actions-on-progress-end=\"$3\"\n></e-markdown>"
     },
     {
       "trigger": "e-svg",

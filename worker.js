@@ -11,7 +11,7 @@ server(
   app({
     indexFile: './index.html', 
     static: [
-      src(/^\/(html|css|js|image|md|font)/, {
+      src(/^\/(html|css|js|image|md|font|sublime)/, {
         baseFolder
       })
     ]

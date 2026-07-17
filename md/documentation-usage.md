@@ -13,6 +13,7 @@ Contents
     - [Using `this` in `data-actions-on-response`](#using-c0c-in-data-actions-on-response)
 - [Defining Custom Elements in EHTML v3](#defining-custom-elements-in-ehtml-v3)
 - [Defining Custom Elements in EHTML v3 (Customized Built-Ins)](#defining-custom-elements-in-ehtml-v3-customized-built-ins)
+- [Attributes Reference](#attributes-reference)
 - [Some Tips To Improve Performance](#some-tips-to-improve-performance)
 
 # Usage

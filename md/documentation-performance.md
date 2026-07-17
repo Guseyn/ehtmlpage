@@ -1,3 +1,9 @@
+<a id="attributes-reference"></a>
+
+**[Attributes Reference](/html/attributes.html)** — a dedicated page that lists every EHTML attribute: how common `data-*` attributes are evaluated during activation (via `processAttributes.js`), which ones are ignored and why, and a per-element breakdown of all supported attributes with a short description of what each one does.
+
+<hr>
+
 # Some Tips To Improve Performance
 
 1) As it's been mentioned, you can turn on/off the `MutationObserver` in **EHTML** whenever needed:
