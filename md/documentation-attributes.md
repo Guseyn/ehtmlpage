@@ -30,60 +30,61 @@ Contents
 
 # Common attributes
 
-These attributes can appear on **any** HTML element. During activation, `processAttributes.js` walks every attribute on the node once.
+These attributes can appear on **any** HTML element. When EHTML activates a node, it walks every attribute once and decides how to handle each one.
 
 ## How evaluation works
 
-1. **Activation** — When EHTML activates a node, `processAttributes()` runs exactly once (guarded by `node.ehtmlAttributesProcessed`).
-2. **Expression detection** — An attribute is evaluated only if its value contains `${…}`. Attributes without template expressions are left as-is (except `data-enter-on-click`, which is always processed).
-3. **Scoped state** — Expressions are evaluated against scoped state from `getNodeScopedState(node)` — the state object available in the current template scope (from `e-for-each`, `mapToTemplate`, etc.).
-4. **Ignored attributes** — Some attributes are skipped during this pass because the element that owns them evaluates them later, at request/trigger time. See the list below.
-5. **Special transforms** — A few attributes are not simply written back to the DOM; they are converted into native properties, text nodes, or internal state. See the table below.
-6. **Default behavior** — Any other attribute with `${…}` is evaluated and written back with `setAttribute(name, evaluatedString)`.
-7. **Re-evaluation** — When state changes, `observeNodeAttributes.js` re-evaluates a subset of attributes (same ignore rules, minus placement attributes). It does not re-run `data-internal-state` or `data-attributes-to-ignore`.
+1. **Expression detection** — An attribute is evaluated only if its value contains `${…}`. Attributes without `${…}` are left unchanged.
+2. **Scoped state** — `${…}` expressions are evaluated against the state available in the current scope (for example, from `e-for-each` or when a template is released with data).
+3. **Three outcomes** — Each attribute falls into one of three groups below: **ignored**, **special transform**, or **default** (evaluate and write back to the DOM).
 
-## Attributes ignored during `processAttributes`
+## Ignored attributes
 
-These are **not** evaluated at activation time. The owning element or action handler resolves them in its own scope and timing:
+These are **not** evaluated during the common attribute pass. The element or action that owns them resolves them later, in its own scope and at the right time:
 
-- **`data-actions-on-response`** — Evaluated when an AJAX/WebSocket/SSE response arrives.
-- **`data-actions-on-progress-start`** — Evaluated when a loading operation starts.
-- **`data-actions-on-progress-end`** — Evaluated when a loading operation finishes.
-- **`data-condition-to-display`** — Evaluated by `<template is="e-if">`.
-- **`data-list-to-iterate`** — Evaluated by `<template is="e-for-each">`.
-- **`data-item-name`** — Evaluated by `<template is="e-for-each">`.
-- **`data-bound-to`** — Evaluated by `<e-form-dynamic-value>` at submit time.
-- **`data-cache-from`** — Evaluated by `<e-json>` when reading cached data.
-- **`data-request-headers`** — Evaluated at HTTP request time.
-- **`data-request-url`** — Evaluated by `<form is="e-form">` at submit time.
-- **`data-socket`** — Evaluated by socket-aware elements at runtime.
-- **`data-prepend-to`** — Evaluated when a template is triggered/released.
-- **`data-append-to`** — Same.
-- **`data-insert-into`** — Same.
-- **`data-place-instead`** — Same.
-- **`data-src`** — Ignored on tags that do **not** have a native `src` attribute (see exception below).
-- **Native `on*` event attributes** — `onclick`, `onchange`, `onload`, etc. are never evaluated by EHTML.
-- **Names listed in `data-attributes-to-ignore`** — Comma-separated list on the same node; each listed name is skipped.
+- **`data-actions-on-response`**
+- **`data-actions-on-progress-start`**
+- **`data-actions-on-progress-end`**
+- **`data-condition-to-display`**
+- **`data-list-to-iterate`**
+- **`data-item-name`**
+- **`data-bound-to`**
+- **`data-cache-from`**
+- **`data-request-headers`**
+- **`data-request-url`**
+- **`data-socket`**
+- **`data-prepend-to`**
+- **`data-append-to`**
+- **`data-insert-into`**
+- **`data-place-instead`**
+- **`data-src`** — Ignored on tags that do **not** have a native `src` attribute. On src-capable tags (`audio`, `embed`, `iframe`, `img`, `input`, `script`, `source`, `track`, `video`, `midi-player`) it is processed as a special case (see below).
+- **Native `on*` event attributes** — `onclick`, `onchange`, `onload`, etc.
+- **Any name listed in `data-attributes-to-ignore`** — Comma-separated list on the same node.
 
-**`data-src` exception:** On tags with native `src` (`audio`, `embed`, `iframe`, `img`, `input`, `script`, `source`, `track`, `video`, `midi-player`), `data-src` **is** processed normally.
+## Special-case attributes
 
-## Special attribute transforms
+These are handled differently from a plain `${…}` evaluation — they update the DOM in a specific way and usually remove themselves afterward:
 
-- **`data-enter-on-click`** — Processed even without `${…}`. Adds a `keydown` listener that calls `click()` on the node (intended for keyboard activation of clickable elements).
-- **`data-internal-state`** — Evaluates the expression as a JavaScript value (object mode). Stores the result on `node.internalState`. Replaces the attribute with a placeholder message. Used by custom elements and `<e-markdown>` to skip fetching when state is already available.
-- **`data-text`** — Evaluates to a string, inserts it as the first text child, removes the attribute.
-- **`data-value`** — Evaluates to a string/number, sets `node.value` (coerces to `Number` for `input[type="number"]`), removes the attribute.
-- **`data-src`** — On src-capable tags: evaluates, sets native `src`, removes `data-src`.
+- **`data-enter-on-click`** — Adds keyboard activation: pressing a key triggers a click on the element.
+- **`data-internal-state`** — Evaluates the expression and stores the result as internal state on the element (accessible to custom elements and elements like `<e-markdown>` that can render from it instead of fetching).
+- **`data-text`** — Evaluates to a string, inserts it as the first text child of the element, removes the attribute.
+- **`data-value`** — Evaluates to a string or number, sets the element's `value` property (numbers are coerced for `input[type="number"]`), removes the attribute.
+- **`data-src`** — On src-capable tags only: evaluates, sets native `src`, removes `data-src`.
 - **`data-inner-html`** — Evaluates, sets `innerHTML`, removes the attribute.
 - **`data-disabled`** — On `input`, `select`, `textarea`, `button`: if the evaluated value is `'true'`, sets native `disabled`.
 - **`data-checked`** — On `input[type="checkbox"]`: if `'true'`, sets `checked="checked"`, removes the attribute.
 - **`disabled`** — If the evaluated value is `'false'`, removes native `disabled`.
-- **`data-attributes-to-ignore`** — Comma-separated attribute names to skip during processing on this node.
-- **Default** — Any other attribute containing `${…}`: evaluate and call `setAttribute(name, evaluatedString)`.
+- **`data-attributes-to-ignore`** — Comma-separated attribute names to exclude from processing on this node.
 
-## Global opt-out attributes
+## Default behavior
 
-- **`data-no-ehtml="true"`** — Skips EHTML activation for this node and all its descendants. Improves performance when a subtree does not need EHTML processing.
+**Any other attribute** whose value contains `${…}` is evaluated against scoped state and written back to the DOM with the same attribute name — for example `class`, `style`, `href`, `data-*` attributes not listed above, and so on. The `${…}` placeholders are replaced with their evaluated values; the attribute stays on the element.
+
+Attributes without `${…}` that are not in the ignored or special-case lists are left as-is.
+
+## Opt-out
+
+- **`data-no-ehtml="true"`** — Skips EHTML activation for this node and all its descendants.
 
 ---
 
@@ -91,8 +92,8 @@ These are **not** evaluated at activation time. The owning element or action han
 
 Plain `<template>` elements (without `is`) support template release and placement.
 
-- **`data-release-on-load`** — If present, auto-triggers the template on activation. Requires `data-object-name`. The template is removed from the DOM after release (not reusable).
-- **`data-object-name`** — State key used when mapping/releasing the template. Required with `data-release-on-load`. Required by `mapToTemplate()` when passing an object.
+- **`data-release-on-load`** — If present, auto-releases the template on activation. Requires `data-object-name`. The template is removed from the DOM after release (not reusable).
+- **`data-object-name`** — State key used when releasing the template with data. Required with `data-release-on-load`.
 - **`data-prepend-to`** — CSS selector (or `${…}` expression resolving to an element). Clones template content and prepends it into the target.
 - **`data-append-to`** — Same as above, but appends cloned content.
 - **`data-insert-into`** — Clears the target's `innerHTML`, then appends cloned content.
@@ -117,13 +118,13 @@ Fetches an HTML fragment and inserts it into the page.
 
 Fetches markdown, converts it to HTML, and inserts it into the page.
 
-- **`data-src`** *(required unless `internalState` is set)* — GET URL for the markdown source. Supports `${…}`.
+- **`data-src`** *(required unless internal state is provided via `data-internal-state`)* — GET URL for the markdown source. Supports `${…}`.
 - **`data-headers`** — Request headers object expression. Default: `'${{}}'`.
 - **`data-apply-code-highlighting`** — Enables syntax highlighting for fenced code blocks.
 - **`data-apply-latex`** — Enables KaTeX/LaTeX rendering via showdown-katex.
 - **`data-actions-on-progress-start`** — Actions to run before the fetch starts.
 - **`data-actions-on-progress-end`** — Actions to run after rendering completes.
-- **`data-internal-state`** — *(common attribute)* If set, skips the fetch and renders markdown from `node.internalState` directly.
+- **`data-internal-state`** — *(common attribute)* If set, skips the fetch and renders markdown from the element's internal state.
 
 ---
 
@@ -143,8 +144,8 @@ Fetches SVG markup and inserts it into the page.
 Fetches JSON (or receives it via WebSocket/SSE/cache) and runs response actions.
 
 - **`data-src`** *(required for AJAX mode)* — GET URL. Supports `${…}`.
-- **`data-socket`** — WebSocket mode: listen on `window.__EHTML_WEB_SOCKETS__[name]` for incoming messages.
-- **`data-event-source`** — SSE mode: listen on `window.__EHTML_SERVER_EVENT_SOURCES__[name]`.
+- **`data-socket`** — WebSocket mode: listen on a named WebSocket connection for incoming messages.
+- **`data-event-source`** — SSE mode: listen on a named Server-Sent Events connection.
 - **`data-event`** — SSE: specific event name to listen for (default: `onmessage`).
 - **`data-cache-from`** — Skip network; evaluate expression to get a cached response object and run actions immediately.
 - **`data-request-headers`** — GET request headers. Default: `'${{}}'`.
@@ -154,10 +155,10 @@ Fetches JSON (or receives it via WebSocket/SSE/cache) and runs response actions.
 - **`data-actions-on-progress-end`** — Actions after an AJAX response completes.
 - **`data-progress-bar`** — CSS selector for a download `<progress>` element.
 - **`data-ajax-icon`** — CSS selector for a loading icon shown during the request.
-- **`data-do-not-run-on-activation`** — Skip automatic `trigger()` on activation.
+- **`data-do-not-run-on-activation`** — Do not fetch automatically when the element is activated.
 - **`data-reusable`** — Keep the element in the DOM after response (do not unwrap children). Required with session cache (unless only-update mode).
 - **`data-use-session-cache`** — Append a `sessionCacheKey` query param; manage keys in `localStorage`.
-- **`data-only-update-session-cache-on-visibility-change`** — With session cache: refresh the cache key when the tab becomes visible, without re-fetching unless manually triggered.
+- **`data-only-update-session-cache-on-visibility-change`** — With session cache: refresh the cache key when the tab becomes visible, without re-fetching.
 
 ---
 
@@ -174,12 +175,12 @@ Fetches JSON and pretty-prints it inside the element.
 
 # `<template is="e-json-map">`
 
-Fetches JSON (or listens on a socket), then calls `mapToTemplate()` to release the template with the response as state.
+Fetches JSON (or listens on a socket), then releases the template with the response as state.
 
 - **`data-src`** *(required for AJAX mode)* — GET URL. Supports `${…}`.
-- **`data-socket`** — Socket mode: `message` events are passed to `mapToTemplate`.
+- **`data-socket`** — Socket mode: incoming messages release the template with the message as state.
 - **`data-request-headers`** — GET request headers. Default: `'${{}}'`.
-- **`data-object-name`** *(required for mapping)* — State key for the response object in `mapToTemplate`.
+- **`data-object-name`** *(required)* — State key for the response object when the template is released.
 - **`data-ajax-icon`** — CSS selector for a loading icon.
 - **`data-progress-bar`** — CSS selector for a download progress element.
 - **`data-actions-on-progress-start`** — Actions before the AJAX fetch starts.
@@ -209,10 +210,10 @@ Loops over an array and releases the template once per item.
 
 # `<template is="e-reusable">`
 
-Stays in the DOM and can be triggered repeatedly via `ehtml:template-triggered` or `mapToTemplate()`.
+Stays in the DOM and can be released repeatedly with new state.
 
-- **`data-release-on-load`** — If `'true'`, auto-triggers on activation.
-- **`data-object-name`** — State key populated from `internalState` (or `{}`) on auto-release.
+- **`data-release-on-load`** — If `'true'`, auto-releases on activation.
+- **`data-object-name`** — State key populated from internal state (or an empty object) on auto-release.
 - **`data-prepend-to`** — Placement target on trigger (CSS selector or `${…}` expression).
 - **`data-append-to`** — Same.
 - **`data-insert-into`** — Same.
@@ -224,7 +225,7 @@ Stays in the DOM and can be triggered repeatedly via `ehtml:template-triggered` 
 
 URL-aware page template: matches the current URL against a pattern and releases content with extracted params.
 
-- **`data-url-pattern`** *(required)* — URL pattern with `{param}` placeholders. Populates `window.urlParams` from the current location, then replaces the template with its content.
+- **`data-url-pattern`** *(required)* — URL pattern with `{param}` placeholders. Extracts params from the current location into `urlParams`, then replaces the template with its content.
 
 ---
 
@@ -246,7 +247,7 @@ Fetches an outer HTML layout and places template content into a slot inside it.
 Opens a WebSocket connection and registers it globally.
 
 - **`data-src`** *(required)* — WebSocket URL. Supports `${…}`.
-- **`data-socket-name`** *(required)* — Key in `window.__EHTML_WEB_SOCKETS__`.
+- **`data-socket-name`** *(required)* — Name under which the connection is registered for use by other elements (for example, `<e-json>` or `<form is="e-form">`).
 - **`data-connection-icon`** — CSS selector; shown while connecting, hidden on open.
 - **`data-actions-on-progress-start`** — Actions when the connection attempt starts.
 - **`data-actions-on-progress-end`** — Actions when the connection opens (after content is replaced).
@@ -260,8 +261,8 @@ Opens a WebSocket connection and registers it globally.
 Opens a Server-Sent Events connection and registers it globally.
 
 - **`data-src`** *(required)* — EventSource URL. Supports `${…}`.
-- **`data-event-source-name`** *(required)* — Key in `window.__EHTML_SERVER_EVENT_SOURCES__`.
-- **`data-with-credentials`** — If `'true'`, passes `{ withCredentials: true }` to `EventSource`.
+- **`data-event-source-name`** *(required)* — Name under which the connection is registered for use by other elements (for example, `<e-json>`).
+- **`data-with-credentials`** — If `'true'`, sends credentials with the EventSource request.
 - **`data-connection-icon`** — CSS selector; shown while connecting, hidden on open.
 - **`data-actions-on-open-connection`** — Actions on the `open` event (before template content replaces the element).
 
@@ -275,7 +276,7 @@ Extends native `<form>` with JSON serialization, validation, and AJAX/WebSocket 
 
 - **`data-do-not-trigger-on-enter`** — Prevents Enter key in inputs from auto-submitting via the first `[data-request-url]` element.
 - **`data-request-url`** — If present on the form, auto-submits on load. Also required on the submit trigger. Supports `${…}`. Special value `echo/request/body` echoes the request body back as the response.
-- **`data-socket`** — Submit via WebSocket (`window.__EHTML_WEB_SOCKETS__[name]`) instead of HTTP.
+- **`data-socket`** — Submit via a named WebSocket connection instead of HTTP.
 - **`data-request-method`** — HTTP method. Default: `'POST'`.
 - **`data-request-headers`** — Request headers object expression. Default: `'${{}}'`.
 - **`data-actions-on-response`** — Actions to run when the response arrives.
@@ -362,4 +363,4 @@ Contributes a value from `sessionStorage` to the request body.
 
 Extends native `<select>` with declarative initial value binding.
 
-- **`data-value`** — Initial selected value. Applied to the matching `<option>`, then the attribute is removed and native `value` is set. Also processed by `processAttributes.js` on any element.
+- **`data-value`** — Initial selected value. Applied to the matching `<option>`, then the attribute is removed and native `value` is set. Also a common attribute (see above).
