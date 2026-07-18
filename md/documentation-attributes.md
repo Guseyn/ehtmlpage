@@ -65,8 +65,8 @@ These are **not** evaluated during the common attribute pass. The element or act
 
 These are handled differently from a plain `${…}` evaluation — they update the DOM in a specific way and usually remove themselves afterward:
 
-- **`data-enter-on-click`** — Adds keyboard activation: pressing a key triggers a click on the element.
-- **`data-internal-state`** — Evaluates the expression and stores the result as internal state on the element (accessible to custom elements and elements like `<e-markdown>` that can render from it instead of fetching).
+- **`data-click-on-enter`** — Adds keyboard activation: pressing enter key triggers a click on the element.
+- **`data-internal-state`** — Evaluates the expression and stores the result as internal state on the element (accessible to custom elements and elements like `<e-markdown>` that can render from it instead of fetching). Can be accessed as `this.internalState` inside of components.
 - **`data-text`** — Evaluates to a string, inserts it as the first text child of the element, removes the attribute.
 - **`data-value`** — Evaluates to a string or number, sets the element's `value` property (numbers are coerced for `input[type="number"]`), removes the attribute.
 - **`data-src`** — On src-capable tags only: evaluates, sets native `src`, removes `data-src`.
@@ -90,10 +90,10 @@ Attributes without `${…}` that are not in the ignored or special-case lists ar
 
 # Native `<template>`
 
-Plain `<template>` elements (without `is`) support template release and placement.
+Plain `<template>` elements (without `is`) or reusable templates (`is="e-reusable"`) support template release and placement.
 
-- **`data-release-on-load`** — If present, auto-releases the template on activation. Requires `data-object-name`. The template is removed from the DOM after release (not reusable).
-- **`data-object-name`** — State key used when releasing the template with data. Required with `data-release-on-load`.
+- **`data-release-on-load`** — If present, auto-releases the template on activation (during page load). Requires `data-object-name`. The template is removed from the DOM after release (if it's not reusable).
+- **`data-object-name`** — State key used when releasing the template with data. Required when using `data-release-on-load`.
 - **`data-prepend-to`** — CSS selector (or `${…}` expression resolving to an element). Clones template content and prepends it into the target.
 - **`data-append-to`** — Same as above, but appends cloned content.
 - **`data-insert-into`** — Clears the target's `innerHTML`, then appends cloned content.
