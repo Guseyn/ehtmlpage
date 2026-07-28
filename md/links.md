@@ -20,7 +20,7 @@
 
 ## Sublime Text
 
-Syntax highlighting and autocompletion for EHTML and e-ui.
+Syntax highlighting and autocompletion for EHTML and e-ui. Also there is setting for HyperClick plugin for [fast navigation](https://www.linkedin.com/posts/gusein-ismaiylov-111bb1179_added-more-cool-things-to-hyperclick-settings-ugcPost-7487956780476583936-qUfu/?utm_source=share&utm_medium=member_desktop&rcm=ACoAACpbll0Bp1ZKW33YTEbJ4WVLpYw8SWSp_Bo).
 
 <s-column style="--align-items: center; justify-content: center;">
   <s-row>
@@ -31,5 +31,8 @@ Syntax highlighting and autocompletion for EHTML and e-ui.
   </s-row>
   <s-row>
     <a href="/sublime/HTML.sublime-syntax"><span>HTML.sublime-syntax</span></a>
+  </s-row>
+  <s-row>
+    <a href="/sublime/HyperClick.sublime-settings"><span>HyperClick.sublime-syntax</span></a>
   </s-row>
 </s-column>

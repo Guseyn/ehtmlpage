@@ -1,0 +1,57 @@
+{
+  "scopes": {
+    "text.html.basic": {
+      "regexes": [
+        "^\\s*data-endpoint-handler=['\"]([^'\"]+)['\"]\\s*$",
+        "^.*?data-src=[\"']/((?:html|md)/[^\"'?]+)(?:\\?[^\"']*)?[\"'].*$",
+        "^.*?\\bis=[\"'](e-[a-z0-9-]+)[\"'].*$",
+        "^\\s*<(e-[a-z0-9-]+)\\b.*$"
+      ],
+      "extensions": ["htm", "html", "md", "js"],
+      "lookup_paths": [
+        "web-app/static",
+        "."
+      ],
+      "aliases": {
+        "e-html": "web-app/static/js/ehtml/E/e-html.js",
+        "e-svg": "web-app/static/js/ehtml/E/e-svg.js",
+        "e-markdown": "web-app/static/js/ehtml/E/e-markdown.js",
+        "e-json": "web-app/static/js/ehtml/E/e-json.js",
+        "e-json-view": "web-app/static/js/ehtml/E/e-json-view.js",
+        "e-json-map": "web-app/static/js/ehtml/E/e-json-map-template.js",
+        "e-form": "web-app/static/js/ehtml/E/e-form.js",
+        "e-form-array": "web-app/static/js/ehtml/E/e-form-array.js",
+        "e-form-object": "web-app/static/js/ehtml/E/e-form-object.js",
+        "e-form-dynamic-value": "web-app/static/js/ehtml/E/e-form-dynamic-value.js",
+        "e-select": "web-app/static/js/ehtml/E/e-select.js",
+        "e-local-storage-value": "web-app/static/js/ehtml/E/e-local-storage-value.js",
+        "e-session-storage-value": "web-app/static/js/ehtml/E/e-session-storage-value.js",
+        "e-wrapper": "web-app/static/js/ehtml/E/e-wrapper-template.js",
+        "e-if": "web-app/static/js/ehtml/E/e-if-template.js",
+        "e-for-each": "web-app/static/js/ehtml/E/e-for-each-template.js",
+        "e-reusable": "web-app/static/js/ehtml/E/e-reusable-template.js",
+        "e-page-with-url": "web-app/static/js/ehtml/E/e-page-with-url-template.js",
+        "e-ws": "web-app/static/js/ehtml/E/e-ws-template.js",
+        "e-sse": "web-app/static/js/ehtml/E/e-sse.js",
+        "e-button": "web-app/static/js/ehtml/supportsCustomizedBuiltIns.js",
+
+        "e-toast": "web-app/static/js/e-ui/e-toast.js",
+        "e-confirm": "web-app/static/js/e-ui/e-confirm.js",
+        "e-dialog": "web-app/static/js/e-ui/e-dialog.js",
+        "e-sidebar": "web-app/static/js/e-ui/e-sidebar.js",
+        "e-tab": "web-app/static/js/e-ui/e-tab.js",
+        "e-tabs": "web-app/static/js/e-ui/e-tab.js",
+        "e-kbd": "web-app/static/js/e-ui/e-kbd.js",
+        "e-kbd-graph": "web-app/static/js/e-ui/e-kbd-graph.js",
+        "e-selectable-chip": "web-app/static/js/e-ui/e-selectable-chip.js",
+        "e-file-upload": "web-app/static/js/e-ui/e-file-upload-template.js",
+        "e-week-picker": "web-app/static/js/e-ui/e-week-picker-template.js",
+        "e-multiselect-dropdown": "web-app/static/js/e-ui/e-multiselect-dropdown-template.js",
+        "e-autoclick": "web-app/static/js/e-ui/e-autoclick-button.js",
+
+        "e-calendar": "web-app/static/js/e-instrux/e-calendar-template.js",
+        "e-vc": "web-app/static/js/e-instrux/e-vc.js"
+      }
+    }
+  }
+}
