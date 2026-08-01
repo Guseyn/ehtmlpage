@@ -59,19 +59,20 @@ In the example above, it assumes that you cloned the `ehtml` directory inside th
 <script type="module">import "#ehtml/main"</script>
 ```
 
-Once a page is loaded, the script creates a `MutationObserver` to observe any changes in the Document Object Model (DOM) on the page. This allows **EHTML** to process elements and apply the necessary manipulations.
+Once a page is loaded, **EHTML** runs two steps:
 
-You can dynamically turn it on/off:
+1. **`activateNode(document.body)`** — a one-time walk over the HTML already on the page (expressions, custom elements, templates).
+2. **`MutationObserver`** — watches for **newly inserted** nodes and runs `activateNode` on each one. It does not process HTML that was already there when the observer started.
+
+The observer is turned on before the bootstrap walk so that nodes inserted during activation (for example by `e-for-each`) are not missed — WebKit is especially strict about this.
+
+You can turn the observer on/off yourself:
 
 ```js
 // turn on
-window.turnEhtmlMutationObserverOn(
-  window.ehtmlMutationObserver
-)
+window.turnEhtmlObserverOn()
 // turn off
-window.turnEhtmlMutationObserverOff(
-  window.ehtmlMutationObserver
-)
+window.turnEhtmlObserverOff()
 ```
 
 You can disable some elements for **EHTML** by adding attribute `data-no-ehtml="true"`. It would improve performance, by reducing the number of elements that **EHTML** needs to observe.

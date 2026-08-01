@@ -10,13 +10,9 @@
 
 ```js
 // turn on
-window.turnEhtmlMutationObserverOn(
-  window.ehtmlMutationObserver
-)
+window.turnEhtmlObserverOn()
 // turn off
-window.turnEhtmlMutationObserverOff(
-  window.ehtmlMutationObserver
-)
+window.turnEhtmlObserverOff()
 ```
 
 2) You can disable some elements for **EHTML** by adding attribute `data-no-ehtml="true"`. It would improve performance, by reducing the number of elements that **EHTML** needs to observe.
