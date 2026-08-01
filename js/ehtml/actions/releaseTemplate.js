@@ -24,7 +24,7 @@ export default function releaseTemplate(elmSelectorOrElm) {
     )
   }
 
-  // ✔ New state model:
+  // New state model:
   //   releaseTemplate just triggers the template with an *empty state patch*
   //
   //   The template (via templateTriggerEventListener)

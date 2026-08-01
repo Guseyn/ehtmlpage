@@ -74,7 +74,11 @@ export default function activateNode(node) {
     }
   }
 
-  // 4. Activate children (only one level deep)
+  // 4. Activate children — never walk inert <template> contents
+  if (node.tagName === 'TEMPLATE') {
+    return
+  }
+
   if (node.childNodes) {
     for (const child of node.childNodes) {
       activateNode(child)
