@@ -1,2 +1,554 @@
-!function(){"use strict";var e=(e,t)=>{const n=e=>{for(let t=0,{length:n}=e;t<n;t++)o(e[t])},o=({target:e,attributeName:t,oldValue:n})=>{e.attributeChangedCallback(t,n,e.getAttribute(t))};return(r,s)=>{const{observedAttributes:l}=r.constructor;return l&&e(s).then((()=>{new t(n).observe(r,{attributes:!0,attributeOldValue:!0,attributeFilter:l});for(let e=0,{length:t}=l;e<t;e++)r.hasAttribute(l[e])&&o({target:r,attributeName:l[e],oldValue:null})})),r}};
-/*! (c) Andrea Giammarchi - ISC */const t=!0,n=!1,o="querySelectorAll",r="querySelectorAll",{document:s,Element:l,MutationObserver:c,Set:a,WeakMap:i}=self,u=e=>r in e,{filter:f}=[];var h=e=>{const h=new i,d=(t,n)=>{let o;if(n)for(let r,s=(e=>e.matches||e.webkitMatchesSelector||e.msMatchesSelector)(t),l=0,{length:c}=g;l<c;l++)s.call(t,r=g[l])&&(h.has(t)||h.set(t,new a),o=h.get(t),o.has(r)||(o.add(r),e.handle(t,n,r)));else h.has(t)&&(o=h.get(t),h.delete(t),o.forEach((o=>{e.handle(t,n,o)})))},p=(e,t=!0)=>{for(let n=0,{length:o}=e;n<o;n++)d(e[n],t)},{query:g}=e,m=e.root||s,y=((e,r=document,s=MutationObserver,l=["*"])=>{const c=(n,r,s,l,a,i)=>{for(const u of n)(i||o in u)&&(a?s.has(u)||(s.add(u),l.delete(u),e(u,a)):l.has(u)||(l.add(u),s.delete(u),e(u,a)),i||c(u[o](r),r,s,l,a,t))},a=new s((e=>{if(l.length){const o=l.join(","),r=new Set,s=new Set;for(const{addedNodes:l,removedNodes:a}of e)c(a,o,r,s,n,n),c(l,o,r,s,t,n)}})),{observe:i}=a;return(a.observe=e=>i.call(a,e,{subtree:t,childList:t}))(r),a})(d,m,c,g),{attachShadow:w}=l.prototype;return w&&(l.prototype.attachShadow=function(e){const t=w.call(this,e);return y.observe(t),t}),g.length&&p(m[r](g)),{drop:e=>{for(let t=0,{length:n}=e;t<n;t++)h.delete(e[t])},flush:()=>{const e=y.takeRecords();for(let t=0,{length:n}=e;t<n;t++)p(f.call(e[t].removedNodes,u),!1),p(f.call(e[t].addedNodes,u),!0)},observer:y,parse:p}};const{document:d,Map:p,MutationObserver:g,Object:m,Set:y,WeakMap:w,Element:b,HTMLElement:E,Node:S,Error:v,TypeError:M,Reflect:O}=self,{defineProperty:A,keys:N,getOwnPropertyNames:q,setPrototypeOf:C}=m;let T=!self.customElements;const D=e=>{const t=N(e),n=[],o=new y,{length:r}=t;for(let s=0;s<r;s++){n[s]=e[t[s]];try{delete e[t[s]]}catch(e){o.add(s)}}return()=>{for(let s=0;s<r;s++)o.has(s)||(e[t[s]]=n[s])}};if(T){const{createElement:P}=d,$=new p,k=new p,L=new p,x=new p,H=[],I=(e,t,n)=>{const o=L.get(n);if(t&&!o.isPrototypeOf(e)){const t=D(e);R=C(e,o);try{new o.constructor}finally{R=null,t()}}const r=(t?"":"dis")+"connectedCallback";r in o&&e[r]()},{parse:_}=h({query:H,handle:I});let R=null;const V=e=>{if(!k.has(e)){let t,n=new Promise((e=>{t=e}));k.set(e,{$:n,_:t})}return k.get(e).$},j=e(V,g);function W(){const{constructor:e}=this;if(!$.has(e))throw new M("Illegal constructor");const t=$.get(e);if(R)return j(R,t);const n=P.call(d,t);return j(C(n,e.prototype),t)}self.customElements={define:(e,t)=>{if(x.has(e))throw new v(`the name "${e}" has already been used with this registry`);$.set(t,e),L.set(e,t.prototype),x.set(e,t),H.push(e),V(e).then((()=>{_(d.querySelectorAll(e))})),k.get(e)._(t)},get:e=>x.get(e),whenDefined:V},A(W.prototype=E.prototype,"constructor",{value:W}),self.HTMLElement=W,d.createElement=function(e,t){const n=t&&t.is,o=n?x.get(n):x.get(e);return o?new o:P.call(d,e)},"isConnected"in S.prototype||A(S.prototype,"isConnected",{configurable:!0,get(){return!(this.ownerDocument.compareDocumentPosition(this)&this.DOCUMENT_POSITION_DISCONNECTED)}})}else if(T=!self.customElements.get("extends-br"),T)try{function B(){return self.Reflect.construct(HTMLBRElement,[],B)}B.prototype=HTMLLIElement.prototype;const F="extends-br";self.customElements.define("extends-br",B,{extends:"br"}),T=d.createElement("br",{is:F}).outerHTML.indexOf(F)<0;const{get:U,whenDefined:z}=self.customElements;self.customElements.whenDefined=function(e){return z.call(this,e).then((t=>t||U.call(this,e)))}}catch(G){}if(T){const J=self.customElements,{createElement:K}=d,{define:Q,get:X,upgrade:Y}=J,{construct:Z}=O||{construct(e){return e.call(this)}},ee=new w,te=new y,ne=new p,oe=new p,re=new p,se=new p,le=[],ce=[],ae=e=>se.get(e)||X.call(J,e),ie=(e,t,n)=>{const o=re.get(n);if(t&&!o.isPrototypeOf(e)){const t=D(e);ge=C(e,o);try{new o.constructor}finally{ge=null,t()}}const r=(t?"":"dis")+"connectedCallback";r in o&&e[r]()},{parse:ue}=h({query:ce,handle:ie}),{parse:fe}=h({query:le,handle(e,t){ee.has(e)&&(t?te.add(e):te.delete(e),ce.length&&me.call(ce,e))}}),{attachShadow:he}=b.prototype;he&&(b.prototype.attachShadow=function(e){const t=he.call(this,e);return ee.set(this,t),t});const de=e=>{if(!oe.has(e)){let t,n=new Promise((e=>{t=e}));oe.set(e,{$:n,_:t})}return oe.get(e).$},pe=e(de,g);let ge=null;function me(e){const t=ee.get(e);ue(t.querySelectorAll(this),e.isConnected)}q(self).filter((e=>/^HTML.*Element$/.test(e))).forEach((e=>{const t=self[e];function n(){const{constructor:e}=this;if(!ne.has(e))throw new M("Illegal constructor");const{is:n,tag:o}=ne.get(e);if(n){if(ge)return pe(ge,n);const t=K.call(d,o);return t.setAttribute("is",n),pe(C(t,e.prototype),n)}return Z.call(this,t,[],e)}C(n,t),A(n.prototype=t.prototype,"constructor",{value:n}),A(self,e,{value:n})})),d.createElement=function(e,t){const n=t&&t.is;if(n){const t=se.get(n);if(t&&ne.get(t).tag===e)return new t}const o=K.call(d,e);return n&&o.setAttribute("is",n),o},J.get=ae,J.whenDefined=de,J.upgrade=function(e){const t=e.getAttribute("is");if(t){const n=se.get(t);if(n)return void pe(C(e,n.prototype),t)}Y.call(J,e)},J.define=function(e,t,n){if(ae(e))throw new v(`'${e}' has already been defined as a custom element`);let o;const r=n&&n.extends;ne.set(t,r?{is:e,tag:r}:{is:"",tag:e}),r?(o=`${r}[is="${e}"]`,re.set(o,t.prototype),se.set(e,t),ce.push(o)):(Q.apply(J,arguments),le.push(o=e)),de(e).then((()=>{r?(ue(d.querySelectorAll(o)),te.forEach(me,[o])):fe(d.querySelectorAll(o))})),oe.get(e)._(t)}}}();
+/*! (c) Andrea Giammarchi @webreflection ISC */
+(function () {
+  'use strict';
+
+  var attributesObserver = (function (whenDefined, MutationObserver) {
+    var attributeChanged = function attributeChanged(records) {
+      for (var i = 0, length = records.length; i < length; i++) dispatch(records[i]);
+    };
+    var dispatch = function dispatch(_ref) {
+      var target = _ref.target,
+        attributeName = _ref.attributeName,
+        oldValue = _ref.oldValue;
+      target.attributeChangedCallback(attributeName, oldValue, target.getAttribute(attributeName));
+    };
+    return function (target, is) {
+      var attributeFilter = target.constructor.observedAttributes;
+      if (attributeFilter) {
+        whenDefined(is).then(function () {
+          new MutationObserver(attributeChanged).observe(target, {
+            attributes: true,
+            attributeOldValue: true,
+            attributeFilter: attributeFilter
+          });
+          for (var i = 0, length = attributeFilter.length; i < length; i++) {
+            if (target.hasAttribute(attributeFilter[i])) dispatch({
+              target: target,
+              attributeName: attributeFilter[i],
+              oldValue: null
+            });
+          }
+        });
+      }
+      return target;
+    };
+  });
+
+  function _unsupportedIterableToArray(o, minLen) {
+    if (!o) return;
+    if (typeof o === "string") return _arrayLikeToArray(o, minLen);
+    var n = Object.prototype.toString.call(o).slice(8, -1);
+    if (n === "Object" && o.constructor) n = o.constructor.name;
+    if (n === "Map" || n === "Set") return Array.from(o);
+    if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen);
+  }
+  function _arrayLikeToArray(arr, len) {
+    if (len == null || len > arr.length) len = arr.length;
+    for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i];
+    return arr2;
+  }
+  function _createForOfIteratorHelper(o, allowArrayLike) {
+    var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"];
+    if (!it) {
+      if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") {
+        if (it) o = it;
+        var i = 0;
+        var F = function () {};
+        return {
+          s: F,
+          n: function () {
+            if (i >= o.length) return {
+              done: true
+            };
+            return {
+              done: false,
+              value: o[i++]
+            };
+          },
+          e: function (e) {
+            throw e;
+          },
+          f: F
+        };
+      }
+      throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
+    }
+    var normalCompletion = true,
+      didErr = false,
+      err;
+    return {
+      s: function () {
+        it = it.call(o);
+      },
+      n: function () {
+        var step = it.next();
+        normalCompletion = step.done;
+        return step;
+      },
+      e: function (e) {
+        didErr = true;
+        err = e;
+      },
+      f: function () {
+        try {
+          if (!normalCompletion && it.return != null) it.return();
+        } finally {
+          if (didErr) throw err;
+        }
+      }
+    };
+  }
+
+  /*! (c) Andrea Giammarchi - ISC */
+  var TRUE = true,
+    FALSE = false,
+    QSA$1 = 'querySelectorAll';
+
+  /**
+   * Start observing a generic document or root element.
+   * @param {(node:Element, connected:boolean) => void} callback triggered per each dis/connected element
+   * @param {Document|Element} [root=document] by default, the global document to observe
+   * @param {Function} [MO=MutationObserver] by default, the global MutationObserver
+   * @param {string[]} [query=['*']] the selectors to use within nodes
+   * @returns {MutationObserver}
+   */
+  var notify = function notify(callback) {
+    var root = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : document;
+    var MO = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : MutationObserver;
+    var query = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : ['*'];
+    var loop = function loop(nodes, selectors, added, removed, connected, pass) {
+      var _iterator = _createForOfIteratorHelper(nodes),
+        _step;
+      try {
+        for (_iterator.s(); !(_step = _iterator.n()).done;) {
+          var node = _step.value;
+          if (pass || QSA$1 in node) {
+            if (connected) {
+              if (!added.has(node)) {
+                added.add(node);
+                removed["delete"](node);
+                callback(node, connected);
+              }
+            } else if (!removed.has(node)) {
+              removed.add(node);
+              added["delete"](node);
+              callback(node, connected);
+            }
+            if (!pass) loop(node[QSA$1](selectors), selectors, added, removed, connected, TRUE);
+          }
+        }
+      } catch (err) {
+        _iterator.e(err);
+      } finally {
+        _iterator.f();
+      }
+    };
+    var mo = new MO(function (records) {
+      if (query.length) {
+        var selectors = query.join(',');
+        var added = new Set(),
+          removed = new Set();
+        var _iterator2 = _createForOfIteratorHelper(records),
+          _step2;
+        try {
+          for (_iterator2.s(); !(_step2 = _iterator2.n()).done;) {
+            var _step2$value = _step2.value,
+              addedNodes = _step2$value.addedNodes,
+              removedNodes = _step2$value.removedNodes;
+            loop(removedNodes, selectors, added, removed, FALSE, FALSE);
+            loop(addedNodes, selectors, added, removed, TRUE, FALSE);
+          }
+        } catch (err) {
+          _iterator2.e(err);
+        } finally {
+          _iterator2.f();
+        }
+      }
+    });
+    var observe = mo.observe;
+    (mo.observe = function (node) {
+      return observe.call(mo, node, {
+        subtree: TRUE,
+        childList: TRUE
+      });
+    })(root);
+    return mo;
+  };
+
+  var QSA = 'querySelectorAll';
+  var _self$1 = self,
+    document$2 = _self$1.document,
+    Element$1 = _self$1.Element,
+    MutationObserver$2 = _self$1.MutationObserver,
+    Set$2 = _self$1.Set,
+    WeakMap$1 = _self$1.WeakMap;
+  var elements = function elements(element) {
+    return QSA in element;
+  };
+  var filter = [].filter;
+  var qsaObserver = (function (options) {
+    var live = new WeakMap$1();
+    var drop = function drop(elements) {
+      for (var i = 0, length = elements.length; i < length; i++) live["delete"](elements[i]);
+    };
+    var flush = function flush() {
+      var records = observer.takeRecords();
+      for (var i = 0, length = records.length; i < length; i++) {
+        parse(filter.call(records[i].removedNodes, elements), false);
+        parse(filter.call(records[i].addedNodes, elements), true);
+      }
+    };
+    var matches = function matches(element) {
+      return element.matches || element.webkitMatchesSelector || element.msMatchesSelector;
+    };
+    var notifier = function notifier(element, connected) {
+      var selectors;
+      if (connected) {
+        for (var q, m = matches(element), i = 0, length = query.length; i < length; i++) {
+          if (m.call(element, q = query[i])) {
+            if (!live.has(element)) live.set(element, new Set$2());
+            selectors = live.get(element);
+            if (!selectors.has(q)) {
+              selectors.add(q);
+              options.handle(element, connected, q);
+            }
+          }
+        }
+      } else if (live.has(element)) {
+        selectors = live.get(element);
+        live["delete"](element);
+        selectors.forEach(function (q) {
+          options.handle(element, connected, q);
+        });
+      }
+    };
+    var parse = function parse(elements) {
+      var connected = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : true;
+      for (var i = 0, length = elements.length; i < length; i++) notifier(elements[i], connected);
+    };
+    var query = options.query;
+    var root = options.root || document$2;
+    var observer = notify(notifier, root, MutationObserver$2, query);
+    var attachShadow = Element$1.prototype.attachShadow;
+    if (attachShadow) Element$1.prototype.attachShadow = function (init) {
+      var shadowRoot = attachShadow.call(this, init);
+      observer.observe(shadowRoot);
+      return shadowRoot;
+    };
+    if (query.length) parse(root[QSA](query));
+    return {
+      drop: drop,
+      flush: flush,
+      observer: observer,
+      parse: parse
+    };
+  });
+
+  var _self = self,
+    document$1 = _self.document,
+    Map = _self.Map,
+    MutationObserver$1 = _self.MutationObserver,
+    Object$1 = _self.Object,
+    Set$1 = _self.Set,
+    WeakMap = _self.WeakMap,
+    Element = _self.Element,
+    HTMLElement = _self.HTMLElement,
+    Node = _self.Node,
+    Error = _self.Error,
+    TypeError$1 = _self.TypeError,
+    Reflect = _self.Reflect;
+  var defineProperty = Object$1.defineProperty,
+    keys = Object$1.keys,
+    getOwnPropertyNames = Object$1.getOwnPropertyNames,
+    setPrototypeOf = Object$1.setPrototypeOf;
+  var legacy = !self.customElements;
+  var expando = function expando(element) {
+    var key = keys(element);
+    var value = [];
+    var ignore = new Set$1();
+    var length = key.length;
+    for (var i = 0; i < length; i++) {
+      value[i] = element[key[i]];
+      try {
+        delete element[key[i]];
+      } catch (SafariTP) {
+        ignore.add(i);
+      }
+    }
+    return function () {
+      for (var _i = 0; _i < length; _i++) ignore.has(_i) || (element[key[_i]] = value[_i]);
+    };
+  };
+  if (legacy) {
+    var HTMLBuiltIn = function HTMLBuiltIn() {
+      var constructor = this.constructor;
+      if (!classes.has(constructor)) throw new TypeError$1('Illegal constructor');
+      var is = classes.get(constructor);
+      if (override) return augment(override, is);
+      var element = createElement.call(document$1, is);
+      return augment(setPrototypeOf(element, constructor.prototype), is);
+    };
+    var createElement = document$1.createElement;
+    var classes = new Map();
+    var defined = new Map();
+    var prototypes = new Map();
+    var registry = new Map();
+    var query = [];
+    var handle = function handle(element, connected, selector) {
+      var proto = prototypes.get(selector);
+      if (connected && !proto.isPrototypeOf(element)) {
+        var redefine = expando(element);
+        override = setPrototypeOf(element, proto);
+        try {
+          new proto.constructor();
+        } finally {
+          override = null;
+          redefine();
+        }
+      }
+      var method = "".concat(connected ? '' : 'dis', "connectedCallback");
+      if (method in proto) element[method]();
+    };
+    var _qsaObserver = qsaObserver({
+        query: query,
+        handle: handle
+      }),
+      parse = _qsaObserver.parse;
+    var override = null;
+    var whenDefined = function whenDefined(name) {
+      if (!defined.has(name)) {
+        var _,
+          $ = new Promise(function ($) {
+            _ = $;
+          });
+        defined.set(name, {
+          $: $,
+          _: _
+        });
+      }
+      return defined.get(name).$;
+    };
+    var augment = attributesObserver(whenDefined, MutationObserver$1);
+    self.customElements = {
+      define: function define(is, Class) {
+        if (registry.has(is)) throw new Error("the name \"".concat(is, "\" has already been used with this registry"));
+        classes.set(Class, is);
+        prototypes.set(is, Class.prototype);
+        registry.set(is, Class);
+        query.push(is);
+        whenDefined(is).then(function () {
+          parse(document$1.querySelectorAll(is));
+        });
+        defined.get(is)._(Class);
+      },
+      get: function get(is) {
+        return registry.get(is);
+      },
+      whenDefined: whenDefined
+    };
+    defineProperty(HTMLBuiltIn.prototype = HTMLElement.prototype, 'constructor', {
+      value: HTMLBuiltIn
+    });
+    self.HTMLElement = HTMLBuiltIn;
+    document$1.createElement = function (name, options) {
+      var is = options && options.is;
+      var Class = is ? registry.get(is) : registry.get(name);
+      return Class ? new Class() : createElement.call(document$1, name);
+    };
+    // in case ShadowDOM is used through a polyfill, to avoid issues
+    // with builtin extends within shadow roots
+    if (!('isConnected' in Node.prototype)) defineProperty(Node.prototype, 'isConnected', {
+      configurable: true,
+      get: function get() {
+        return !(this.ownerDocument.compareDocumentPosition(this) & this.DOCUMENT_POSITION_DISCONNECTED);
+      }
+    });
+  } else {
+    legacy = !self.customElements.get('extends-br');
+    if (legacy) {
+      try {
+        var BR = function BR() {
+          return self.Reflect.construct(HTMLBRElement, [], BR);
+        };
+        BR.prototype = HTMLLIElement.prototype;
+        var is = 'extends-br';
+        self.customElements.define('extends-br', BR, {
+          'extends': 'br'
+        });
+        legacy = document$1.createElement('br', {
+          is: is
+        }).outerHTML.indexOf(is) < 0;
+        var _self$customElements = self.customElements,
+          get = _self$customElements.get,
+          _whenDefined = _self$customElements.whenDefined;
+        self.customElements.whenDefined = function (is) {
+          var _this = this;
+          return _whenDefined.call(this, is).then(function (Class) {
+            return Class || get.call(_this, is);
+          });
+        };
+      } catch (o_O) {}
+    }
+  }
+  if (legacy) {
+    var _parseShadow = function _parseShadow(element) {
+      var root = shadowRoots.get(element);
+      _parse(root.querySelectorAll(this), element.isConnected);
+    };
+    var customElements = self.customElements;
+    var _createElement = document$1.createElement;
+    var define = customElements.define,
+      _get = customElements.get,
+      upgrade = customElements.upgrade;
+    var _ref = Reflect || {
+        construct: function construct(HTMLElement) {
+          return HTMLElement.call(this);
+        }
+      },
+      construct = _ref.construct;
+    var shadowRoots = new WeakMap();
+    var shadows = new Set$1();
+    var _classes = new Map();
+    var _defined = new Map();
+    var _prototypes = new Map();
+    var _registry = new Map();
+    var shadowed = [];
+    var _query = [];
+    var getCE = function getCE(is) {
+      return _registry.get(is) || _get.call(customElements, is);
+    };
+    var _handle = function _handle(element, connected, selector) {
+      var proto = _prototypes.get(selector);
+      if (connected && !proto.isPrototypeOf(element)) {
+        var redefine = expando(element);
+        _override = setPrototypeOf(element, proto);
+        try {
+          new proto.constructor();
+        } finally {
+          _override = null;
+          redefine();
+        }
+      }
+      var method = "".concat(connected ? '' : 'dis', "connectedCallback");
+      if (method in proto) element[method]();
+    };
+    var _qsaObserver2 = qsaObserver({
+        query: _query,
+        handle: _handle
+      }),
+      _parse = _qsaObserver2.parse;
+    var _qsaObserver3 = qsaObserver({
+        query: shadowed,
+        handle: function handle(element, connected) {
+          if (shadowRoots.has(element)) {
+            if (connected) shadows.add(element);else shadows["delete"](element);
+            if (_query.length) _parseShadow.call(_query, element);
+          }
+        }
+      }),
+      parseShadowed = _qsaObserver3.parse;
+    // qsaObserver also patches attachShadow
+    // be sure this runs *after* that
+    var attachShadow = Element.prototype.attachShadow;
+    if (attachShadow) Element.prototype.attachShadow = function (init) {
+      var root = attachShadow.call(this, init);
+      shadowRoots.set(this, root);
+      return root;
+    };
+    var _whenDefined2 = function _whenDefined2(name) {
+      if (!_defined.has(name)) {
+        var _,
+          $ = new Promise(function ($) {
+            _ = $;
+          });
+        _defined.set(name, {
+          $: $,
+          _: _
+        });
+      }
+      return _defined.get(name).$;
+    };
+    var _augment = attributesObserver(_whenDefined2, MutationObserver$1);
+    var _override = null;
+    getOwnPropertyNames(self).filter(function (k) {
+      return /^HTML.*Element$/.test(k);
+    }).forEach(function (k) {
+      var HTMLElement = self[k];
+      function HTMLBuiltIn() {
+        var constructor = this.constructor;
+        if (!_classes.has(constructor)) throw new TypeError$1('Illegal constructor');
+        var _classes$get = _classes.get(constructor),
+          is = _classes$get.is,
+          tag = _classes$get.tag;
+        if (is) {
+          if (_override) return _augment(_override, is);
+          var element = _createElement.call(document$1, tag);
+          element.setAttribute('is', is);
+          return _augment(setPrototypeOf(element, constructor.prototype), is);
+        } else return construct.call(this, HTMLElement, [], constructor);
+      }
+
+      defineProperty(HTMLBuiltIn.prototype = HTMLElement.prototype, 'constructor', {
+        value: HTMLBuiltIn
+      });
+      defineProperty(self, k, {
+        value: HTMLBuiltIn
+      });
+    });
+    document$1.createElement = function (name, options) {
+      var is = options && options.is;
+      if (is) {
+        var Class = _registry.get(is);
+        if (Class && _classes.get(Class).tag === name) return new Class();
+      }
+      var element = _createElement.call(document$1, name);
+      if (is) element.setAttribute('is', is);
+      return element;
+    };
+    customElements.get = getCE;
+    customElements.whenDefined = _whenDefined2;
+    customElements.upgrade = function (element) {
+      var is = element.getAttribute('is');
+      if (is) {
+        var _constructor = _registry.get(is);
+        if (_constructor) {
+          _augment(setPrototypeOf(element, _constructor.prototype), is);
+          // apparently unnecessary because this is handled by qsa observer
+          // if (element.isConnected && element.connectedCallback)
+          //   element.connectedCallback();
+          return;
+        }
+      }
+      upgrade.call(customElements, element);
+    };
+    customElements.define = function (is, Class, options) {
+      if (getCE(is)) throw new Error("'".concat(is, "' has already been defined as a custom element"));
+      var selector;
+      var tag = options && options["extends"];
+      _classes.set(Class, tag ? {
+        is: is,
+        tag: tag
+      } : {
+        is: '',
+        tag: is
+      });
+      if (tag) {
+        selector = "".concat(tag, "[is=\"").concat(is, "\"]");
+        _prototypes.set(selector, Class.prototype);
+        _registry.set(is, Class);
+        _query.push(selector);
+      } else {
+        define.apply(customElements, arguments);
+        shadowed.push(selector = is);
+      }
+      _whenDefined2(is).then(function () {
+        if (tag) {
+          _parse(document$1.querySelectorAll(selector));
+          shadows.forEach(_parseShadow, [selector]);
+        } else parseShadowed(document$1.querySelectorAll(selector));
+      });
+      _defined.get(is)._(Class);
+    };
+  }
+
+})();

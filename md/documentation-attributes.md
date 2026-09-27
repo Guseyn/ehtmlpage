@@ -118,13 +118,13 @@ Fetches an HTML fragment and inserts it into the page.
 
 Fetches markdown, converts it to HTML, and inserts it into the page.
 
-- **`data-src`** *(required unless internal state is provided via `data-internal-state`)* — GET URL for the markdown source. Supports `${…}`.
-- **`data-headers`** — Request headers object expression. Default: `'${{}}'`.
-- **`data-apply-code-highlighting`** — Enables syntax highlighting for fenced code blocks.
-- **`data-apply-latex`** — Enables KaTeX/LaTeX rendering via showdown-katex.
+- **`data-src`** *(required unless the markdown is provided via `data-internal-state`)* — GET URL for the markdown source. Supports `${…}`.
+- **`data-request-headers`** — Request headers object expression. Default: `'${{}}'`.
 - **`data-actions-on-progress-start`** — Actions to run before the fetch starts.
 - **`data-actions-on-progress-end`** — Actions to run after rendering completes.
-- **`data-internal-state`** — *(common attribute)* If set, skips the fetch and renders markdown from the element's internal state.
+- **`data-internal-state`** — *(common attribute)* An object with two optional keys:
+  - `markdown` — markdown text to render. If present, the fetch is skipped entirely and `data-src` is not needed.
+  - `extensions` — a showdown extension, or a list of them, to run for this element. See [Syntax highlighting](/html/documentation.html) and [LaTeX support](/html/documentation.html) below.
 
 ---
 
@@ -133,7 +133,7 @@ Fetches markdown, converts it to HTML, and inserts it into the page.
 Fetches SVG markup and inserts it into the page.
 
 - **`data-src`** *(required)* — GET URL for the SVG file. Supports `${…}`.
-- **`data-headers`** — Request headers object expression. Default: `'${{}}'`.
+- **`data-request-headers`** — Request headers object expression. Default: `'${{}}'`.
 - **`data-actions-on-progress-start`** — Actions to run before the fetch starts.
 - **`data-actions-on-progress-end`** — Actions to run after the SVG is inserted and the element is unwrapped.
 
@@ -167,7 +167,7 @@ Fetches JSON (or receives it via WebSocket/SSE/cache) and runs response actions.
 Fetches JSON and pretty-prints it inside the element.
 
 - **`data-src`** *(required)* — GET URL for JSON data. Supports `${…}`.
-- **`data-headers`** — Request headers object expression. Default: `'{}'`.
+- **`data-request-headers`** — Request headers object expression. Default: `'${{}}'`.
 - **`data-actions-on-progress-start`** — Actions before the fetch starts.
 - **`data-actions-on-progress-end`** — Actions after the JSON is rendered.
 
@@ -234,7 +234,7 @@ URL-aware page template: matches the current URL against a pattern and releases 
 Fetches an outer HTML layout and places template content into a slot inside it.
 
 - **`data-src`** *(required)* — GET URL for the outer HTML fragment. Supports `${…}`.
-- **`data-headers`** — Request headers. Default: `'${{}}'`.
+- **`data-request-headers`** — Request headers. Default: `'${{}}'`.
 - **`data-where-to-place`** *(required)* — CSS selector for the placeholder element inside the fetched HTML.
 - **`data-how-to-place`** — Placement mode: `'before'`, `'after'`, `'inside'`, or `'instead'` (replace placeholder). Default: `'instead'`.
 - **`data-actions-on-progress-start`** — Actions before the fetch starts.

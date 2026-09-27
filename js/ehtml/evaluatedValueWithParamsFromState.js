@@ -21,6 +21,7 @@ export default function evaluatedValueWithParamsFromState(expression, state, nod
   }
 
   // Evaluate
+  // eslint-disable-next-line no-new-func
   const func = new Function(
     'state',
     `

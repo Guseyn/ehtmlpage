@@ -21,6 +21,10 @@
         }
       }
     </script>
+    <script type="module">
+      import highlightExtension from '#ehtml/showdown/extensions/highlight.js'
+      window.highlightExtension = highlightExtension
+    </script>
     <script type="module">import "#ehtml/main"</script>
     <script type="text/javascript" src="/js/utils.js"></script>
   </head>
@@ -32,7 +36,9 @@
       data-how-to-place="inside">
       <e-markdown
         data-src="/md/blog/blog-app-in-ehtml.md"
-        data-apply-code-highlighting="true"
+        data-internal-state="${{
+          extensions: [ highlightExtension({ pre: true, auto_detection: true }) ]
+        }}"
         data-actions-on-progress-start="
           document.body.classList.toggle('progress-opacity')
         "

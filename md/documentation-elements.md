@@ -425,7 +425,7 @@ Example usage:
       data-list-to-iterate="${album.songs}"
       data-item-name="song">
 
-      <p data-text="No. ${song.index}/${album.songs.length}"></p>
+      <p data-text="No. ${index}/${album.songs.length}"></p>
       <p data-text="${song.title}"></p>
       <p data-text="${song.length}"></p>
 
@@ -440,7 +440,7 @@ How it works:
 - `data-list-to-iterate` — the list you want to loop through.  
 - `data-item-name` — variable name for each item.  
 - Each item also has an automatic `index` property (starting at 1).  
-- `data-index-name` — variable name for each item index, if you prefer not to use `index` property name in the item.
+- `data-index-name` — variable name for the 1-based index of each item (default: `index`, used like `${index}`).
 - The `<template>` is duplicated once per list item, replacing its own tag.
 
 The output is the template repeated for each song.
@@ -490,7 +490,7 @@ Example usage (show songs shorter than 3:30):
           (song.length.split(':')[0] * 60 + song.length.split(':')[1] * 1) < 210
         }">
 
-        <p data-text="No. ${song.index}/${a.songs.length}"></p>
+        <p data-text="No. ${index}/${a.songs.length}"></p>
         <p data-text="${song.title}"></p>
         <p data-text="${song.length}"></p>
 
@@ -986,19 +986,19 @@ This is because EHTML needs to initialize `urlParams` *before* activating any el
 </details><details><summary><b>&lt;select is="e-select"&gt;</b></summary>
 
 `<select is="e-select">` behaves like a normal `<select>`, but with one important improvement:  
-it can automatically select a value on render based on its `value` attribute.
+it can automatically select a value on render based on its `data-value` attribute.
 
 ### Example
 
 ```html
-<select is="e-select" name="color" value="green">
+<select is="e-select" name="color" data-value="green">
   <option value="red">Red</option>
   <option value="green">Green</option>
   <option value="blue">Blue</option>
 </select>
 ```
 
-On render, EHTML finds the option matching the `value` attribute (`"green"`) and marks it as selected.  
+On render, EHTML finds the option matching the `data-value` attribute (`"green"`) and marks it as selected. `data-value` can also be an expression like `${user.color}`.  
 The element is transformed into a normal `<select>` with `data-e-select="true"` added internally, but you write it declaratively and cleanly.
 
 This is especially useful when:
@@ -1092,37 +1092,81 @@ The Markdown is converted into proper HTML nodes, not injected as text.
 
 ---
 
-### Syntax highlighting
+### Extensions (syntax highlighting, LaTeX)
 
-Enable code highlighting for fenced code blocks:
+`<e-markdown>` itself only loads showdown. Anything beyond that — highlight.js for
+fenced code blocks, KaTeX for math — is an **opt-in package**: you import it on the page
+that needs it, and pass it to the element through `data-internal-state`. A page that does
+not import an extension never downloads it.
+
+Import the extension and put it on `window`:
+
+```html
+<script type="module">
+  import highlightExtension from '#ehtml/showdown/extensions/highlight.js'
+  import katexExtension from '#ehtml/showdown/extensions/katex.js'
+  window.highlightExtension = highlightExtension
+  window.katexExtension = katexExtension
+</script>
+<script type="module">import '#ehtml/main'</script>
+```
+
+**Order matters.** The extension import must come *before* `#ehtml/main`. Module scripts
+evaluate in document order, and `main.js` activates `<body>` in a microtask that drains
+before the next module script runs — so an extension assigned after it would not exist
+yet when `data-internal-state` is evaluated.
+
+Then pass the extension to any element that should use it:
 
 ```html
 <e-markdown
   data-src="/md/tutorial.md"
-  data-apply-code-highlighting="true"
+  data-internal-state="${{
+    extensions: [ highlightExtension({ pre: true, auto_detection: true }) ]
+  }}"
 ></e-markdown>
 ```
 
-This applies syntax highlighting using the built-in integration with your selected highlighter.
+`extensions` takes a single extension or a list of them, and applies only to that
+element — two `<e-markdown>` elements on the same page can use different extensions, or
+none at all.
 
----
+#### Syntax highlighting
 
-### LaTeX support
+`highlightExtension({ pre, auto_detection })` wraps highlight.js (all 192 bundled
+grammars).
 
-To enable LaTeX rendering inside Markdown:
+- `pre` — also put the language classes on the `<pre>` element, not just `<code>`.
+- `auto_detection` — highlight fenced blocks that do not declare a language.
+
+highlight.js ships **no CSS** with EHTML, so pick a theme stylesheet yourself, e.g.:
+
+```html
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.11.1/styles/github.min.css">
+```
+
+#### LaTeX support
+
+`katexExtension(config)` wraps KaTeX. The config is passed through to KaTeX, and the
+`$$…$$` and `~…~` (AsciiMath) delimiters are always added:
 
 ```html
 <e-markdown
   data-src="/md/math.md"
-  data-apply-latex="true"
+  data-internal-state="${{
+    extensions: [ katexExtension({ throwOnError: false, errorColor: '#ff0000' }) ]
+  }}"
 ></e-markdown>
 ```
 
-To ensure correct display across browsers, add the following in `<head>`:
+Fenced `latex` and `asciimath` blocks are rendered too.
+
+KaTeX also ships no CSS with EHTML. To ensure correct display across browsers, add the
+following in `<head>`:
 
 ```html
 <head>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/katex.min.css" crossorigin="anonymous">
 
   <script>
     window.WebFontConfig = {
@@ -1162,7 +1206,20 @@ More examples will be included in a dedicated section.
 
 ### Using data-internal-state
 
-If you just set markdown text in `data-internal-state` attribute by `mapToTemplate`, it will render that markdown as HTML.
+`data-internal-state` on `<e-markdown>` is an object with two optional keys, `markdown`
+and `extensions`. Put the markdown text under `markdown` and the element renders it
+directly, with no request at all — `data-src` is not needed:
+
+```html
+<e-markdown data-internal-state="${{
+  markdown: `# Title
+
+Rendered straight from internal state.
+`
+}}"></e-markdown>
+```
+
+This is also what you get when a template passes markdown down through `mapToTemplate`.
 
 </details><details><summary><b>&lt;e-json-view&gt;</b></summary>
 
@@ -1346,7 +1403,7 @@ if (this.form.isValid) {
 </details><details><summary><b>&lt;template is="e-sse"&gt;</b></summary>
 
 `<template is="e-sse">` provides a complete Server-Sent Events workflow inside HTML.  
-It establishes a EventSource instance, gives it a name, and allows other EHTML elements inside it—such as `<e-json>` or `<template is="e-json-map">`—to **receive** JSON structured events through that event source.
+It establishes an EventSource instance, gives it a name, and allows other EHTML elements inside it—such as `<e-json>` or `<template is="e-json-map">`—to **receive** JSON structured events through that event source.
 
 Using a `<template>` is required because `e-sse` must initialize **before** the inner elements are activated.
 
@@ -1376,7 +1433,7 @@ Using a `<template>` is required because `e-sse` must initialize **before** the 
   <e-json
     data-event-source="myEventSource"
     data-response-name="eventWithJSONData"
-    data-event="specifictEventType"
+    data-event="specificEventType"
     data-actions-on-response="
       mapToTemplate('#msg', eventWithJSONData)
     "
@@ -1396,12 +1453,12 @@ Using a `<template>` is required because `e-sse` must initialize **before** the 
     data-event-source="myEventSource"
     data-response-name="eventWithJSONData"
     data-actions-on-response="
-      mapToTemplate('#msg', eventWithJSONData)
+      mapToTemplate('#any-msg', eventWithJSONData)
     "
   >
     <template
       is="e-reusable"
-      id="msg"
+      id="any-msg"
       data-object-name="message"
     >
       <span data-text="${message.user}"></span>
@@ -1418,7 +1475,7 @@ Using a `<template>` is required because `e-sse` must initialize **before** the 
 
 #### **1. Declaring the EventSource instance**
 ```html
-<template is="e-ess" data-src="ws://..." data-event-source-name="myEventSource">
+<template is="e-sse" data-src="https://..." data-event-source-name="myEventSource">
 ```
 
 - `data-src` — EventSource URL  
@@ -1432,9 +1489,9 @@ You can create *multiple* EventSource instances on the same page by giving them 
 ### **2. Optional UI helpers**
 
 - `data-connection-icon` — show/hide icon while connecting  
-- `data-actions-on-open-connection` — runs event source opens  
+- `data-actions-on-open-connection` — runs when the event source opens  
 
-You have access to the WebSocket event as `event`:
+You have access to the EventSource `open` event as `event`:
 
 ```html
 data-actions-on-open-connection="
@@ -1446,13 +1503,13 @@ data-actions-on-open-connection="
 
 ### **3. Receiving events with `<e-json>`**
 
-Inside the WebSocket template, you can use:
+Inside the `e-sse` template, you can use:
 
 ```html
 <e-json 
   data-event-source="myEventSource"
   data-event="someSpecificEvent"
-  data-actions-on-respons="...">
+  data-actions-on-response="...">
 ```
 
 This means:
@@ -1534,7 +1591,7 @@ Most common attributes:
 - `data-internal-state` allows you to set a state inside of your element, which you can access by `elm.internalState`
 - `data-*` - you can use any custom attribute, but those will be just evaluated and inserted as attributes, unless there is any logic you may want to run inside of your [custom elements](#defining-custom-elements-in-ehtml-v3)
 
-There are some other data attributes the different elements in EHTML utilize like `data-headers`, `data-actions-on-response`, etc. Action attributes are not really expressions but rather JS code where you can directly use state from the node scope.
+There are some other data attributes the different elements in EHTML utilize like `data-request-headers`, `data-actions-on-response`, etc. Action attributes are not really expressions but rather JS code where you can directly use state from the node scope.
 
 Expressions in attributes can be evaluated on page load, but also when you call `mapToTemplate()`, `releaseTemplate()` functions.
 

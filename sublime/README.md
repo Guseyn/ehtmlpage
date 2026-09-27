@@ -32,7 +32,7 @@ Attributes are sourced from `js/ehtml/processAttributes.js`, EHTML docs, and e-u
 | Category | Attributes |
 |----------|------------|
 | EHTML actions | `data-actions-on-response`, `data-actions-on-progress-start/end`, `data-actions-on-progress`, `data-actions-on-open-connection`, `data-actions-on-close-connection` |
-| EHTML expressions | `data-internal-state`, `data-request-headers`, `data-headers`, `data-bound-to`, `data-cache-from`, `data-condition-to-display`, `data-list-to-iterate`, `data-text`, `data-value`, `data-inner-html`, `data-checked`, `data-disabled` |
+| EHTML expressions | `data-internal-state`, `data-request-headers`, `data-bound-to`, `data-cache-from`, `data-condition-to-display`, `data-list-to-iterate`, `data-text`, `data-value`, `data-inner-html`, `data-checked`, `data-disabled` |
 | EHTML placement | `data-append-to`, `data-prepend-to`, `data-insert-into`, `data-place-instead` |
 | EHTML dynamic URLs | `data-request-url`, `data-socket`, `data-src` (on non-media elements) |
 | e-ui actions | `data-onopen`, `data-onclose`, `data-action`, `data-prev-click`, `data-next-click`, `data-on-week-change`, `data-condition-to-click` |

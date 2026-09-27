@@ -196,7 +196,7 @@ variables:
       # EHTML deferred expressions (evaluated later in scoped context)
     | data-condition-to-display | data-list-to-iterate
     | data-bound-to | data-cache-from
-    | data-internal-state | data-request-headers | data-headers
+    | data-internal-state | data-request-headers
       # EHTML template placement (often document.querySelector(...))
     | data-append-to | data-prepend-to | data-insert-into | data-place-instead
       # EHTML evaluated string / HTML attributes

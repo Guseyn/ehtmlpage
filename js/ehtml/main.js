@@ -61,17 +61,6 @@ window.__EHTML_SCOPED_STATE__ = new WeakMap()
 window.__EHTML_WEB_SOCKETS__ = window.__EHTML_WEB_SOCKETS__ || []
 
 /* ════════════════════════════════════════════════════════════════════════
- *                    EHTML MARKDOWN EXTENSION REGISTRY
- * ════════════════════════════════════════════════════════════════════════
- *
- * Optional Showdown extensions for <e-markdown>. Register once, used globally.
- *
- *   window.__EHTML_SHOWDOWN_EXTENSIONS__.push(myExtension)
- *
- * ════════════════════════════════════════════════════════════════════════ */
-window.__EHTML_SHOWDOWN_EXTENSIONS__ = window.__EHTML_SHOWDOWN_EXTENSIONS__ || []
-
-/* ════════════════════════════════════════════════════════════════════════
  *                          ELEMENTS & ACTIONS
  * ════════════════════════════════════════════════════════════════════════
  *

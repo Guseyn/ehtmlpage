@@ -20,7 +20,7 @@
     },
     {
       "trigger": "e-markdown",
-      "contents": "<e-markdown\n  data-src=\"$1\"\n  data-apply-e-ui=\"true\"\n  data-request-headers=\"\\${{}}\"\n  data-apply-code-highlighting=\"true\"\n  data-apply-latex=\"false\"\n  data-actions-on-progress-start=\"$2\"\n  data-actions-on-progress-end=\"$3\"\n></e-markdown>"
+      "contents": "<e-markdown\n  data-src=\"$1\"\n  data-internal-state=\"\\${{\n    extensions: [ highlightExtension({ pre: true, auto_detection: true }) ]\n  }}\"\n  data-actions-on-progress-start=\"$2\"\n  data-actions-on-progress-end=\"$3\"\n></e-markdown>"
     },
     {
       "trigger": "e-svg",
@@ -28,7 +28,7 @@
     },
     {
       "trigger": "e-wrapper",
-      "contents": "<template\n  is=\"e-wrapper\"\n  data-src=\"$1\"\n  data-where-to-place=\"$2\"\n  data-how-to-place=\"${3:inside}\"\n  data-headers=\"\\${{}}\"\n  data-actions-on-progress-start=\"$4\"\n  data-actions-on-progress-end=\"$5\"\n>$0</template>"
+      "contents": "<template\n  is=\"e-wrapper\"\n  data-src=\"$1\"\n  data-where-to-place=\"$2\"\n  data-how-to-place=\"${3:inside}\"\n  data-request-headers=\"\\${{}}\"\n  data-actions-on-progress-start=\"$4\"\n  data-actions-on-progress-end=\"$5\"\n>$0</template>"
     },
     {
       "trigger": "e-page-with-url",
@@ -88,7 +88,7 @@
     },
     {
       "trigger": "e-select",
-      "contents": "<select is=\"e-select\" name=\"$1\" value=\"$2\">\n  $0\n</select>"
+      "contents": "<select is=\"e-select\" name=\"$1\" data-value=\"$2\">\n  $0\n</select>"
     },
 
     /* ═══════════════════════════════════════════════════════════════════
@@ -173,8 +173,7 @@
 
     { "trigger": "data-internal-state", "contents": "data-internal-state=\"\\${{\n  $1\n}}\"" },
     { "trigger": "data-request-headers", "contents": "data-request-headers=\"\\${{}}\"" },
-    { "trigger": "data-headers", "contents": "data-headers=\"\\${{ $1 }}\"" },
-    { "trigger": "data-bound-to", "contents": "data-bound-to=\"${$1}\"" },
+        { "trigger": "data-bound-to", "contents": "data-bound-to=\"${$1}\"" },
     { "trigger": "data-cache-from", "contents": "data-cache-from=\"${$1}\"" },
     { "trigger": "data-condition-to-display", "contents": "data-condition-to-display=\"${$1}\"" },
     { "trigger": "data-list-to-iterate", "contents": "data-list-to-iterate=\"${$1}\"" },

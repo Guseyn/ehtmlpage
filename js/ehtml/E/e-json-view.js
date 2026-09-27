@@ -51,7 +51,7 @@ export default class EJsonView extends HTMLElement {
     )
 
     const headers = evaluatedValueWithParamsFromState(
-      this.getAttribute('data-headers') || '{}',
+      this.getAttribute('data-request-headers') || '${{}}',
       state,
       this
     )

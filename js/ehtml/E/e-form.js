@@ -1224,7 +1224,7 @@ function retrievedDynamicValuesForRequestBodyAndQueryObject (dynamicValues, requ
       throw new Error('e-form-dynamic-value must have name, unless it is a direct child of e-form-array')
     }
     if (!dynamicValue.hasAttribute('data-bound-to')) {
-      throw new Error(`e-form-dynamic-value has no data-bound-to attribute`)
+      throw new Error('e-form-dynamic-value has no data-bound-to attribute')
     }
     const properyPath = []
     buildFullPathOfProperyForRequestBodyByFormElementPosition(

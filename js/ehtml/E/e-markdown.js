@@ -5,9 +5,7 @@ import evaluatedValueWithParamsFromState from '#ehtml/evaluatedValueWithParamsFr
 import evaluatedStringWithParamsFromState from '#ehtml/evaluatedStringWithParamsFromState.js'
 import evaluateActionsOnProgress from '#ehtml/evaluateActionsOnProgress.js'
 import scrollToHash from '#ehtml/actions/scrollToHash.js'
-import * as showdown from '#ehtml/third-party/showdown.min.js'
-import showdownHighlight from '#ehtml/third-party/showdown-highlight.js'
-import showdownKatex from '#ehtml/third-party/showdown-katex/showdown-katex.js'
+import * as showdown from '#ehtml/showdown/showdown.js'
 
 export default class EMarkdown extends HTMLElement {
   constructor() {
@@ -33,37 +31,30 @@ export default class EMarkdown extends HTMLElement {
 
   #run() {
     const state = getNodeScopedState(this)
+    const internalState = this.internalState || {}
 
-    // --- Resolve showdown extensions (global registry) ---
-    const extensions = window.__EHTML_SHOWDOWN_EXTENSIONS__ || []
+    // --- Showdown extensions ---
+    // Extensions are opt-in: import the extension module yourself and pass it
+    // through data-internal-state, e.g.
+    //
+    //   <script type="module">
+    //     import katexExtension from '#ehtml/showdown/extensions/katex.js'
+    //     window.katexExtension = katexExtension
+    //   </script>
+    //
+    //   <e-markdown data-internal-state="${{
+    //     extensions: [ katexExtension({ throwOnError: false }) ]
+    //   }}"></e-markdown>
+    //
+    // The import must run before '#ehtml/main' so the global is assigned by the
+    // time data-internal-state is evaluated.
+    const extensions = internalState.extensions
+      ? (Array.isArray(internalState.extensions) ? internalState.extensions : [internalState.extensions])
+      : []
 
-    // Code highlighting extension
-    if (this.hasAttribute('data-apply-code-highlighting') && showdownHighlight) {
-      extensions.push(
-        showdownHighlight({
-          pre: true,
-          auto_detection: true
-        })
-      )
-    }
-
-    // LaTeX / KaTeX extension
-    if (this.hasAttribute('data-apply-latex') && showdownKatex) {
-      extensions.push(
-        showdownKatex({
-          displayMode: true,
-          throwOnError: false,
-          errorColor: '#ff0000',
-          delimiters: [
-            { left: '$$', right: '$$', display: false },
-            { left: '~', right: '~', display: false, asciimath: true }
-          ]
-        })
-      )
-    }
-
-    if (this.internalState) {
-      this.renderMarkdown(this.internalState, extensions)
+    // Markdown may come from internal state instead of the network.
+    if (internalState.markdown !== undefined) {
+      this.renderMarkdown(internalState.markdown, extensions)
       return
     }
 
@@ -90,7 +81,7 @@ export default class EMarkdown extends HTMLElement {
     )
 
     const headers = evaluatedValueWithParamsFromState(
-      this.getAttribute('data-headers') || '${{}}',
+      this.getAttribute('data-request-headers') || '${{}}',
       state,
       this
     )

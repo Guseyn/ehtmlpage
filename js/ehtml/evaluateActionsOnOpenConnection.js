@@ -30,6 +30,6 @@ export default function evaluateActionsOnOpenConnection(string, e, node, state) 
     In short: “mutation first → activation second → actions last.”
   ──────────────────────────────────────────────────────────────────────────────*/
   queueMicrotask(() => {
-  func(node, [e, state])
+    func(node, [e, state])
   })
 }
